@@ -6,21 +6,25 @@ let appHeader = `
             logo and Navigation bar -->
         <div id="top-header">
 
-            <!-- Logo -->
-            <div class="logo">
-                <a href="#">
-                    <div class="overlay"></div>
-                </a>
-            </div>
 
-            <!-- Navigation Menu -->
+            <!-- Navigation Bar -->
             <nav>
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="#Home">
+                        <div class="overlay"></div>
+                    </a>
+                </div>
+
+                <input id="collapseMenu" class="toggle" type="checkbox">
+                <label for="collapseMenu" class="menu-toggle">Menu</label>
+
                 <div id="nav-menu">
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Estimates</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Login</a></li>
+                        <li class="nav-item"><a href="#Home">Home</a></li>
+                        <li class="nav-item"><a href="#Estimates">Estimates</a></li>
+                        <li class="nav-item"><a href="#Contact">Contact Us</a></li>
+                        <li class="nav-item"><a href="#Login">Login</a></li>
                     </ul>
                 </div>
             </nav>
