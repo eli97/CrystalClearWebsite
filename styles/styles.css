@@ -1,0 +1,150 @@
+/*************************/
+/*    Defining  Constants    */
+/*************************/
+:root {
+    --light-gray: rgb(144, 144, 144);
+    --medium-gray: rgb(96, 96, 96);
+    --dark-gray: rgb(13, 13, 13);
+
+    --light-blue: rgb(179, 229, 255);
+    --medium-blue: rgb(25, 179, 255);
+    --dark-blue: rgb(0, 89, 179);
+}
+
+ body{
+     margin: 0px;
+     padding: 0px;
+ }
+
+/*************************/
+/*    Styling  Header    */
+/*************************/
+header{
+
+    overflow: hidden;
+}
+
+#top-header{
+
+    text-align: center;
+    height: 60px;
+}
+
+/****************/
+/* Styling Logo */
+/****************/
+.logo {
+    background: url("../images/TempLogo.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    position: fixed;
+    top: 0px;
+
+    padding: 0px;
+    margin: 0px;
+    width: 100px;
+    height: 50px;
+}
+
+.overlay {
+    background:rgba(255, 255, 255, .50);
+    text-align:center;
+    opacity:0;
+    width:100%;
+    height:100%;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.logo:hover {
+
+}
+
+.logo:hover .overlay {
+    opacity:1;
+}
+
+/***************************/
+/* Styling Navigation Menu */
+/***************************/
+#nav-menu {
+    font-family: "Helvetica", sans-serif;
+    float: left;
+    width: 100%;
+    height: 50px;
+    margin: none;
+}
+
+#nav-menu ul {
+    margin-top: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    float: center;
+    margin: none;
+    background: var(--medium-blue);
+}
+
+#nav-menu li {
+    display: inline-block;
+    padding: none;
+    margin: none;
+}
+
+#nav-menu li a, #nav-menu li span {
+    display: inline-block;
+    padding: 0em 1.0em;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 50px;
+}
+
+#nav-menu li a {
+    color: var(--dark-blue);
+}
+
+#nav-menu li:hover a, #nav-menu li span {
+    background: var(--light-blue);
+    text-decoration: none;
+
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+/*************************/
+/*    Styling  Footer    */
+/*************************/
+footer{
+    overflow: hidden;
+    background-image: linear-gradient(var(--medium-blue), var(--light-blue));
+}
+
+#footer-bar{
+    text-align: center;
+
+}
+
+#footer-bar h2{
+     margin: 0;
+     padding: 0;
+     font-family: "Helvetica", sans-serif;
+     font-size: 12pt;
+     color: var(--dark-blue);
+}
+
+#footer-bar h3{
+     margin: 0;
+     padding: 0;
+     font-family: "Helvetica", sans-serif;
+     font-size: 10pt;
+     color: var(--dark-blue);
+}
