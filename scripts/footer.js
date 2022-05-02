@@ -8,7 +8,7 @@ let appFooter = `
                     Servicing the greater Sacramento area...<br/>
                 </h1>
                 <h2>
-                    Townsville, California 95678 <br/>
+                    Sacramento, California 95825 <br/>
                     email: <a href = "mailto: no-reply@email.com">no-reply@email.com</a><br/>
                     phone: (555) 123-4567
                 </h2>

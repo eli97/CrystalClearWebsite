@@ -1,14 +1,14 @@
 let appHeader = `
     <!-- Header Menu of the Page -->
+
     <header>
 
         <!-- Top header menu containing
             logo and Navigation bar -->
         <div id="top-header">
 
-
             <!-- Navigation Bar -->
-            <nav>
+            <nav id="nav-bar">
                 <!-- Logo -->
                 <div class="logo">
                     <a href="#Home">
@@ -21,10 +21,10 @@ let appHeader = `
 
                 <div id="nav-menu">
                     <ul>
-                        <li class="nav-item"><a href="#Home">Home</a></li>
-                        <li class="nav-item"><a href="#Estimates">Estimates</a></li>
-                        <li class="nav-item"><a href="#Contact">Contact Us</a></li>
-                        <li class="nav-item"><a href="#Login">Login</a></li>
+                        <li class="nav-item"><a href="#">Home</a></li>
+                        <li class="nav-item"><a href="../pages/services.html">Estimates</a></li>
+                        <li class="nav-item"><a href="#">Contact Us</a></li>
+                        <li class="nav-item"><a href="../pages/signup.html">Login</a></li>
                     </ul>
                 </div>
             </nav>
