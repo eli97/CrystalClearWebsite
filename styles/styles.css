@@ -3,14 +3,17 @@
 /*****************************/
 
     :root {
-        --light-gray: rgb(144, 144, 144);
-        --medium-gray: rgb(96, 96, 96);
-        --dark-gray: rgb(13, 13, 13);
+        --near-white: rgb(251, 251, 254);
+        --light-gray: rgb(149, 149, 149);
+        --medium-gray: rgb(66, 65, 77);
+        --dark-gray: rgb(43, 42, 51);
 
         --light-blue: rgb(179, 229, 255);
         --medium-blue: rgb(25, 179, 255);
         --dark-blue: rgb(0, 89, 179);
+        --black-blue: rgb(2, 22, 43);
     }
+
     /*
     html {
         font-size: 62.5%;
@@ -20,6 +23,9 @@
     body{
         margin: 0px;
         padding: 0px;
+        
+        color: var(--text);
+        background-color: var(--background);
     }
 
     /*
@@ -36,6 +42,28 @@
         width: 150px;
     }
 
+    .darkMode {
+        --background: var(--dark-gray);
+        --accent: var(--light-gray);
+        --text: var(--near-white);
+        --selection: var(--medium-gray);
+    }
+
+    body, p {
+        /* Light mode */
+        --background: var(--light-blue);
+        --accent: var(--dark-blue);
+        --text: var(--black-blue);
+        --selection: var(--medium-blue);
+    }
+
+    /* .lightMode {
+        --background: var(--light-blue);
+        --accent: var(--dark-blue);
+        --text: var(--black-blue);
+        --selection: var(--medium-blue);
+    } */
+
 /*************************/
 /*    Styling  Header    */
 /*************************/
@@ -46,9 +74,13 @@
         top: 0px;
         box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
         border-style: none none solid none;
-        border-color: var(--dark-blue);
+        border-color: var(--text);
         border-width: 2px;
         height: 50px;
+    }
+
+    #contrastToggle {
+        float: right;
     }
 
 /***************************/
@@ -84,6 +116,19 @@
         transition: all 0.3s ease-in-out;
     }
 
+    #nav-bar #contrastToggle {
+        border: none;
+        outline: none;
+        background-color: none;
+        cursor: pointer;
+
+        margin-right: 10px;
+        margin-top: 13px;
+
+        width:20px;
+        height:20px;
+    }
+
     /*
     .logo:hover {
 
@@ -96,12 +141,12 @@
     */
 
     #nav-bar {
-        margin: 0px;
+        margin: auto;
         width: 100%;
         height: 50px;
         font-size: 1.4rem;
         float:left;
-        background: var(--medium-blue);
+        background: var(--accent);
     }
 
     #nav-menu ul {
@@ -127,11 +172,11 @@
     }
 
     #nav-menu li a {
-        color: var(--dark-blue);
+        color: var(--text);
     }
 
     #nav-menu li:hover a, #nav-menu li span {
-        background: var(--light-blue);
+        background: var(--selection);
         text-decoration: none;
 
         -webkit-transition: all 0.3s ease-in-out;
@@ -202,8 +247,8 @@
 
             padding: 1rem;
 
-            color: var(--dark-blue);
-            background: var(--medium-blue);
+            color: var(--text);
+            background: var(--accent);
 
             cursor: pointer;
 
@@ -211,7 +256,7 @@
         }
 
         .menu-toggle:hover {
-            color: var(--light-blue);
+            color: var(--selection);
         }
 
         .menu-toggle::before {
@@ -251,13 +296,85 @@
         }
     }
 
+/********************************/
+/*    Styling  Containers    */
+/********************************/
+    
+    .box1, .box2{
+        width:380px;
+        height:600px;
+        margin:10px;
+        padding:10px;
+
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .box1 {
+        background: var(--accent);
+        border-radius: 25px;
+
+    }
+
+    .box2 {
+        background:#ff0;
+    }
+
+    .box1 img, .box2 img {
+        border-radius: 20px;
+
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+
+        height: 200px;
+        width: 360px;
+
+        justify-content: flex-start;
+
+    }
+
+    .box1 p, .box2 p {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+
+        height: 300px;
+        width: 320px;
+
+        text-align: left;
+        justify-content: space-between;
+    }
+
+    .box1 button, .box2 button {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+
+        background-color: var(--background);
+
+        text-align: center;
+        justify-content: center;
+
+        -webkit-box-align: end;
+        -webkit-align-items: flex-end;
+        -ms-flex-align: end;
+        align-items: flex-end;
+    }
+
 /*************************/
 /*    Styling  Footer    */
 /*************************/
 
     footer{
         overflow: hidden;
-        background-image: linear-gradient(var(--medium-blue), var(--light-blue));
+        background-image: linear-gradient(var(--accent), var(--background));
     }
 
     #footer-bar{
@@ -269,12 +386,12 @@
         margin: 0;
         padding: 0;
         font-size: 1.0rem;
-        color: var(--dark-blue);
+        color: var(--text);
     }
 
     #footer-bar h2{
         margin: 0;
         padding: 0;
         font-size: 0.8rem;
-        color: var(--dark-blue);
+        color: var(--text);
     }

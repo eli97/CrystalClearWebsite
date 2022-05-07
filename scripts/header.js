@@ -2,7 +2,6 @@ let appHeader = `
     <!-- Header Menu of the Page -->
 
     <header>
-
         <!-- Top header menu containing
             logo and Navigation bar -->
         <div id="top-header">
@@ -16,18 +15,25 @@ let appHeader = `
                     </a>
                 </div>
 
+                <img src="../images/sun.png" id="contrastToggle" onclick="contrastToggle();" />
+
                 <input id="collapseMenu" class="toggle" type="checkbox">
                 <label for="collapseMenu" class="menu-toggle">Menu</label>
 
                 <div id="nav-menu">
+                
+
                     <ul>
                         <li class="nav-item"><a href="#">Home</a></li>
                         <li class="nav-item"><a href="../pages/services.html">Estimates</a></li>
                         <li class="nav-item"><a href="#">Contact Us</a></li>
                         <li class="nav-item"><a href="../pages/signup.html">Login</a></li>
                     </ul>
+
                 </div>
             </nav>
+
+
         </div>
 
         <!-- Image menu in Header to contain an Image and
