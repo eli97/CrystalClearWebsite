@@ -1,20 +1,39 @@
 let isDarkModeEnabled = "";
 
 function contrastToggle() {
-    let element = document.body;
-    element.classList.toggle("darkMode");
 
     isDarkModeEnabled = getCookie("darkMode");
 
-    if (isDarkModeEnabled == "" || isDarkModeEnabled == "Disabled") {        
+    let element = document.body;
+    element.classList.toggle("darkMode");
+
+    if (isDarkModeEnabled === "" || isDarkModeEnabled === "Disabled") {        
         setCookie("darkMode", "Enabled", 5)
     }
     else{
         setCookie("darkMode", "Disabled", 5)
     }
-
-    console.log(document.cookie);
 }
+
+function darkModeEnable() {
+    let element = document.body;
+    element.classList.add("darkMode");
+
+    setCookie("darkMode", "Enabled", 5)
+}
+
+function checkDarkModeCookie() {
+    isDarkModeEnabled = getCookie("darkMode");
+
+    if (isDarkModeEnabled === "Enabled") {
+        darkModeEnable();
+    }
+    else {
+        setCookie("darkMode", "Disabled", 5)
+    }
+}
+
+//--- GENERAL COOKIE FUNCTIONS ---///
 
 function setCookie(cname, cvalue, exdays) {
     const date = new Date();
@@ -39,24 +58,17 @@ function getCookie(cname) {
     return "";
 }
 
-function checkDarkModeCookie() {
-    if (getCookie("darkMode") == "Enabled") {
-     contrastToggle();
-    }
-    else {
-      
-    }
-}
+//--- PAGE LOAD SCRIPTS ---//
 
 document.onreadystatechange = function(){
+    console.log(document.cookie);
+
     if (document.readyState === "complete") {
         checkDarkModeCookie();
     }
     else {
         window.onload = function () {
-            checkDarkModeCookie();
+            //checkDarkModeCookie();
         }
     }
-
-    console.log(document.cookie);
 }
