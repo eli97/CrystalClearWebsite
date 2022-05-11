@@ -1,2 +1,2 @@
 # CrystalClearWebsite
-![](/pages/CClogo.png)
+![](/pages/CClogo.PNG)
