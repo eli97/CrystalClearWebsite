@@ -27,7 +27,7 @@ let appHeader = `
                         <li class="nav-item"><a href="#">Home</a></li>
                         <li class="nav-item"><a href="../pages/services.html">Estimates</a></li>
                         <li class="nav-item"><a href="#">Contact Us</a></li>
-                        <li class="nav-item"><a href="../pages/signup.html">Login</a></li>
+                        <li class="nav-item"><a href="../pages/login.html">Login</a></li>
                     </ul>
 
                 </div>
