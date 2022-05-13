@@ -52,7 +52,7 @@ features.
 
 Draft project charter document 
 
-Meet with client for initial requirements and details elicitation.
+Meet with client for initial requirements and details elicitation
 
 ### Sprint 02
 
@@ -82,7 +82,11 @@ Add darkmode and lightmode
 
 ### Sprint 05
 
+Add functionality for user to delete account and all associated data
 
+Add functionality for customers to request additional filter washes
+
+Add functionality for customers to request services without an account 
 
 ### Sprint 06
 
