@@ -6,18 +6,7 @@
 This is a website for Crystal Clear Pool Service, managed by sole proprietor Daniel Semeryuk. The website will advertise his business and provide convenient features 
 for his clients. His clients will be able to create an account for the website, which will allow them to subscribe to his services online and pay automatically, as well 
 as provide a convenient way to see payment and service history. New clients who find his business online are not obligated to create an account and can still choose to 
-request an estimate in person and pay through traditional means like check or cash.
-
---Development Team--  
-Eli Semeryuk  
-Nue Khang  
-Colton Bearquiver  
-Vitoriya Penkova  
-Giselle Fuentes  
-Jin Park  
-Kevin Huoth  
-Jonathan Kasten  
-
+request an estimate in person and pay through traditional means like check or cash. 
 
 ## Testing:
 
@@ -57,8 +46,58 @@ features.
 ![](/ProtoTypeImages/AdministrationPage.png)
 ![](/ProtoTypeImages/ContactMePage.png)
 
-## Use your JIRA to create a timeline section with key milestones for your project
+## JIRA Timeline:
+
+### Sprint 01
+
+Draft project charter document 
+
+Meet with client for initial requirements and details elicitation.
+
+### Sprint 02
+
+Decide on tech stack and development tools
+
+Create a mockup of the website
+
+### Sprint 03
+
+Construct homepage
+
+Create Services Page
+
+Construct login Page
+
+Construct signup page
+
+### Sprint 04
+
+Create database to store user information
+
+Host database for initial testing
+
+Add drop down menu to all pages
+
+Add darkmode and lightmode 
+
+### Sprint 05
 
 
 
-NOTE: When coming up with the timeline this is the timeline for what you expect to get done in 191 based on the user stories you created in the backlog for all the key features with estimates.
+### Sprint 06
+
+Add functionality to cancel subscriptions
+
+Add administrative functionality (update service pricing and descriptions)
+
+### Sprint 07
+
+Implement payment system
+
+Store payment detailss in database
+
+Ensure records are accessible from client and administrative view
+
+### Sprint 08
+
+Deploy website and conduct final testing 
