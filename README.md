@@ -38,13 +38,13 @@ features.
 5. Submit a pull request
     
 ## Prototype:
-![](/PrtoTypeImages/HomePage.png)
-![](/PrtoTypeImages/ServicesPage.png)
-![](/PrtoTypeImages/LoginPage.png)
-![](/PrtoTypeImages/SignUpPage.png)
-![](/PrtoTypeImages/AccountDetailsPage.png)
-![](/PrtoTypeImages/AdministrationPage.png)
-![](/PrtoTypeImages/ContactMePage.png)
+![](/ProtoTypeImages/HomePage.png)
+![](/ProtoTypeImages/ServicesPage.png)
+![](/ProtoTypeImages/LoginPage.png)
+![](/ProtoTypeImages/SignUpPage.png)
+![](/ProtoTypeImages/AccountDetailsPage.png)
+![](/ProtoTypeImages/AdministrationPage.png)
+![](/ProtoTypeImages/ContactMePage.png)
 
 ## Use your JIRA to create a timeline section with key milestones for your project
 
