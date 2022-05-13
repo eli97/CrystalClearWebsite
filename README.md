@@ -105,3 +105,10 @@ Ensure records are accessible from client and administrative view
 ### Sprint 08
 
 Deploy website and conduct final testing 
+
+
+### Application Flow ###
+![](/Diagrams/application flow.png)
+
+### ER diagram ###
+![](/Diagrams/erd.png)
