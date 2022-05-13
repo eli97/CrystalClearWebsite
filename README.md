@@ -23,7 +23,7 @@ Testing will be expanded upon as development continues:
 1. Test Environment:
     * Testing branch in Github Repository
     * Test Database (test data)
-    * BugZilla (Bug-tracking management tool)
+    * Google Sheets/Excel (Test case management)
 2. Testing:
     * Create test cases from user stories and jira subtasks
     * Test cases pass/fail according to Acceptance Criteria
