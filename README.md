@@ -107,8 +107,8 @@ Ensure records are accessible from client and administrative view
 Deploy website and conduct final testing 
 
 
-### Application Flow ###
+## Application Flow:
 ![](/Diagrams/applicationflow.png)
 
-### ER diagram ###
+## ER diagram:
 ![](/Diagrams/erd.png)
