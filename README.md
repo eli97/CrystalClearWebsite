@@ -13,7 +13,7 @@ request an estimate in person and pay through traditional means like check or ca
 1. Testing consists of ensuring that all web pages scale properly when zooming in/out and resizing the browser window. 
 2. For data entry, simple SQL injection is tested which should be avoided by using prepared statements and grants. 
 3. All mandatory fields should be validated and indicated.
-4. Psswored complexity requirements should be reliably enforced.
+4. Password complexity requirements should be reliably enforced.
 5. Check each page for broken links and images.
 6. Input fields should be checked for the max field value. Input values greater than the specified max limit should not be accepted or stored in the database.
 7. Check all input fields for special characters.
@@ -24,16 +24,16 @@ Testing will be expanded upon as development continues.
 ## Deployment:
 
 Deployment of this website consists of reserving a hostname, choosing a hosting service, configuring DNS settings, and migrating all source code for deployment. Initial
-deplyment will consist of a work-in-progress live demo.
+deployment will consist of a work-in-progress live demo.
 
 ## Developer instructions: 
 
-Our team has used VS Code git integration for revision control, which offers a GUI. We referred to the prototype and cleint meetings for development of pages and 
+Our team has used VS Code git integration for revision control, which offers a GUI. We referred to the prototype and client meetings for development of pages and 
 features.
 
 1. Fork the repository 
-2. Create your feautre branch: git checkout -b new-feature
-3. Commit your changesL git commit -am 'Added feature'
+2. Create your feature branch: git checkout -b new-feature
+3. Commit your changes: git commit -am 'Added feature'
 4. Push to the branch: git push origin new-feature
 5. Submit a pull request
     
@@ -78,7 +78,7 @@ Host database for initial testing
 
 Add drop down menu to all pages
 
-Add darkmode and lightmode 
+Add dark mode and light mode 
 
 ### Sprint 05
 
@@ -98,7 +98,7 @@ Add administrative functionality (update service pricing and descriptions)
 
 Implement payment system
 
-Store payment detailss in database
+Store payment details in database
 
 Ensure records are accessible from client and administrative view
 
