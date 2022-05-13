@@ -108,7 +108,7 @@ Deploy website and conduct final testing
 
 
 ### Application Flow ###
-![](/Diagrams/application flow.png)
+![](/Diagrams/applicationflow.png)
 
 ### ER diagram ###
 ![](/Diagrams/erd.png)
