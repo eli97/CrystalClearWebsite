@@ -19,7 +19,20 @@ request an estimate in person and pay through traditional means like check or ca
 7. Check all input fields for special characters.
 8. The user should not be able to submit a page twice by pressing the submit button in quick succession.
 
-Testing will be expanded upon as development continues.
+Testing will be expanded upon as development continues:
+1. Test Environment:
+    * Testing branch in Github Repository
+    * Test Database (test data)
+    * BugZilla (Bug-tracking management tool)
+2. Testing:
+    * Create test cases from user stories and jira subtasks
+    * Test cases pass/fail according to Acceptance Criteria
+    * Regression and new functionality
+    * Manual and automated tests
+3. Bugs/Defects:
+    * Open a new jira for bug/defect
+    * Include steps to recreate
+    * Include documentation (test steps, descriptions, screenshots, etc.)
 
 ## Deployment:
 
