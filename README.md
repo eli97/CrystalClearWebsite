@@ -6,7 +6,18 @@
 This is a website for Crystal Clear Pool Service, managed by sole proprietor Daniel Semeryuk. The website will advertise his business and provide convenient features 
 for his clients. His clients will be able to create an account for the website, which will allow them to subscribe to his services online and pay automatically, as well 
 as provide a convenient way to see payment and service history. New clients who find his business online are not obligated to create an account and can still choose to 
-request an estimate in person and pay through traditional means like check or cash. 
+request an estimate in person and pay through traditional means like check or cash.
+
+--Development Team--  
+Eli Semeryuk  
+Nue Khang  
+Colton Bearquiver  
+Vitoriya Penkova  
+Giselle Fuentes  
+Jin Park  
+Kevin Huoth  
+Jonathan Kasten  
+
 
 ## Testing:
 
