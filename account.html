@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Contact</title>
+    <title>Account</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
@@ -42,22 +42,34 @@
             </div>
         </div>
     </nav>
-    <h2 class="text-center text-info" style="margin-top: 10px;"><span style="color: rgb(0, 0, 0);">Contact Us</span></h2>
-    <div class="row" style="padding: 100px;background: url(&quot;assets/img/water1.png&quot;) top / cover no-repeat;padding-top: 50px;">
-        <div class="col-12 col-sm-6 col-md-6" id="contact-box">
-            <p id="contact-text">Enter the information and we'll contact you as soon as possible!</p>
-            <div class="info-box"><i class="fa fa-map-marker my-info-icons"></i><span class="text-uppercase text-info">Address: </span><span>Sacramento CA</span></div>
-            <div class="info-box"><i class="fa fa-envelope my-info-icons"></i><span class="text-uppercase text-info">Email: </span><span>contact@ccwps.com</span></div>
-            <div class="info-box"><i class="fa fa-phone-square my-info-icons"></i><span class="text-uppercase text-info">Phone: </span><span>+9161234567</span></div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 site-form">
-            <form id="my-form">
-                <div class="form-group mb-3"><label class="form-label visually-hidden" for="firstname">First Name</label><input class="form-control" type="text" id="firstname" name="firstname" placeholder="First Name" autofocus=""></div>
-                <div class="form-group mb-3"><label class="form-label visually-hidden" for="lastname">Last Name</label><input class="form-control" type="text" id="lastname" name="lastname" placeholder="Last Name"></div>
-                <div class="form-group mb-3"><label class="form-label visually-hidden" for="phonenumber">Phone Number</label><input class="form-control" type="tel" id="phonenumber" name="phonenumber" required="" placeholder="Phone"></div>
-                <div class="form-group mb-3"><label class="form-label visually-hidden" for="email">Email Address</label><input class="form-control" type="text" id="email" name="email" required="" placeholder="Email"></div>
-                <div class="form-group mb-3"><label class="form-label visually-hidden" for="messages">Last Name</label><textarea class="form-control" name="messages" required="" placeholder="Message" rows="8"></textarea></div><a class="btn btn-light btn-lg" role="button" id="form-btn" href="thankyou.html" style="background: rgba(0,0,0,0.4);">SEND </a>
-            </form>
+    <h2 class="text-center">Update Account</h2>
+    <div style="background: url(&quot;assets/img/water1.png&quot;) top / cover no-repeat;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-end">
+                    <div><label class="form-label" style="margin-top: 25px;">First Name:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">Last Name:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">Street:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">City:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">State:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">Zip Code:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">Phone Number:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">E-mail:</label></div>
+                </div>
+                <div class="col-md-6" style="width: 400px;">
+                    <form id="my-form" style="height: 500px;">
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="firstname">First Name</label><input class="form-control" type="text" id="firstname" name="firstname" autofocus=""></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="lastname">Last Name</label><input class="form-control" type="text" id="lastname" name="lastname"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="lastname">Last Name</label><input class="form-control" type="text" id="lastname-3" name="street"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="lastname">Last Name</label><input class="form-control" type="text" id="lastname-2" name="city"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="lastname">Last Name</label><input class="form-control" type="text" id="lastname-4" name="state"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="lastname">Last Name</label><input class="form-control" type="number" id="lastname-1" name="zipcode"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="phonenumber">Phone Number</label><input class="form-control" type="tel" id="phonenumber" name="phonenumber"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="email">Email Address</label><input class="form-control" type="email" id="email" name="email"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="messages">Last Name</label></div><button class="btn btn-light btn-lg border rounded-0" id="form-btn-1" type="submit" style="background: rgba(0,0,0,0.4);padding-top: 0px;padding-bottom: 0px;padding-right: 10px;padding-left: 10px;font-size: 16px;">Update</button><button class="btn btn-light btn-lg border rounded-0" id="form-btn-2" type="reset" style="background: rgba(0,0,0,0.4);padding-top: 0px;padding-bottom: 0px;padding-right: 10px;padding-left: 10px;font-size: 16px;margin-left: 10px;">CANCEL</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     <footer class="text-center">
