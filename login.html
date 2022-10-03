@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="google-signin-client_id" content="292091807783-ca0u6h3tmm137rmnnfq3i0f1iv85fv34.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="550864736847-f9st76mo0i4h0bb5f8remug9pg01pjdg.apps.googleusercontent.com">
     <link rel="icon" type="image/x-icon" href="images\favicon.ico" >
     <title>Login</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="assets/css/NMDIG-Jumbotron-Advanced-Responsive-Tint.css">
     <link rel="stylesheet" href="assets/css/Signup-page-with-overlay.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/GoogleSignIn.css">
 </head>
 
 <body>
@@ -58,13 +59,17 @@
                         <input class="form-control" type="password" id="phonenumber" name="password" required="" placeholder="Password">
                     </div>
 
+                    
+ 
+                   
                     <div id="g_id_onload"
-                         data-client_id="292091807783-ca0u6h3tmm137rmnnfq3i0f1iv85fv34.apps.googleusercontent.com"
-                         data-login_uri="https://localhost:3000/auth/callback"
+                         data-client_id="550864736847-f9st76mo0i4h0bb5f8remug9pg01pjdg"
                          data-context="signin"
+                         data-ux_mode="popup"
+                         data-callback="onSignIn"
                          data-auto_prompt="false">
                     </div>
-
+                    
                     <div class="g_id_signin" style="margin-bottom: 15px;"
                          data-type="standard"
                          data-size="large"
@@ -97,9 +102,11 @@
     <script src="assets/js/Application-Form.js"></script>
     <script src="assets/js/Card-Carousel.js"></script>
     <script src="assets/js/dropdown-search-bs4.js"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script defer src="../assets/js.Google Sign-In.js"></script>
+    <script defer src="../assets/js/Google-Sign-In.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
 </body>
 
 </html>
