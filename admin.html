@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="google-signin-client_id" content="550864736847-f9st76mo0i4h0bb5f8remug9pg01pjdg.apps.googleusercontent.com.apps.googleusercontent.com">
+    <link rel="icon" type="image/x-icon" href="images\favicon.ico" >
     <title>CrystalClearAdmin</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -31,14 +33,16 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md py-3">
-        <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span><a href="main.html"><img src="assets/img/CClogo2.svg" width="248" height="79"></a></span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span><a href="index.html"><img src="assets/img/CClogo2.svg" width="248" height="79"></a></span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-2">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="main.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="estimate.html">Estimates</a></li>
                     <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                </ul><a class="btn btn-primary border-0 border-dark ms-md-2" role="button" href="login.html" style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Log out</a>
+                </ul>
+                <a id="logbtn" class="btn btn-primary border-0 border-dark ms-md-2" role="button" href="login.html" style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Login</a>
             </div>
         </div>
     </nav>
@@ -48,27 +52,141 @@
             <div class="col">
                 <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
                     <div class="card-body text-center p-4">
-                        <h4 class="text-center card-title">Chemical + Basket</h4><textarea class="form-control-lg" rows="10" cols="25px"></textarea>
-                        <div class="d-flex"><button class="btn btn-primary" type="button">Update</button></div>
+                        <h4 class="text-center card-title">Chemical + Basket</h4>
+                        <textarea id="ChemDescription" class="form-control-lg" rows="10" cols="25px"></textarea>
+
+                        <div class="price-input">
+                            <div style="display: flex;">
+                                <div style="flex: 50%;">
+                                    <h4 class="text-center card-title" style="float: right">Price:</h4>
+                                </div>
+                                <div style="flex: 50%;">
+                                    <textarea id="ChemPrice" rows="1" cols="7" style="resize: none; float: left;"  ></textarea>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <button class="btn btn-primary" type="button" onclick="setChem();">Update</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
                     <div class="card-body text-center p-4">
-                        <h4 class="text-center card-title">Basic Service</h4><textarea class="form-control-lg" rows="10" cols="25px"></textarea>
-                        <div class="d-flex"><button class="btn btn-primary" type="button">Update</button></div>
+                        <h4 class="text-center card-title">Basic Service</h4>
+                        <textarea id="BasicDescription" class="form-control-lg" rows="10" cols="25px"></textarea>
+
+                        <div class="price-input">
+                            <div style="display: flex;">
+                                <div style="flex: 50%;">
+                                    <h4 class="text-center card-title" style="float: right">Price:</h4>
+                                </div>
+                                <div style="flex: 50%;">
+                                    <textarea id="BasicPrice" rows="1" cols="7" style="resize: none; float: left;"  ></textarea>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <button class="btn btn-primary" type="button" onclick="setBasic();">Update</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col">
-                <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+                <div class="card">
+                    <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
                     <div class="card-body text-center p-4">
-                        <h4 class="text-center card-title">Full Service</h4><textarea class="form-control-lg" rows="10" cols="25px"></textarea>
-                        <div class="d-flex"><button class="btn btn-primary" type="button">Update</button></div>
+                        <h4 class="text-center card-title">Full Service</h4>
+                        <textarea id="FullDescription" class="form-control-lg" rows="10" cols="25px"></textarea>
+                        <div class="price-input">
+                            <div style="display: flex;">
+                                <div style="flex: 50%;">
+                                    <h4 class="text-center card-title" style="float: right">Price:</h4>
+                                </div>
+                                <div style="flex: 50%;">
+                                    <textarea id="FullPrice" rows="1" cols="7" style="resize: none; float: left;" ></textarea>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <button class="btn btn-primary" type="button" onclick="setFull();">Update</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <script type="text/javascript">
+                var url = 'assets/php/database.php';
+
+                window.addEventListener('load', () => {
+
+                var formDataBasic = new FormData();
+                formDataBasic.set('var1', 'getBasic');
+
+                fetch(url, {
+                    method: 'POST',
+                    body: formDataBasic
+                })
+                .then(res => res.json())
+                .then(res => getBasic(res))
+                .catch(e => console.error('Error, getBasic(), ' + e))
+                });
+
+                window.addEventListener('load', () => {
+
+                    var formDataChem = new FormData();
+                    formDataChem.set('var1', 'getChem');
+
+                    fetch(url, {
+                        method: 'POST',
+                        body: formDataChem
+                    })
+                    .then(res => res.json())
+                    .then(res => getChem(res))
+                    .catch(e => console.error('Error, getChem(), ' + e))
+                });
+
+                window.addEventListener('load', () => {
+
+                    var formDataFull = new FormData();
+                    formDataFull.set('var1', 'getFull');
+
+
+                    fetch(url, {
+                        method: 'POST',
+                        body: formDataFull
+                    })
+                    .then(res => res.json())
+                    .then(res => getFull(res))
+                    .catch(e => console.error('Error, getFull(), ' + e))
+                });
+
+
+                function getBasic(response) {
+                    console.log(response);
+
+                    document.getElementById('BasicPrice').value = response.results.price;
+                    document.getElementById('BasicDescription').value = response.results.description;
+                }
+
+                function getChem(response) {
+                    console.log(response);
+
+                    document.getElementById('ChemPrice').value = response.results.price;
+                    document.getElementById('ChemDescription').value = response.results.description;
+                }
+
+                function getFull(response) {
+                    console.log(response);
+
+                    document.getElementById('FullPrice').value = response.results.price;
+                    document.getElementById('FullDescription').value = response.results.description;
+                }
+            </script>
+
+
         </div>
     </div>
     <footer class="text-center">
@@ -84,6 +202,18 @@
     <script src="assets/js/Application-Form.js"></script>
     <script src="assets/js/Card-Carousel.js"></script>
     <script src="assets/js/dropdown-search-bs4.js"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script defer src="../assets/js/Google-Sign-In.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
+    <script src="assets/js/services.js" defer></script>
+
+    <script type="text/javascript">
+        if(sessionStorage.getItem('status') != null) {
+            document.getElementById("logbtn").innerHTML = "Logout";
+        }
+    </script>
 </body>
 
 </html>
