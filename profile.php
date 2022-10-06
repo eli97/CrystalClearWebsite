@@ -1,3 +1,10 @@
+<?php 
+    include_once('connect.php');
+    mysql_select_db("TABLE");
+    $query = "SELECT * FROM TABLE";
+    $result = mysql_query($query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +47,7 @@
                     class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-2">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="estimate.html">Estimates</a></li>
                     <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
@@ -75,7 +82,7 @@
                                     <h5>Name</h5>
                                 </div>
                                 <div class="col-md-9 text-secondary">
-                                    <p id="infoName"></p>
+                                    <p name="cname"><?php echo $result['cname']; ?></p>
                                 </div>
                             </div>
                             <!--<hr> -->
@@ -85,6 +92,7 @@
                                 </div>
                                 <div class="col-md-9 text-secondary">
                                     <p id="email"></p>
+                                    <p name="email"><?php echo $result['email']; ?></p>
                                 </div>
                             </div>
                             <!--<hr> -->
@@ -93,7 +101,7 @@
                                     <h5>Phone</h5>
                                 </div>
                                 <div class="col-md-9 text-secondary">
-                                    916-555-1234
+                                    <p name="phone"><?php echo $result['phone']; ?></p>
                                 </div>
                             </div>
                             <!--<hr> -->
@@ -102,7 +110,7 @@
                                     <h5>Address</h5>
                                 </div>
                                 <div class="col-md-9 text-secondary">
-                                    1337 Penguin Dr, North Pole, 1225
+                                    <p><?php echo $result['address']; ?></p>
                                 </div>
                             </div>
                             <hr>
@@ -119,30 +127,7 @@
                                     <h5>Next Appointment</h5>
                                 </div>
                                 <div class="col-md-9 text-secondary">
-                                    <h5>12/31/2022</h5>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h5>Total of Filter Wash: </h5>
-                                </div>
-                                <div class="col-md-3 text-secondary">
-                                    <h5>00</h5>
-                                </div>
-                                <div class="col">
-                                    <h6> Add more </h6>
-                                    <select class="form-select">
-                                        <option selected>How many?</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                      </select>
-                                </div>
-                                <div class="col">
-                                    <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
+                                    <h5><?php echo $result['subscriptionDate']; ?></h5>
                                 </div>
                             </div>
                             <hr>
@@ -150,15 +135,8 @@
                                 <div class="col-md-3">
                                     <h5>Current Subscription</h5>
                                 </div>
-                                <div class="col-md-3 text-secondary">
-                                    <h5>Full Service</h5>
-                                    <a href="service_manager.html">Manage</a>
-                                </div>
-                                <div class="col-sm">
-                                    <h6> Payment </h6>
-                                </div>
-                                <div class="col">
-                                    <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
+                                <div class="col-md-9 text-secondary">
+                                    <h5><?php echo $result['serviceName']; ?></h5>
                                 </div>
                             </div>
                             <hr>
@@ -166,24 +144,8 @@
                                 <div class="col-md-3 d-inline-flex">
                                     <h5>Payment History</h5>
                                 </div>
-                                <div class="col">
-                                    <table class="table table-striped">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Confirmation Number</th>
-                                            <th scope="col">Filter Washes</th>
-                                            <th scope="col">Service Type</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody id="myTable">
-                                            
-                                        </tbody>
-                                    </table>
-                                    <nav class="nav" aria-label="Secondary navigation" >
-                                        <a class="nav-link"  href="#"  onclick="prev()" >Prev</a>
-                                        <a class="nav-link"  href="#"  onclick="next()" >Next</a>
-                                    </nav>
+                                <div class="col-md-3">
+                                    <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
                                 </div>
                             </div>
                         </div>
@@ -240,7 +202,6 @@
     <script defer src="../assets/js/Google-Sign-In.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
-    <script src="assets/js/customer-history-payments.js"></script>
 
     <script>
         function confirmed() {

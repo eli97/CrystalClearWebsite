@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="google-signin-client_id" content="550864736847-f9st76mo0i4h0bb5f8remug9pg01pjdg.apps.googleusercontent.com.apps.googleusercontent.com">
     <link rel="icon" type="image/x-icon" href="images\favicon.ico" >
-    <title>Services</title>
+    <title>Account</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
@@ -36,73 +36,47 @@
         <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span><a href="index.html"><img src="assets/img/CClogo2.svg" width="248" height="79"></a></span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-2">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="estimate.html">Estimates</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="services.html">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
                 <a id="logbtn" class="btn btn-primary border-0 border-dark ms-md-2" role="button" href="login.html" style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Login</a>
             </div>
         </div>
     </nav>
-    <div class="container py-4 py-xl-5">
-        <div class="row mb-5">
-            <div class="col-md-8 col-xl-6 text-center mx-auto">
-                <h2>Services</h2>
-            </div>
-        </div>
-        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-            <div class="col">
-                <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="assets/img/AdobeStock_496196117.jpeg">
-                    <div class="card-body p-4">
-                        <h4 class="card-title">Chemical + Basket</h4>
-                        <p class="card-text">At $100, your pool will have all of the chemicals it needs. We check for chlorine levels, PH, salinity (for salt pools), total alkalinity, and calcium hardness. Additionally, we clean out your skimmer basket, pump basket, and pool sweep bags if you have them. Add a filter wash at any time for $40.<br></p>
-                        <div class="d-flex"><a class="btn btn-primary" role="button" href="fill_application.html">Subscribe Now</a></div>
-                    </div>
+    <h2 class="text-center">Update Account</h2>
+    <div style="background: url(&quot;assets/img/water1.png&quot;) top / cover no-repeat;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-end">
+                    <div><label class="form-label" style="margin-top: 25px;">First Name:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">Last Name:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">Street:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">City:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">State:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">Zip Code:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">Phone Number:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">E-mail:</label></div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="assets/img/AdobeStock_151519721.jpeg">
-                    <div class="card-body p-4">
-                        <h4 class="card-title">Basic Service</h4>
-                        <p class="card-text">At $115, the basic service includes everything from chemical + baskets and adds some additional cleaning services. We will brush the walls and steps of your pool and spa, and throw in a free filter wash as well.<br><br><br></p>
-                        <div class="d-flex"><a class="btn btn-primary" role="button" href="fill_application.html">Subscribe Now</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="assets/img/AdobeStock_151519928.jpeg">
-                    <div class="card-body p-4">
-                        <h4 class="card-title">Full Service</h4>
-                        <p class="card-text">Starting at $135, this service includes everything from the Basic Service as well as Chemical + Baskets Service, 3 free filter washes, vacuuming, and debris removal. Please contact me for an estimate regarding full service.<br><br><br></p>
-                        <div class="d-flex"><a class="btn btn-primary" role="button" href="fill_application.html">Subscribe Now</a></div>
-                    </div>
+                <div class="col-md-6" style="width: 400px;">
+                    <form id="my-form" action="/assets/php/update.php" method="post" style="height: 500px;">
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="firstname">First Name</label><input class="form-control" type="text" id="firstname" name="firstname" autofocus=""></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="lastname">Last Name</label><input class="form-control" type="text" id="lastname" name="lastname"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="street">Street</label><input class="form-control" type="text" id="steet" name="street"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="city">City</label><input class="form-control" type="text" id="city" name="city"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="state">State</label><input class="form-control" type="text" id="state" name="state"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="zipcode">zipcode</label><input class="form-control" type="text" id="zipcode" name="zipcode"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="phonenumber">Phone Number</label><input class="form-control" type="tel" id="phonenumber" name="phonenumber"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="email">Email Address</label><input class="form-control" type="email" id="email" name="email"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="messages">Last Name</label></div>
+                        <button class="btn btn-light btn-lg border rounded-0" id="form-btn-1" type="submit" style="background: rgba(0,0,0,0.4);padding-top: 0px;padding-bottom: 0px;padding-right: 10px;padding-left: 10px;font-size: 16px;">Update</button>
+                        <button class="btn btn-light btn-lg border rounded-0" id="form-btn-2" type="reset" style="background: rgba(0,0,0,0.4);padding-top: 0px;padding-bottom: 0px;padding-right: 10px;padding-left: 10px;font-size: 16px;margin-left: 10px;">CANCEL</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="card mx-auto w-75 h-75">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="images/filter.jpg" class="img-fluid rounded-start" >
-                </div>
-                <div class="col-md-8">
-                <div class="card-body text-center">
-                  <h5 class="card-title">Get Filter Wash Now</h5>
-                  <p class="card-text">Keep your pool looking clean and fresh
-                        <br> Keep your pool healthy and safe
-                  </p>
-                  <a class="btn btn-primary" href="login.html" role="button">Buy Now</a>
-
-                </div>
-                </div>
-            </div>
-          </div>
-        </div>
-    </div>
-
     <footer class="text-center">
         <div class="container text-muted py-4 py-lg-5">
             <p>Servicing the greater Sacramento area<br>Sacramento, California 95825<br>email: no-reply@email.com<br>phone: (916) 123-4567<br><br></p>
