@@ -125,11 +125,40 @@
                             <hr>
                             <div class="row">
                                 <div class="col-md-3">
+                                    <h5>Total of Filter Wash: </h5>
+                                </div>
+                                <div class="col-md-3 text-secondary">
+                                    <h5>00</h5>
+                                </div>
+                                <div class="col">
+                                    <h6> Add more </h6>
+                                    <select class="form-select">
+                                        <option selected>How many?</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                      </select>
+                                </div>
+                                <div class="col">
+                                    <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
                                     <h5>Current Subscription</h5>
                                 </div>
-                                <div class="col-md-9 text-secondary">
+                                <div class="col-md-3 text-secondary">
                                     <h5>Full Service</h5>
                                     <a href="service_manager.html">Manage</a>
+                                </div>
+                                <div class="col-sm">
+                                    <h6> Payment </h6>
+                                </div>
+                                <div class="col">
+                                    <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
                                 </div>
                             </div>
                             <hr>
@@ -137,8 +166,24 @@
                                 <div class="col-md-3 d-inline-flex">
                                     <h5>Payment History</h5>
                                 </div>
-                                <div class="col-md-3">
-                                    <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
+                                <div class="col">
+                                    <table class="table table-striped">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Confirmation Number</th>
+                                            <th scope="col">Filter Washes</th>
+                                            <th scope="col">Service Type</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody id="myTable">
+                                            
+                                        </tbody>
+                                    </table>
+                                    <nav class="nav" aria-label="Secondary navigation" >
+                                        <a class="nav-link"  href="#"  onclick="prev()" >Prev</a>
+                                        <a class="nav-link"  href="#"  onclick="next()" >Next</a>
+                                    </nav>
                                 </div>
                             </div>
                         </div>
@@ -195,6 +240,7 @@
     <script defer src="../assets/js/Google-Sign-In.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
+    <script src="assets/js/customer-history-payments.js"></script>
 
     <script>
         function confirmed() {
