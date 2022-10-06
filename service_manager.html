@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Profile</title>
+    <title>Crystal Clear Service Manager</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
@@ -46,103 +46,59 @@
             </div>
         </div>
     </nav>
-    <h2 class="text-center">My Profile</h2>
+    <h2 class="text-center">Manage Services</h2>
     <div style="background: url(&quot;assets/img/water1.png&quot;) top / cover no-repeat;">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 mt-1">
-                    <div class="card text-center sidebar" style="max-width:18rem">
-                        <div class="card-body">
-                            <img src="assets/img/tmppic.jpg" class="rounded-circle" width="225">
-                            <div class="mt-3">
-                                <h3>Lorem Ipsum</h3>
-                                <a href="">Update</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-md-8 mt-1">
                     <div class="card mb-3 content" style="max-width:95%">
-                        <h1 class="m-3 pt-3">About</h1>
+                        <h1 class="m-3 pt-3">My Services</h1>
+                            <!--current services-->
+                            <div class="card mb-3 content" style="max-width:95%">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <h5>Next Appointment</h5>
+                                        </div>
+                                        <div class="col-md-9 text-secondary">
+                                            <h5>12/31/2022</h5>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <h5>Current Subscription</h5>
+                                        </div>
+                                        <div class="col-md-9 text-secondary">
+                                            <h5>Full Service</h5>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-3 d-inline-flex">
+                                            <h5>Payment History</h5>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#popup">Upgrade Service</button>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#popup">Cancel Service</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end-->
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h5>Full Name</h5>
-                                </div>
-                                <div class="col-md-9 text-secondary">
-                                    Lorem Ipsum
-                                </div>
-                            </div>
-                            <!--<hr> -->
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h5>E-mail</h5>
-                                </div>
-                                <div class="col-md-9 text-secondary">
-                                    thisisafake@gmail.com
-                                </div>
-                            </div>
-                            <!--<hr> -->
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h5>Phone</h5>
-                                </div>
-                                <div class="col-md-9 text-secondary">
-                                    916-555-1234
-                                </div>
-                            </div>
-                            <!--<hr> -->
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h5>Address</h5>
-                                </div>
-                                <div class="col-md-9 text-secondary">
-                                    1337 Penguin Dr, North Pole, 1225
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <a class="col-sm-auto" href="account.html">Edit</a>
-                            </div>
                         </div>
                     </div>
                     <div class="card mb-3 content" style="max-width:95%">
-                        <h1 class="m-3">Account Information</h1>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h5>Next Appointment</h5>
-                                </div>
-                                <div class="col-md-9 text-secondary">
-                                    <h5>12/31/2022</h5>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h5>Current Subscription</h5>
-                                </div>
-                                <div class="col-md-9 text-secondary">
-                                    <h5>Full Service</h5>
-                                    <a href="service_manager.html">Manage</a>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-3 d-inline-flex">
-                                    <h5>Payment History</h5>
-                                </div>
-                                <div class="col-md-3">
-                                    <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#popup">Delete Account</button>
-                            </div>
-                        </div>
+                        <h1 class="m-3 pt-3">Available Services</h1>
                     </div>
                 </div>
             </div>
