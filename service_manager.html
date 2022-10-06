@@ -84,11 +84,26 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#popup">Upgrade Service</button>
+                                <form>
+                                    <div class="col-md-3" style="margin-left: 20px">
+                                        <input type="radio" onchange="service_change(basic)" name="basic_service" id=basicService value="BasicService">
+                                        <label for="basicService">Basic Service</label>
+                                        
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-md-3" style="margin-left: 20px">
+                                        <input type="radio" onchange="service_change(chemBask)" name="basic_service" id=basicService value="BasicService">
+                                        <label for="basicService">Chemical + Baskets</label>
+                                    </div>
+                                    <div class="col-md-3" style="margin-left: 20px">
+                                        <input type="radio" onchange="service_change(basic)" name="basic_service" id=basicService value="BasicService">
+                                        <label for="basicService">Full Service</label>
+                                    </div>
+                                </form>
+                                <div class="row" style="margin-left: 20px">
+                                    <div class="col-sm-3"  style="margin-top: 20px">
+                                        <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#popup">Change Service</button>
+                                    </div>
+                                    <div class="col-sm-3" style="margin-top: 20px">
                                         <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#popup">Cancel Service</button>
                                     </div>
                                 </div>
@@ -96,9 +111,6 @@
                             <!--end-->
                         <div class="card-body">
                         </div>
-                    </div>
-                    <div class="card mb-3 content" style="max-width:95%">
-                        <h1 class="m-3 pt-3">Available Services</h1>
                     </div>
                 </div>
             </div>
