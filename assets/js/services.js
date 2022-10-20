@@ -7,6 +7,11 @@ function initServices()
     getAllServicesFromDB();
 }
 
+function initServicesUser()
+{
+    getAllServicesFromDBUser();
+}
+
 // Database fetch requests
 function getAllServicesFromDB()
 {
@@ -23,6 +28,22 @@ function getAllServicesFromDB()
     .catch(e => console.error('Error, getAllServices(), ' + e))
 }
 
+// Database fetch requests
+function getAllServicesFromDBUser()
+{
+    //Send request to PHP backend. Tells db to return all services in a JSON file
+    var formDataAllServices = new FormData();
+    formDataAllServices.set('var1', 'getAllServices');
+
+    fetch(url, {
+        method: 'POST',
+        body: formDataAllServices
+    })
+    .then(res => res.json())
+    .then(res => getAllServicesUser(res))
+    .catch(e => console.error('Error, getAllServicesUser(), ' + e))
+}
+
 //  Get function
 function getAllServices(response) {
     console.log(response);
@@ -35,6 +56,20 @@ function getAllServices(response) {
         let price = '' + Object.values(response.results)[i].servicePrice;
 
         addServiceCard(ID, name, description, price);
+    }
+}
+
+function getAllServicesUser(response) {
+    console.log(response);
+
+    for(i=0; i<response.results.length; i++)
+    {
+        let ID = '' + Object.values(response.results)[i].SERVICE_ID;
+        let name = '' + Object.values(response.results)[i].serviceName;
+        let description = '' + Object.values(response.results)[i].serviceDescription;
+        let price = '' + Object.values(response.results)[i].servicePrice;
+
+        addServiceCardUser(ID, name, description, price);
     }
 }
 
@@ -119,4 +154,42 @@ function addServiceCard(ID, name, description, price)
     // Add the above card to the HTML
     //
     document.getElementById('ServicesCards').innerHTML += servicesCard;
+}
+
+//~~~~~DELETE THIS AFTER PHOTO UPLOAD/SELECTION IS IMPLEMENTED~~~~~//
+var stockPhotoCnt = 0;
+var photoArray = [];
+
+photoArray.push("assets/img/AdobeStock_151519721.jpeg");
+photoArray.push("assets/img/AdobeStock_496196117.jpeg");
+photoArray.push("assets/img/AdobeStock_151519928.jpeg");
+
+
+photoArray = {photo1, photo2, photo3};
+
+//~~~~~DELETE THIS AFTER PHOTO UPLOAD/SELECTION IS IMPLEMENTED~~~~~//
+
+function addServiceCardUser(ID, name, description, price)
+{   
+    console.log(photoArray[stockPhotoCnt]);
+
+    let servicesCard = `
+    <div class="col">
+        <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="` + photoArray[stockPhotoCnt] +`">
+            <div class="card-body p-4">
+                <h4 class="card-title">`+ name +`</h4>
+                <p class="card-text">`+ description +`<br></p>
+                <div class="d-flex"><a class="btn btn-primary" role="button" href="fill_application.html">Subscribe Now</a></div>
+            </div>
+        </div>
+    </div>
+    `;
+
+    // Add the above card to the HTML
+    //
+    document.getElementById('ServicesCards').innerHTML += servicesCard;
+
+    //~~~~~DELETE THIS AFTER PHOTO UPLOAD/SELECTION IS IMPLEMENTED~~~~~//
+    stockPhotoCnt = (stockPhotoCnt + 1) % 3;
+    //~~~~~DELETE THIS AFTER PHOTO UPLOAD/SELECTION IS IMPLEMENTED~~~~~//
 }
