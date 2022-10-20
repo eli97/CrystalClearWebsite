@@ -1,112 +1,56 @@
-var url = 'assets/php/database.php';
+var url = 'assets/php/servicesDB.php';
 
-window.addEventListener('load', () => {
-    
-    var formDataBasic = new FormData();
-    formDataBasic.set('var1', 'getBasic');
-    
-    fetch(url, {
-        method: 'POST',
-        body: formDataBasic
-    })
-    .then(res => res.json())
-    .then(res => getBasic(res))
-    .catch(e => console.error('Error, getBasic(), ' + e))
-});
+let serviceList = [];
 
-window.addEventListener('load', () => {
-    
-    var formDataChem = new FormData();
-    formDataChem.set('var1', 'getChem');
-    
-    fetch(url, {
-        method: 'POST',
-        body: formDataChem
-    })
-    .then(res => res.json())
-    .then(res => getChem(res))
-    .catch(e => console.error('Error, getChem(), ' + e))
-});
-
-window.addEventListener('load', () => {
-    
-    var formDataFull = new FormData();
-    formDataFull.set('var1', 'getFull');
-
-    
-    fetch(url, {
-        method: 'POST',
-        body: formDataFull
-    })
-    .then(res => res.json())
-    .then(res => getFull(res))
-    .catch(e => console.error('Error, getFull(), ' + e))
-});
-
-//  Get functions
-function getBasic(response) {
-    console.log(response);
-
-    document.getElementById('BasicPrice').value = response.results.price;
-    document.getElementById('BasicDescription').value = response.results.description;
+function initServices()
+{
+    getAllServicesFromDB();
 }
 
-function getChem(response) {
-    console.log(response);
+// Database fetch requests
+function getAllServicesFromDB()
+{
+    //Send request to PHP backend. Tells db to return all services in a JSON file
+    var formDataAllServices = new FormData();
+    formDataAllServices.set('var1', 'getAllServices');
 
-    document.getElementById('ChemPrice').value = response.results.price;
-    document.getElementById('ChemDescription').value = response.results.description;
+    fetch(url, {
+        method: 'POST',
+        body: formDataAllServices
+    })
+    .then(res => res.json())
+    .then(res => getAllServices(res))
+    .catch(e => console.error('Error, getAllServices(), ' + e))
 }
 
-function getFull(response) {
+//  Get function
+function getAllServices(response) {
     console.log(response);
 
-    document.getElementById('FullPrice').value = response.results.price;
-    document.getElementById('FullDescription').value = response.results.description;
+    for(i=0; i<response.results.length; i++)
+    {
+        let ID = '' + Object.values(response.results)[i].SERVICE_ID;
+        let name = '' + Object.values(response.results)[i].serviceName;
+        let description = '' + Object.values(response.results)[i].serviceDescription;
+        let price = '' + Object.values(response.results)[i].servicePrice;
+
+        addServiceCard(ID, name, description, price);
+    }
 }
 
 // Set functions
-function setBasic() {
-
-    var formDataBasic = new FormData();
-    formDataBasic.set('var1', 'setBasic');
-    formDataBasic.set('var2',  document.getElementById('BasicPrice').value);
-    formDataBasic.set('var3',  document.getElementById('BasicDescription').value);
-
+//
+function setService(ID) {
     
-    fetch(url, {
-        method: 'POST',
-        body: formDataBasic
-    })
-    .then(res => res.text())
-    .then(res => isUpdated(res))
-    .catch(e => console.error('Error, setBasic(), ' + e))
-}
-
-function setChem() {
-
-    var formDataChem = new FormData();
-    formDataChem.set('var1', 'setChem');
-    formDataChem.set('var2',  document.getElementById('ChemPrice').value);
-    formDataChem.set('var3',  document.getElementById('ChemDescription').value);
-
-    
-    fetch(url, {
-        method: 'POST',
-        body: formDataChem
-    })
-    .then(res => res.text())
-    .then(res => isUpdated(res))
-    .catch(e => console.error('Error, setChem(), ' + e))
-}
-
-function setFull() {
-
+    // Loads the textarea fields from the HTML page into a form that is submitted to the PHP backend
+    // Updates DB entries with HTML fields
+    //
     var formDataFull = new FormData();
-    formDataFull.set('var1', 'setFull');
-    formDataFull.set('var2',  document.getElementById('FullPrice').value);
-    formDataFull.set('var3',  document.getElementById('FullDescription').value);
-
+    formDataFull.set('var1', 'setServiceByID');
+    formDataFull.set('var2',  document.getElementById(ID + '_price').value);
+    formDataFull.set('var3',  document.getElementById(ID + '_description').value);
+    formDataFull.set('var4',  document.getElementById(ID + '_name').value);
+    formDataFull.set('var5',  ID + '');
     
     fetch(url, {
         method: 'POST',
@@ -114,14 +58,65 @@ function setFull() {
     })
     .then(res => res.text())
     .then(res => isUpdated(res))
-    .catch(e => console.error('Error, setFull(), ' + e))
+    .catch(e => console.error('Error, setService(ID), ' + e));
 }
 
 function isUpdated(data)
 {
+    console.log(data);
+    
     if(data == "OK"){
         window.alert("The information was updated successfully");
     }
     else
         window.alert("There was an error updating the data. Please try again later.");
+}
+
+function addNewService()
+{
+    // Loads the textarea fields from the HTML page into a form that is submitted to the PHP backend
+    // Updates DB entries with HTML fields
+    //
+    var formDataFull = new FormData();
+    formDataFull.set('var1', 'addNewService');
+    fetch(url, {
+        method: 'POST',
+        body: formDataFull
+    })
+    .then(res => res.text())
+    .then(res => isUpdated(res))
+    .catch(e => console.error('Error, addNewService(), ' + e));
+}
+
+function addServiceCard(ID, name, description, price)
+{
+    let servicesCard = `
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://crystalclearwestsac.com/assets/img/pool_stock_1.jpg">
+                <div class="card-body text-center p-4">
+                    <h4 class="text-center card-title"><textarea id="`+ ID  +"_name" +`" rows="1" cols="25" style="resize: none;" >`+ name +`</textarea></h4>
+                    <textarea id="` + ID + "_description" + `" class="form-control-lg" rows="10" cols="25px">`+ description +`</textarea>
+                    <div class="price-input">
+                        <div style="display: flex;">
+                            <div style="flex: 50%;">
+                                <h4 class="text-center card-title" style="float: right">Price:</h4>
+                            </div>
+                            <div style="flex: 50%;">
+                                <textarea id="`+ ID  +"_price" +`" rows="1" cols="7" style="resize: none; float: left;" >`+ price +`</textarea>
+                            </div>
+                        </div>
+                        <div class="d-flex" style="margin-top: 25px;">
+                            <button class="btn btn-primary" type="button" onclick="setService(` + ID + `);" style="">Update</button>
+                            <button class="btn btn-secondary" type="button" onclick="deleteService(` + ID + `);" style="margin-left: 25px; background-color: red;">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Add the above card to the HTML
+    //
+    document.getElementById('ServicesCards').innerHTML += servicesCard;
 }
