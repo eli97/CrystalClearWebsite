@@ -1,4 +1,4 @@
-
+/// PEV to PEV and NEXT Page
 let payments = [
     [1, "Micheal Miyer",  "10/26/2022", 000000000, 10, "Chemical + Basket", "Cash"],
     [2, "Freddy Krueger",  "10/2/2022", 456789321, 20, "Full Server",       "Online"],
@@ -24,8 +24,18 @@ let payments = [
     [1, "Micheal Miyer2",   "6/26/2022", 123456789, 20, "Full Service",  "Online"],
     [1, "Micheal Miyer1",   "6/26/2022", 123456789, 20, "Full Service",  "Online"],
     ];
-    let currentindex = 0;
+  
+    var currentindex = 0;
+    while(currentindex <  payments.length)
+    {
+        currentindex += 10;
+    }
+    currentindex -= 10;
+    
+    let originTable = myTable.innerHTML
+    //var originTablePage = document.getElementById("body1").innerHTML;
     show()
+    
     function show(){
         var table = document.getElementById("myTable")
         var row = '';
@@ -52,13 +62,19 @@ let payments = [
         currentindex += 10;
         currentindex += 10;
         if(currentindex > payments.length){
-            //Prev page
-            window.location.href="comfirm-prev.html"
-        }else{
-            //Prev and NEXT
-           window.location.href="comfirm-prev-next.html"
+            window.location.href = "comfirm-prev.html";
+        }else {
+            myTable.innerHTML = originTable
+            show();
         }
-        
     }
 
-    
+    function prev(){
+        currentindex -= 10;
+        if(currentindex <= 0){   
+            window.location.href = "comfirm-next.html";
+        } else {
+            myTable.innerHTML = originTable
+            show();
+        }   
+    }

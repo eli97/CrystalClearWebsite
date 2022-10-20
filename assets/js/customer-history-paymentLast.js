@@ -4,11 +4,17 @@ let payments = [
     [1, "Micheal Miyer",   "7/26/2022", 856956789, 20, "Full Service",  "Online"],
     [1, "Micheal Miyer",   "6/26/2022", 123456789, 20, "Full Service",  "Online"],
     [1, "Micheal Miyer",   "6/26/2022", 123456789, 20, "Full Service",  "Cash"],
-    [1, "Micheal Miyer",   "6/26/2022", 123456789, 20, "Full Service",  "Online"],
+    [1, "Micheal Miyer",   "6/26/2022", 123456789, 21, "Full Service",  "Online"],
 ];
+
 var currentindex = 0;
-var currentindex = 0;
-var originTable = myTable.innerHTML
+while(currentindex <  payments.length)
+{
+    currentindex += 2;
+}
+currentindex -= 2;
+console.log(currentindex)
+console.log(payments.length)
 show()
 
 function show(){
@@ -26,14 +32,12 @@ function show(){
     
     table.innerHTML += row;
 }
-function next(){
-    currentindex += 2;
-    currentindex += 2;
-    if(currentindex > payments.length){
-        //Prev page
-        window.location.href="customer-history-prev.html"
-    }else{
-        //Prev and NEXT
-       window.location.href="customer-history-prev-next.html"
-    }
+
+function prev(){
+    currentindex -= 2;
+    if(currentindex < 0){   
+        window.location.href = "customer-history-next.html";
+    } else {
+        window.location.href = "customer-history-prev-next.html";
+    }  
 }
