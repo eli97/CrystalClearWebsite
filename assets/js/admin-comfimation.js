@@ -49,15 +49,8 @@ let payments = [
     }
     
     function next(){
-        currentindex += 10;
-        currentindex += 10;
-        if(currentindex > payments.length){
-            //Prev page
-            window.location.href="comfirm-prev.html"
-        }else{
-            //Prev and NEXT
+        
            window.location.href="comfirm-prev-next.html"
-        }
         
     }
 

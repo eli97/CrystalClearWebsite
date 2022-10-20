@@ -54,16 +54,14 @@ let payments = [
     
     function next(){
         currentindex += 10;
-        currentindex += 10;
-        if(currentindex > payments.length){
-            window.location.href = "comfirm-prev.html";
-        }else {
+        
+        if(currentindex > payments.length)
             currentindex -= 10;
-            myTable.innerHTML = originTable
-            show();
-        }
+        
+        myTable.innerHTML = originTable
+        show();
+        
     }
-
     function prev(){
         currentindex -= 10;
         if(currentindex <= 0){   

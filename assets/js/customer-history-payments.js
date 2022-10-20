@@ -4,9 +4,8 @@ let payments = [
     [1, "Micheal Miyer",   "7/26/2022", 856956789, 20, "Full Service",  "Online"],
     [1, "Micheal Miyer",   "6/26/2022", 123456789, 20, "Full Service",  "Online"],
     [1, "Micheal Miyer",   "6/26/2022", 123456789, 20, "Full Service",  "Cash"],
-    [1, "Micheal Miyer",   "6/26/2022", 123456789, 20, "Full Service",  "Online"],
+    [1, "Micheal Miyer",   "6/26/2022", 123456789, 25, "Full Service",  "Online"],
 ];
-var currentindex = 0;
 var currentindex = 0;
 var originTable = myTable.innerHTML
 show()
@@ -14,7 +13,7 @@ show()
 function show(){
     var table = document.getElementById('myTable')
     var row = '';
-    for(var i = currentindex; i < (currentindex+2) && i < payments.length; i++){
+    for(var i = currentindex; i < (currentindex+5) && i < payments.length; i++){
         row += `<tr>
                 <th scope="row">${payments[i][2]}</th>
                 <th>${payments[i][3]}</th>
@@ -27,13 +26,5 @@ function show(){
     table.innerHTML += row;
 }
 function next(){
-    currentindex += 2;
-    currentindex += 2;
-    if(currentindex > payments.length){
-        //Prev page
-        window.location.href="customer-history-prev.html"
-    }else{
-        //Prev and NEXT
        window.location.href="customer-history-prev-next.html"
-    }
 }
