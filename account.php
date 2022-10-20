@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="google-signin-client_id" content="550864736847-f9st76mo0i4h0bb5f8remug9pg01pjdg.apps.googleusercontent.com.apps.googleusercontent.com">
     <link rel="icon" type="image/x-icon" href="images\favicon.ico" >
-    <title>CrystalClearAdmin</title>
+    <title>Account</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
@@ -31,38 +31,52 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body onload="initServices();">
+<body>
     <nav class="navbar navbar-light navbar-expand-md py-3">
         <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span><a href="index.html"><img src="assets/img/CClogo2.svg" width="248" height="79"></a></span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-2">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="estimate.html">Estimates</a></li>
                     <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
                 <a id="logbtn" class="btn btn-primary border-0 border-dark ms-md-2" role="button" href="login.html" style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Login</a>
             </div>
         </div>
     </nav>
-    <div class="container">
-        <nav class="nav" aria-label="Secondary navigation" >
-            <a class="nav-link"  href="#" >Home</a>
-            <a class="nav-link"  href="admin.html">Update</a>
-            <a class="nav-link" href="comfimation.html">History</a>
-        </nav>
-    </div>
-    <h4 class="text-center" style="margin-top: 20px;margin-bottom: 40px;"><strong>Update Services Information</strong></h4>
-    <div style="margin-right: 40px;margin-left: 40px;">
-        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" id="ServicesCards">
+    <h2 class="text-center">Update Account</h2>
+    <div style="background: url(&quot;assets/img/water1.png&quot;) top / cover no-repeat;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-end">
+                    <div><label class="form-label" style="margin-top: 25px;">First Name:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">Last Name:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">Street:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">City:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">State:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">Zip Code:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">Phone Number:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">E-mail:</label></div>
+                </div>
+                <div class="col-md-6" style="width: 400px;">
+                    <form id="my-form" action="/assets/php/update.php" method="post" style="height: 500px;">
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="firstname">First Name</label><input class="form-control" type="text" id="firstname" name="firstname" autofocus=""></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="lastname">Last Name</label><input class="form-control" type="text" id="lastname" name="lastname"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="street">Street</label><input class="form-control" type="text" id="steet" name="street"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="city">City</label><input class="form-control" type="text" id="city" name="city"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="state">State</label><input class="form-control" type="text" id="state" name="state"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="zipcode">zipcode</label><input class="form-control" type="text" id="zipcode" name="zipcode"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="phonenumber">Phone Number</label><input class="form-control" type="tel" id="phonenumber" name="phonenumber"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="email">Email Address</label><input class="form-control" type="email" id="email" name="email"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="messages">Last Name</label></div>
+                        <button class="btn btn-light btn-lg border rounded-0" id="form-btn-1" type="submit" style="background: rgba(0,0,0,0.4);padding-top: 0px;padding-bottom: 0px;padding-right: 10px;padding-left: 10px;font-size: 16px;">Update</button>
+                        <button class="btn btn-light btn-lg border rounded-0" id="form-btn-2" type="reset" style="background: rgba(0,0,0,0.4);padding-top: 0px;padding-bottom: 0px;padding-right: 10px;padding-left: 10px;font-size: 16px;margin-left: 10px;">CANCEL</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="d-flex">
-        <button class="btn btn-primary" type="button" onclick="addNewService();" style="margin: auto; margin-top: 20px;">Add New Service</button>
-    </div>
-
     <footer class="text-center">
         <div class="container text-muted py-4 py-lg-5">
             <p>Servicing the greater Sacramento area<br>Sacramento, California 95825<br>email: no-reply@email.com<br>phone: (916) 123-4567<br><br></p>
@@ -81,7 +95,6 @@
     <script defer src="../assets/js/Google-Sign-In.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
-    <script src="assets/js/services.js" defer></script>
 
     <script type="text/javascript">
         if(sessionStorage.getItem('status') != null) {

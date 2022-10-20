@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="google-signin-client_id" content="550864736847-f9st76mo0i4h0bb5f8remug9pg01pjdg.apps.googleusercontent.com.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="292091807783-ca0u6h3tmm137rmnnfq3i0f1iv85fv34.apps.googleusercontent.com.apps.googleusercontent.com">
     <link rel="icon" type="image/x-icon" href="images\favicon.ico" >
     <title>CrystalClearAdmin</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body onload="initServices();">
+<body>
     <nav class="navbar navbar-light navbar-expand-md py-3">
         <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span><a href="index.html"><img src="assets/img/CClogo2.svg" width="248" height="79"></a></span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-2">
@@ -41,8 +41,7 @@
                     <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                </ul>
-                <a id="logbtn" class="btn btn-primary border-0 border-dark ms-md-2" role="button" href="login.html" style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Login</a>
+                </ul><a class="btn btn-primary border-0 border-dark ms-md-2" role="button" href="login.html" style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Log out</a>
             </div>
         </div>
     </nav>
@@ -53,41 +52,67 @@
             <a class="nav-link" href="comfimation.html">History</a>
         </nav>
     </div>
-    <h4 class="text-center" style="margin-top: 20px;margin-bottom: 40px;"><strong>Update Services Information</strong></h4>
-    <div style="margin-right: 40px;margin-left: 40px;">
-        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" id="ServicesCards">
+    <main class="container">
+        <h1>History Payments</h1>
+        <h5> Add Payment: </h5>
+        <div class="row gy-3">
+            <div class="col">
+                <label for="cusID" class="form-label">Customer ID</label>
+                <input type="customerID" class="form-control" id="cusID">
+            
+            </div>
+            <div class="col">
+                <label for="Date" class="form-label">Customer ID</label>
+                <input type="date" class="form-control" id="Date">
+            </div>
+            <div class="col">
+                <label for="Filter" class="form-label">Filter Wash</label>
+                <input type="filterWash" class="form-control" id="Filter">
+            </div>
+            <div class="col">
+                <label for="Filter" class="form-label">Service Type</label>
+                <select class="form-select">
+                    <option selected>Service Type</option>
+                    <option value="chemical">Chemical + Basket</option>
+                    <option value="basic">Basic Service</option>
+                    <option value="full">Full Service</option>
+                  </select>
+            </div>
+            <div class="col">
+                <label for="Filter" class="form-label">Status</label>
+                <select class="form-select">
+                    <option selected>Payment type</option>
+                    <option value="check">Check</option>
+                    <option value="cash">Cash</option>
+                    
+                  </select>
+            </div>
         </div>
-    </div>
+        
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+          </div>
+        
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Customer ID</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Confirmation Number</th>
+                <th scope="col">Filter Washes</th>
+                <th scope="col">Service Type</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody id="myTable"></tbody>
+        </table>
 
-    <div class="d-flex">
-        <button class="btn btn-primary" type="button" onclick="addNewService();" style="margin: auto; margin-top: 20px;">Add New Service</button>
-    </div>
-
-    <footer class="text-center">
-        <div class="container text-muted py-4 py-lg-5">
-            <p>Servicing the greater Sacramento area<br>Sacramento, California 95825<br>email: no-reply@email.com<br>phone: (916) 123-4567<br><br></p>
-            <p class="mb-0">Copyright © 2022 Crystal Clear</p>
-        </div>
-    </footer>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="assets/js/Customizable-Carousel-swipe-enabled.js"></script>
-    <script src="assets/js/Application-Form-1.js"></script>
-    <script src="assets/js/Application-Form.js"></script>
-    <script src="assets/js/Card-Carousel.js"></script>
-    <script src="assets/js/dropdown-search-bs4.js"></script>
-    <script src="https://apis.google.com/js/platform.js"></script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script defer src="../assets/js/Google-Sign-In.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
-    <script src="assets/js/services.js" defer></script>
-
-    <script type="text/javascript">
-        if(sessionStorage.getItem('status') != null) {
-            document.getElementById("logbtn").innerHTML = "Logout";
-        }
-    </script>
+        <nav class="nav" aria-label="Secondary navigation" >
+            <a class="nav-link"  href="#"  onclick="prev()" >Prev</a>
+            <a class="nav-link"  href="#"  onclick="next()" >Next</a>
+        </nav>
+    </main>
 </body>
-
+<script src="assets/js/admin-comfimation.js"></script>
 </html>
