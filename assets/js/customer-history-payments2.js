@@ -6,7 +6,8 @@ let payments = [
     [1, "Micheal Miyer",   "6/26/2022", 123456789, 20, "Full Service",  "Cash"],
     [1, "Micheal Miyer",   "6/26/2022", 123456789, 25, "Full Service",  "Online"],
 ];
-var currentindex = 0;
+var currentindex = 5;
+
 var originTable = myTable.innerHTML
 show()
 
@@ -26,5 +27,22 @@ function show(){
     table.innerHTML += row;
 }
 function next(){
-       window.location.href="customer-history-prev-next.html"
+    currentindex += 5;
+    
+    if(currentindex > payments.length){
+        currentindex -=5;
+
+    myTable.innerHTML = originTable
+    show();
+    }
+}
+function prev(){
+    currentindex -= 5;
+    if(currentindex <= 0){   
+        window.location.href = "customer-history-next.html";
+    } else {
+        
+        myTable.innerHTML = originTable
+        show();
+    }   
 }
