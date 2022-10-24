@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body>
+<body onload="initServices();">
     <nav class="navbar navbar-light navbar-expand-md py-3">
         <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span><a href="index.html"><img src="assets/img/CClogo2.svg" width="248" height="79"></a></span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-2">
@@ -55,147 +55,14 @@
     </div>
     <h4 class="text-center" style="margin-top: 20px;margin-bottom: 40px;"><strong>Update Services Information</strong></h4>
     <div style="margin-right: 40px;margin-left: 40px;">
-        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-            <div class="col">
-                <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                    <div class="card-body text-center p-4">
-                        <h4 class="text-center card-title">Chemical + Basket</h4>
-                        <textarea id="ChemDescription" class="form-control-lg" rows="10" cols="25px"></textarea>
-
-                        <div class="price-input">
-                            <div style="display: flex;">
-                                <div style="flex: 50%;">
-                                    <h4 class="text-center card-title" style="float: right">Price:</h4>
-                                </div>
-                                <div style="flex: 50%;">
-                                    <textarea id="ChemPrice" rows="1" cols="7" style="resize: none; float: left;"  ></textarea>
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <button class="btn btn-primary" type="button" onclick="setChem();">Update</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                    <div class="card-body text-center p-4">
-                        <h4 class="text-center card-title">Basic Service</h4>
-                        <textarea id="BasicDescription" class="form-control-lg" rows="10" cols="25px"></textarea>
-
-                        <div class="price-input">
-                            <div style="display: flex;">
-                                <div style="flex: 50%;">
-                                    <h4 class="text-center card-title" style="float: right">Price:</h4>
-                                </div>
-                                <div style="flex: 50%;">
-                                    <textarea id="BasicPrice" rows="1" cols="7" style="resize: none; float: left;"  ></textarea>
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <button class="btn btn-primary" type="button" onclick="setBasic();">Update</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                    <div class="card-body text-center p-4">
-                        <h4 class="text-center card-title">Full Service</h4>
-                        <textarea id="FullDescription" class="form-control-lg" rows="10" cols="25px"></textarea>
-                        <div class="price-input">
-                            <div style="display: flex;">
-                                <div style="flex: 50%;">
-                                    <h4 class="text-center card-title" style="float: right">Price:</h4>
-                                </div>
-                                <div style="flex: 50%;">
-                                    <textarea id="FullPrice" rows="1" cols="7" style="resize: none; float: left;" ></textarea>
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <button class="btn btn-primary" type="button" onclick="setFull();">Update</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <script type="text/javascript">
-                var url = 'assets/php/database.php';
-
-                window.addEventListener('load', () => {
-
-                var formDataBasic = new FormData();
-                formDataBasic.set('var1', 'getBasic');
-
-                fetch(url, {
-                    method: 'POST',
-                    body: formDataBasic
-                })
-                .then(res => res.json())
-                .then(res => getBasic(res))
-                .catch(e => console.error('Error, getBasic(), ' + e))
-                });
-
-                window.addEventListener('load', () => {
-
-                    var formDataChem = new FormData();
-                    formDataChem.set('var1', 'getChem');
-
-                    fetch(url, {
-                        method: 'POST',
-                        body: formDataChem
-                    })
-                    .then(res => res.json())
-                    .then(res => getChem(res))
-                    .catch(e => console.error('Error, getChem(), ' + e))
-                });
-
-                window.addEventListener('load', () => {
-
-                    var formDataFull = new FormData();
-                    formDataFull.set('var1', 'getFull');
-
-
-                    fetch(url, {
-                        method: 'POST',
-                        body: formDataFull
-                    })
-                    .then(res => res.json())
-                    .then(res => getFull(res))
-                    .catch(e => console.error('Error, getFull(), ' + e))
-                });
-
-
-                function getBasic(response) {
-                    console.log(response);
-
-                    document.getElementById('BasicPrice').value = response.results.price;
-                    document.getElementById('BasicDescription').value = response.results.description;
-                }
-
-                function getChem(response) {
-                    console.log(response);
-
-                    document.getElementById('ChemPrice').value = response.results.price;
-                    document.getElementById('ChemDescription').value = response.results.description;
-                }
-
-                function getFull(response) {
-                    console.log(response);
-
-                    document.getElementById('FullPrice').value = response.results.price;
-                    document.getElementById('FullDescription').value = response.results.description;
-                }
-            </script>
-
-
+        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" id="ServicesCards">
         </div>
     </div>
+
+    <div class="d-flex">
+        <button class="btn btn-primary" type="button" onclick="addNewService();" style="margin: auto; margin-top: 20px;">Add New Service</button>
+    </div>
+
     <footer class="text-center">
         <div class="container text-muted py-4 py-lg-5">
             <p>Servicing the greater Sacramento area<br>Sacramento, California 95825<br>email: no-reply@email.com<br>phone: (916) 123-4567<br><br></p>
