@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     include_once('connect.php');
     mysql_select_db("TABLE");
     $query = "SELECT * FROM TABLE";
