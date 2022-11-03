@@ -1,8 +1,21 @@
-<?php 
-    include_once('connect.php');
-    mysql_select_db("TABLE");
-    $query = "SELECT * FROM TABLE";
-    $result = mysql_query($query);
+<?php
+	// connect to database
+    $conn = new mysqli('localhost', 'root', 'password1', 'crystalclear');
+
+    // check connection
+    if (!$conn) {
+        echo 'Connection error: ' . mysqli_connect_error();
+    }
+
+    // Test Data
+    $sql = 'SELECT * FROM customer';
+    $result = mysqli_query($conn, $sql);
+    $customers = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $customer = $customers[0];
+
+    // free memory & close connection
+    mysqli_free_result($result);
+    mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -41,10 +54,8 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md py-3">
-        <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span><a href="index.html"><img
-                            src="assets/img/CClogo2.svg" width="248" height="79"></a></span></a><button
-                data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span
-                    class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span><a href="index.html"><img src="assets/img/CClogo2.svg" width="248" height="79"></a></span></a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-2">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
@@ -82,7 +93,7 @@
                                     <h5>Name</h5>
                                 </div>
                                 <div class="col-md-9 text-secondary">
-                                    <p name="cname"><?php echo $result['cname']; ?></p>
+                                    <p name="name"><?php echo htmlspecialchars($customer['cname']);?></p>
                                 </div>
                             </div>
                             <!--<hr> -->
@@ -91,8 +102,7 @@
                                     <h5>E-mail</h5>
                                 </div>
                                 <div class="col-md-9 text-secondary">
-                                    <p id="email"></p>
-                                    <p name="email"><?php echo $result['email']; ?></p>
+                                    <p name="email"><?php echo htmlspecialchars($customer['email']);?></p>
                                 </div>
                             </div>
                             <!--<hr> -->
@@ -101,7 +111,7 @@
                                     <h5>Phone</h5>
                                 </div>
                                 <div class="col-md-9 text-secondary">
-                                    <p name="phone"><?php echo $result['phone']; ?></p>
+                                    <p name="phone"><?php echo htmlspecialchars($customer['phone']);?></p>
                                 </div>
                             </div>
                             <!--<hr> -->
@@ -110,12 +120,12 @@
                                     <h5>Address</h5>
                                 </div>
                                 <div class="col-md-9 text-secondary">
-                                    <p><?php echo $result['address']; ?></p>
+                                    <p name="address"><?php echo htmlspecialchars($customer['street'] . ", " . $customer['city'] . ", " . $customer['state']);?></p>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
-                                <a class="col-sm-auto" href="account.html">Edit</a>
+                                <a class="col-sm-auto" href="account.php?id=<?php echo $customer['cid'];?>">Edit</a>
                             </div>
                         </div>
                     </div>
@@ -127,7 +137,30 @@
                                     <h5>Next Appointment</h5>
                                 </div>
                                 <div class="col-md-9 text-secondary">
-                                    <h5><?php echo $result['subscriptionDate']; ?></h5>
+                                    <h5>12/31/2022</h5>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Total of Filter Wash: </h5>
+                                </div>
+                                <div class="col-md-3 text-secondary">
+                                    <h5 name="numfilters"><?php echo htmlspecialchars($customer['filterWashes']);?></h5>
+                                </div>
+                                <div class="col">
+                                    <h6> Add more </h6>
+                                    <select class="form-select">
+                                        <option selected>How many?</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                      </select>
+                                </div>
+                                <div class="col">
+                                    <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
                                 </div>
                             </div>
                             <hr>
@@ -135,8 +168,15 @@
                                 <div class="col-md-3">
                                     <h5>Current Subscription</h5>
                                 </div>
-                                <div class="col-md-9 text-secondary">
-                                    <h5><?php echo $result['serviceName']; ?></h5>
+                                <div class="col-md-3 text-secondary">
+                                    <h5 name="servicename"><?php echo htmlspecialchars($customer['serviceName']);?></h5>
+                                    <a href="service_manager.html">Manage</a>
+                                </div>
+                                <div class="col-sm">
+                                    <h6> Payment </h6>
+                                </div>
+                                <div class="col">
+                                    <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
                                 </div>
                             </div>
                             <hr>
@@ -144,8 +184,11 @@
                                 <div class="col-md-3 d-inline-flex">
                                     <h5>Payment History</h5>
                                 </div>
-                                <div class="col-md-3">
-                                    <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
+                                <div class="col">
+                                    
+                                    <div class="ratio " style="--bs-aspect-ratio: 44%;">
+                                        <iframe src="customer-history-next.html" ></iframe>
+                                  </div>
                                 </div>
                             </div>
                         </div>
@@ -199,9 +242,10 @@
     <script src="assets/js/dropdown-search-bs4.js"></script>
     <script src="https://apis.google.com/js/platform.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script defer src="../assets/js/Google-Sign-In.js"></script>
+    <script defer src="./assets/js/Google-Sign-In.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
+    <script src="assets/js/customer-history-payments.js"></script>
 
     <script>
         function confirmed() {
