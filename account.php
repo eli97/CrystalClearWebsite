@@ -1,3 +1,31 @@
+<?php
+    // connect to database
+    $conn = new mysqli('localhost', 'root', 'password1', 'crystalclear');
+
+    // check connection
+    if (!$conn) {
+        echo 'Connection error: ' . mysqli_connect_error();
+    }
+
+    // Test Data
+    $sql = 'SELECT * FROM customer';
+    $result = mysqli_query($conn, $sql);
+    $customers = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $customer = $customer[0];
+
+    // free memory & close connection
+    mysqli_free_result($result);
+    mysqli_close($conn);
+
+    $name = $customer['cname'];
+    $street = $customer['street'];
+    $city = $customer['city'];
+    $state = $customer['state'];
+    $phone = $customer['phone'];
+    $email = $customer['email'];
+    //$zipcode = $customer['zipcode'];  //Todo: Add field to database
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,18 +88,17 @@
                     <div><label class="form-label" style="padding-top: 23px;">E-mail:</label></div>
                 </div>
                 <div class="col-md-6" style="width: 400px;">
-                    <form id="my-form" action="/assets/php/update.php" method="post" style="height: 500px;">
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="firstname">First Name</label><input class="form-control" type="text" id="firstname" name="firstname" autofocus=""></div>
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="lastname">Last Name</label><input class="form-control" type="text" id="lastname" name="lastname"></div>
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="street">Street</label><input class="form-control" type="text" id="steet" name="street"></div>
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="city">City</label><input class="form-control" type="text" id="city" name="city"></div>
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="state">State</label><input class="form-control" type="text" id="state" name="state"></div>
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="zipcode">zipcode</label><input class="form-control" type="text" id="zipcode" name="zipcode"></div>
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="phonenumber">Phone Number</label><input class="form-control" type="tel" id="phonenumber" name="phonenumber"></div>
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="email">Email Address</label><input class="form-control" type="email" id="email" name="email"></div>
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="messages">Last Name</label></div>
+                    <form id="my-form" action="./assets/php/update.php" method="post" style="height: 500px;">
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="firstname">First Name</label><input class="form-control" type="text" id="firstname" name="firstname" maxlength="24" autofocus="" value="<?php echo $name;?>"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="lastname">Last Name</label><input class="form-control" type="text" id="lastname" name="lastname" maxlength="24" value="<?php echo $name;?>"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="street">Street</label><input class="form-control" type="text" id="street" name="street" maxlength="32" value="<?php echo $street;?>"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="city">City</label><input class="form-control" type="text" id="city" name="city" maxlength="32" value="<?php echo $city;?>"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="state">State</label><input class="form-control" type="text" id="state" name="state" maxlength="32" value="<?php echo $state;?>"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="zipcode">Zip Code</label><input class="form-control" type="number" id="zipcode" name="zipcode" maxlength="5" value=""></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="phonenumber">Phone Number</label><input class="form-control" type="tel" id="phonenumber" name="phonenumber" maxlength="10" value="<?php echo $phone;?>"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="email">E-mail</label><input class="form-control" type="email" id="email" name="email" maxlength="32" value="<?php echo $email;?>"></div>
                         <button class="btn btn-light btn-lg border rounded-0" id="form-btn-1" type="submit" style="background: rgba(0,0,0,0.4);padding-top: 0px;padding-bottom: 0px;padding-right: 10px;padding-left: 10px;font-size: 16px;">Update</button>
-                        <button class="btn btn-light btn-lg border rounded-0" id="form-btn-2" type="reset" style="background: rgba(0,0,0,0.4);padding-top: 0px;padding-bottom: 0px;padding-right: 10px;padding-left: 10px;font-size: 16px;margin-left: 10px;">CANCEL</button>
+                        <button class="btn btn-light btn-lg border rounded-0" id="form-btn-2" type="reset" style="background: rgba(0,0,0,0.4);padding-top: 0px;padding-bottom: 0px;padding-right: 10px;padding-left: 10px;font-size: 16px;margin-left: 10px;" onclick="window.location.href='./profile.php'">CANCEL</button>
                     </form>
                 </div>
             </div>
@@ -92,7 +119,7 @@
     <script src="assets/js/dropdown-search-bs4.js"></script>
     <script src="https://apis.google.com/js/platform.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script defer src="../assets/js/Google-Sign-In.js"></script>
+    <script defer src="./assets/js/Google-Sign-In.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
 
