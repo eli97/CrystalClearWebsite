@@ -1,3 +1,57 @@
+<?php
+
+    //connect via PDO -- Change these values to match live site database
+    $dbname = "crystalcleartestdb";
+    $dbuser = "dev";
+    $dbpass = "1234";
+    $dbhost = "localhost";
+
+    try{
+        $pdo = new PDO("mysql:host=" . $dbhost . ";dbname=" . $dbname, $dbuser, $dbpass);
+    }
+    catch (PDOException $err){
+        echo "Database connection problem: " . $err->getMessage();
+        exit();  
+    }
+
+    $stmt = $pdo->prepare("SELECT * FROM `customer`");
+    $stmt->execute();
+    $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $pdo = null;
+    $stmt = null; 
+
+    //function to call db if needed. -----NEEDS PARAMETER TO TAKE IN GOOGLE ID TO CHECK WITH DB FOR APPROPRIATE CUSTOMER TO CHANGE-----
+    function editdb() {
+        $dbname = "crystalcleartestdb";
+        $dbuser = "dev";
+        $dbpass = "1234";
+        $dbhost = "localhost";
+        try{
+            $pdo = new PDO("mysql:host=" . $dbhost . ";dbname=" . $dbname, $dbuser, $dbpass);
+        }
+        catch (PDOException $err){
+            echo "Database connection problem: " . $err->getMessage();
+            exit();  
+        }
+    
+        $stmt = $pdo->prepare("UPDATE customer SET serviceName='No Service' WHERE cid='102712085469581371340'"); //cid=$gid
+        $stmt->execute();
+        $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $pdo = null;
+        $stmt = null;
+        include './phpmailer/service_mailer.php';
+    }
+
+    //Set to 'No Service' when cancel service is pressed and conditions are met.
+    if(isset($_POST['cancel'])){
+        //$gid = $_POST['gid']
+        editdb(); //ADD gid as parameter
+    }
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,6 +109,10 @@
                         <!--<h1 class="col d-flex justify-content-center">My Services</h1>-->
                             <!--current services-->
                             <div class="card text-center">
+
+                                <?php foreach($customers as $customer){ 
+                                        if($customer['cid'] == '102712085469581371340') {?>
+
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-4 text-center">
@@ -70,7 +128,7 @@
                                             <h5>Current Subscription</h5>
                                         </div>
                                         <div class="col-md-6 text-secondary">
-                                            <h5>Full Service</h5>
+                                            <h5><?php echo htmlspecialchars($customer['serviceName']); ?></h5>
                                         </div>
                                     </div>
                                     <hr>
@@ -79,7 +137,7 @@
                                             <h5>Payment History</h5>
                                         </div>
                                         <div class="col-md-6">
-                                            <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
+                                            <a class="btn btn-primary" float="right" role="button" href="https://www.paypal.com/us/home">Paypal</a>
                                         </div>
                                     </div>
                                 </div>
@@ -100,15 +158,42 @@
                                         <label for="basicService">Full Service</label>
                                     </div>
                                 </form>-->
-                                <div class="row">
-                                    <div class="col-sm-5 mb-5"  style="margin-top: 20px">
-                                        <button type="button" class="btn btn-outline-danger btn-sm" onclick="firstPayPal()">Change Service</button>
-                                        <div id="warn" class="text-danger"></div>
-                                    </div>
-                                    <div class="col-sm-5 mb-5" style="margin-top: 20px">
-                                        <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#popup">Cancel Service</button>
-                                    </div>
+                                <div class="row align-content-center">
+
+                                    <!--Can add redirect to paypal when its available, for now it's just a prompt-->
+
+                                    <?php if($customer['isActive'] == 1) { ?>
+                                    
+                                        <div class="col-sm-8 mb-5"  style="float: none; margin: 0 auto;">
+                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#popup">Change Service</button>
+                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#popup">Cancel Service</button>
+                                        </div>
+                                        <!--
+                                        <div class="col-sm-5 mb-5" style="margin-top: 20px">
+                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#popup">Cancel Service</button>
+                                        </div>
+                                        -->
+
+                                    <?php } ?>
+
+                                    <?php if($customer['isActive'] == 0) { ?>
+                                        <form method="post">
+                                            <div class="col-sm-8 mb-5 align-content-center"  style="float: none; margin: 0 auto;">
+                                                <button class="btn btn-outline-danger btn-sm">Change Service</button>
+                                                <button class="btn btn-outline-danger btn-sm" name="cancel">Cancel Service</button>
+                                            </div>
+                                            <!--
+                                            <div class="col-sm-5 mb-5" style="margin-top: 20px">
+                                                <button class="btn btn-outline-danger btn-sm" name="cancel">Cancel Service</button>
+                                            </div>
+                                            -->
+                                        </form>
+                                    <?php } ?>
+
                                 </div>
+
+                                <?php }} ?>
+
                             </div>
                             <!--end-->
                         <div class="card-body">
@@ -128,10 +213,10 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Are you sure you want to delete your account?</p>
+                            <p>Please cancel your paypal subscription first.</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-target="#confirm" onclick="confirmed()">Confirm</button>
+                            <!--<button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-target="#confirm" onclick="confirmed()">Close</button>-->
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -161,10 +246,8 @@
         function confirmed() {
             location.href = "login.html";
         }
-        function firstPaypal() {
-            document.getElementById("warn").innerHTML = "Please cancel your paypal subscription first.";
-        }
     </script>
+
 </body>
 
 </html>
