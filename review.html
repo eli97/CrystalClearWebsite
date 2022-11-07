@@ -14,7 +14,7 @@
     
 </head>
 
-<body>
+<body onload="viewer();">
     <nav class="navbar navbar-light navbar-expand-md  py-3">
         <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span><a href="main.html"><img src="assets/img/CClogo2.svg" width="248" height="79"></a></span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-2">
@@ -53,45 +53,14 @@
                 </div>
                 <ul>
                     <p class="card-text">I just recently bought my house and the pool was covered in ali and green stuff. I called Daniel and he was able
-                        clean within 3 weeks. He gave me some tips on how to keep it clean and gave me a great deal on pool filter. I 
-                        definitly recommend Daniel.
+                        clean within 3 weeks. He gave me some tips on how to keep it clean. I will definitly recommend Daniel.
                     </p>
                 </ul>
                 
 
             </div>
         </div>
-
-        <h1>Write a review</h1>
-        
-        <div class="card shadow p-3 mb-5 bg-white rounded h-75">
-        <div class="card-body">
-            
-                <div class="rating"> 
-                    <input type="radio" name="rating" id="star5" value="5"> <label for="star5" class="fa fa-star"></label>
-                    <input type="radio" name="rating" id="star4" value="4"> <label for="star4" class="fa fa-star"></label>
-                    <input type="radio" name="rating" id="star3" value="3"> <label for="star3" class="fa fa-star"></label>
-                    <input type="radio" name="rating" id="star2" value="2"> <label for="star2" class="fa fa-star"></label>
-                    <input type="radio" name="rating" id="star1" value="1"> <label for="star1" class="fa fa-star"></label>
-                </div>
-                <form>
-                <div class="mb-3">
-                    <label for="guest-review" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="guest-review" required> 
-                </div>
-
-                <div class="mb-3">
-                    <label for="comment" class="form-label">Comment or Questions:</label>
-                    <textarea class="form-control" id="comment" rows="3" ></textarea>
-                </div>
-                <button class="btn btn-primary" type="submit">Submit form</button>
-                </form>
-        </div> 
-        </div>  
-        
-        
-    </main>
-    </div>
+        <div id="reviewCards"></div>
 
     <footer class="text-center">
         <div class="container text-muted py-4 py-lg-5">
@@ -99,6 +68,7 @@
             <p class="mb-0">Copyright © 2022 Crystal Clear</p>
         </div>
     </footer>
+    <script src="assets/js/review-cards.js" defer></script>
 
 </body>
 
