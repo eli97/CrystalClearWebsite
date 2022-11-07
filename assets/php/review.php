@@ -76,7 +76,6 @@
     //$result = $stmt->fetchAll();
     //var_dump($result);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-
         $data = array( );
         $data['cid']     = $row['cid'];
         $data['cname']   = $row['cname'];
