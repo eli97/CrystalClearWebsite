@@ -6,12 +6,13 @@ $column = array("cid", "cname", "phone", "street", "city", "state", "email", "fi
 
 $query = "SELECT * FROM customer ";
 
+// search here ...
 if(isset($_POST["search"]["value"]))
 {
  $query .= '
  WHERE cname LIKE "%'.$_POST["search"]["value"].'%" 
+ OR street LIKE "%'.$_POST["search"]["value"].'%" 
  OR email LIKE "%'.$_POST["search"]["value"].'%" 
- OR serviceName LIKE "%'.$_POST["search"]["value"].'%" 
  OR phone LIKE "%'.$_POST["search"]["value"].'%" 
  ';
 }
