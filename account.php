@@ -8,10 +8,10 @@
     }
 
     // Test Data
-    $sql = 'SELECT * FROM customer';
+    $cid = $_GET['id'];
+    $sql = "SELECT * FROM customer WHERE cid = '$cid'";
     $result = mysqli_query($conn, $sql);
-    $customers = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    $customer = $customer[0];
+    $customer = mysqli_fetch_assoc($result);
 
     // free memory & close connection
     mysqli_free_result($result);
@@ -78,8 +78,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-end">
-                    <div><label class="form-label" style="margin-top: 25px;">First Name:</label></div>
-                    <div><label class="form-label" style="padding-top: 23px;">Last Name:</label></div>
+                    <div><label class="form-label" style="margin-top: 25px;">Full Name:</label></div>
                     <div><label class="form-label" style="padding-top: 23px;">Street:</label></div>
                     <div><label class="form-label" style="padding-top: 23px;">City:</label></div>
                     <div><label class="form-label" style="padding-top: 23px;">State:</label></div>
@@ -88,14 +87,13 @@
                     <div><label class="form-label" style="padding-top: 23px;">E-mail:</label></div>
                 </div>
                 <div class="col-md-6" style="width: 400px;">
-                    <form id="my-form" action="./assets/php/update.php" method="post" style="height: 500px;">
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="firstname">First Name</label><input class="form-control" type="text" id="firstname" name="firstname" maxlength="24" autofocus="" value="<?php echo $name;?>"></div>
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="lastname">Last Name</label><input class="form-control" type="text" id="lastname" name="lastname" maxlength="24" value="<?php echo $name;?>"></div>
+                    <form id="my-form" action="./assets/php/update.php?id=<?php echo $cid;?>" method="post" style="height: 500px;">
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="fullname">Full Name</label><input class="form-control" type="text" id="fullname" name="fullname" maxlength="24" autofocus="" value="<?php echo $name;?>"></div>
                         <div class="form-group mb-3"><label class="form-label visually-hidden" for="street">Street</label><input class="form-control" type="text" id="street" name="street" maxlength="32" value="<?php echo $street;?>"></div>
                         <div class="form-group mb-3"><label class="form-label visually-hidden" for="city">City</label><input class="form-control" type="text" id="city" name="city" maxlength="32" value="<?php echo $city;?>"></div>
                         <div class="form-group mb-3"><label class="form-label visually-hidden" for="state">State</label><input class="form-control" type="text" id="state" name="state" maxlength="32" value="<?php echo $state;?>"></div>
                         <div class="form-group mb-3"><label class="form-label visually-hidden" for="zipcode">Zip Code</label><input class="form-control" type="number" id="zipcode" name="zipcode" maxlength="5" value=""></div>
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="phonenumber">Phone Number</label><input class="form-control" type="tel" id="phonenumber" name="phonenumber" maxlength="10" value="<?php echo $phone;?>"></div>
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="phonenumber">Phone Number</label><input class="form-control" type="tel" id="phone" name="phone" maxlength="10" value="<?php echo $phone;?>"></div>
                         <div class="form-group mb-3"><label class="form-label visually-hidden" for="email">E-mail</label><input class="form-control" type="email" id="email" name="email" maxlength="32" value="<?php echo $email;?>"></div>
                         <button class="btn btn-light btn-lg border rounded-0" id="form-btn-1" type="submit" style="background: rgba(0,0,0,0.4);padding-top: 0px;padding-bottom: 0px;padding-right: 10px;padding-left: 10px;font-size: 16px;">Update</button>
                         <button class="btn btn-light btn-lg border rounded-0" id="form-btn-2" type="reset" style="background: rgba(0,0,0,0.4);padding-top: 0px;padding-bottom: 0px;padding-right: 10px;padding-left: 10px;font-size: 16px;margin-left: 10px;" onclick="window.location.href='./profile.php'">CANCEL</button>
