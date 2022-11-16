@@ -57,11 +57,12 @@ function printReviewData(res){
 }
 function addAdminReviewCard(ID, name, datePost, stars, mgs, approval)
 {   
+    let newDate = datePost.split("-");
     let reviewCard = `<div class="card  shadow p-3 mb-5 bg-white rounded  h-75">
     <div class="card-body">
         <h5 class="card-title">Customer Name: `+ name +`</h5>
         <h5 class="card-title" >Customer ID: `+ ID +`</h5>
-        <h5 class="card-title" >Date Written: `+ datePost +`</h5>
+        <h5 class="card-title" >Date Written: `+ newDate[1] +`/`+ newDate[2] +`/`+ newDate[0] +`</h5>
         
         
         <h5 class="card-tittle"> Stars </h5>
@@ -102,11 +103,11 @@ function addAdminReviewCard(ID, name, datePost, stars, mgs, approval)
     document.getElementById('reviewCards').innerHTML += reviewCard;
 }
 function addReviewCard(name, stars, mgs, datePost){
-
+    let newDate = datePost.split("-");
     let reviewCard = `<div class="card  shadow p-3 mb-5 bg-white rounded  h-75">
     <div class="card-body">
         <h4 class="card-title">-`+ name +`</h4>
-        <p>Date Written: `+ datePost +`</p>
+        <p>Date Written: `+ newDate[1] +`/`+ newDate[2] +`/`+ newDate[0] +`</p>
         <div>`;
     for(let i = 0; i < 5; i++){
         if(i <= stars){
@@ -122,4 +123,8 @@ function addReviewCard(name, stars, mgs, datePost){
         </ul>
     </div>`;
     document.getElementById('reviewCards').innerHTML += reviewCard;
+}
+function show_alert(){
+    
+    alert("Are you sure want to submit these changes? Month old reviews that aren't approve will be deleted");
 }
