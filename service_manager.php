@@ -1,20 +1,29 @@
 <?php
 
     //connect via PDO -- Change these values to match live site database
+    /*
     $dbname = "crystalcleartestdb";
     $dbuser = "dev";
     $dbpass = "1234";
     $dbhost = "localhost";
+    */
+
+    error_reporting(E_ALL & ~E_NOTICE);
+    define("DB_HOST", "localhost");
+    define("DB_NAME", "rystaly5_CrystClearMainDB");
+    define("DB_CHARSET", "utf8");
+    define("DB_USER", "rystaly5_cbearquiver");
+    define("DB_PASSWORD", "SvenThePlant!");
 
     try{
-        $pdo = new PDO("mysql:host=" . $dbhost . ";dbname=" . $dbname, $dbuser, $dbpass);
+        $pdo = new PDO("mysql:host=" . DB_HOST . ";charset=" . DB_CHARSET . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD);
     }
     catch (PDOException $err){
         echo "Database connection problem: " . $err->getMessage();
         exit();  
     }
 
-    $stmt = $pdo->prepare("SELECT * FROM `customer`");
+    $stmt = $pdo->prepare("SELECT * FROM `CUSTOMER`");
     $stmt->execute();
     $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -35,7 +44,7 @@
             exit();  
         }
     
-        $stmt = $pdo->prepare("UPDATE customer SET serviceName='No Service' WHERE cid='102712085469581371340'"); //cid=$gid
+        $stmt = $pdo->prepare("UPDATE customer SET serviceName='No Service' WHERE gid='102712085469581371340'"); //adjust this for live site
         $stmt->execute();
         $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $pdo = null;
@@ -95,7 +104,8 @@
                     <li class="nav-item"><a class="nav-link" href="estimate.html">Estimates</a></li>
                     <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                </ul><a class="btn btn-primary border-0 border-dark ms-md-2" role="button" href="login.html"
+                    <li class="nav-item" id="profile"><a class="nav-link" href="profile.php">Profile</a></li>
+                </ul><a class="btn btn-primary border-0 border-dark ms-md-2" role="button" onclick="logout()"
                     style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Logout</a>
             </div>
         </div>
@@ -111,7 +121,7 @@
                             <div class="card text-center">
 
                                 <?php foreach($customers as $customer){ 
-                                        if($customer['cid'] == '102712085469581371340') {?>
+                                        if($customer['gid'] == '102712085469581371340') {?>
 
                                 <div class="card-body">
                                     <div class="row">
@@ -244,7 +254,12 @@
 
     <script>
         function confirmed() {
-            location.href = "login.html";
+            location.href = "login.php";
+        }
+
+        function logout() {
+            localStorage.clear();
+            location.href = "login.php";
         }
     </script>
 

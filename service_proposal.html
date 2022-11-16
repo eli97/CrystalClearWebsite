@@ -47,8 +47,9 @@
                     <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
                     <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+                    <li class="nav-item" id="profile"><a class="nav-link" href="profile.php">Profile</a></li>
                 </ul>
-                <a id="logbtn" class="btn btn-primary border-0 border-dark ms-md-2" role="button" href="login.html" style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Login</a>
+                <a id="logbtn" class="btn btn-primary border-0 border-dark ms-md-2" role="button" onclick="logout()" style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Login</a>
             </div>
         </div>
     </nav>
@@ -158,16 +159,21 @@
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
 
     <script type="text/javascript">
-        if(sessionStorage.getItem('status') != null) {
+        if(localStorage.getItem('status') != null) {
             document.getElementById("logbtn").innerHTML = "Logout";
             //$('#fullName').text(sessionStorage.getItem('name'));
-            document.getElementById("fullName").value = sessionStorage.getItem('name');
+            document.getElementById("fullName").value = localStorage.getItem('name');
             document.getElementById("date").value = new Date().toLocaleDateString('en-US');
-            document.getElementById("email").value = sessionStorage.getItem('email');
+            document.getElementById("email").value = localStorage.getItem('email');
         };
-        /*else {
-            window.location.href = "/login.html";
-        }*/
+        if(localStorage.getItem('status') == null) {
+            location.href = "login.php";
+        }
+
+        function logout() {
+            localStorage.clear();
+            location.href = "login.php";
+        }
 
         $(document).ready(function() {
             $("#billing").hide();
@@ -182,7 +188,7 @@
             });
         });
 
-        if(sessionStorage.getItem('service') == 12) {
+        if(localStorage.getItem('service') == 12) {
             document.getElementById("chem").innerHTML = "Chemical + Basket"
         }
         else if(sessionStorage.getItem('service') == 13) {

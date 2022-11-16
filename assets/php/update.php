@@ -1,13 +1,13 @@
 <?php
     //header('location: ../../profile.php');
-    $conn = new mysqli('localhost', 'root', 'password1', 'crystalclear');
+    $conn = new mysqli('localhost', 'rystaly5_cbearquiver', 'SvenThePlant!', 'rystaly5_CrystClearMainDB');
 
     if (!$conn) {
         echo 'Connection error: ' . mysqli_connect_error();
     }
 
     // Test Data
-    $sql = "SELECT * FROM customer";
+    $sql = "SELECT * FROM CUSTOMER";
     $result = mysqli_query($conn, $sql);
     $customers = mysqli_fetch_all($result, MYSQLI_ASSOC);
     $customer = $customer[0];
