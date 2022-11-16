@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="assets/css/NMDIG-Jumbotron-Advanced-Responsive-Tint-jumbotron-bg-responsive-tint.css">
     <link rel="stylesheet" href="assets/css/NMDIG-Jumbotron-Advanced-Responsive-Tint.css">
     <link rel="stylesheet" href="assets/css/Signup-page-with-overlay.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/adminViews.css">
 </head>
 
 <body>
@@ -47,13 +47,14 @@
     </nav>
     <div class="container">
         <nav class="nav" aria-label="Secondary navigation" >
-            <a class="nav-link"  href="#" >Home</a>
-            <a class="nav-link"  href="admin.html">Update</a>
-            <a class="nav-link" href="comfimation.html">History</a>
+            <!-- <a class="nav-link" href="#" >Home</a> -->
+            <a class="nav-link" href="admin.html">Update Services</a>
+            <a class="nav-link" href="comfimation.html">Payment History</a>
+            <a class="nav-link" href="adminView.php">View/Update Customers</a> 
         </nav>
     </div>
     <main class="container">
-        <h1>History Payments</h1>
+        <h1 style="text-align:center" class="title">Payment History</h1>
         <h5> Add Payment: </h5>
         <div class="row gy-3">
             <div class="col">
@@ -84,34 +85,19 @@
                     <option selected>Payment type</option>
                     <option value="check">Check</option>
                     <option value="cash">Cash</option>
-                    
                   </select>
             </div>
         </div>
         
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">Sign in</button>
+            <button type="submit" class="btn btn-primary">ADD</button>
           </div>
         
-        <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Customer ID</th>
-                <th scope="col">Customer Name</th>
-                <th scope="col">Date</th>
-                <th scope="col">Confirmation Number</th>
-                <th scope="col">Filter Washes</th>
-                <th scope="col">Service Type</th>
-                <th scope="col">Status</th>
-              </tr>
-            </thead>
-            <tbody id="myTable"></tbody>
-        </table>
+          <div class="ratio" style="--bs-aspect-ratio: 40%">
+                <iframe src="comfirm-next.html" ></iframe>
+          </div>
 
-        <nav class="nav" aria-label="Secondary navigation" >
-            <a class="nav-link"  href="#"  onclick="prev()" >Prev</a>
-            <a class="nav-link"  href="#"  onclick="next()" >Next</a>
-        </nav>
+        
     </main>
 </body>
 <script src="assets/js/admin-comfimation.js"></script>
