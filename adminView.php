@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="assets/css/Data-table.css">
     <script defer src="../scripts/Data-table.js"></script>
     <link rel="stylesheet" href="assets/css/updateTable.css">
+    <link rel="stylesheet" href="assets/css/adminViews.css">
 
 
 
@@ -30,17 +31,16 @@
 
     <div class="container">
         <nav class="nav" aria-label="Secondary navigation" >
-            <a class="nav-link" href="#" >Home</a>
-            <a class="nav-link" href="admin.html">Update</a>
-            <a class="nav-link" href="comfimation.html">History</a>
-            <a class="nav-link" href="customer_info.php">List</a>
-            <a class="nav-link" href="newUpdateTable.php">View/Update</a>   
+            <!-- <a class="nav-link" href="#" >Home</a> -->
+            <a class="nav-link" href="admin.html">Update Services</a>
+            <a class="nav-link" href="comfimation.html">Payment History</a>
+            <a class="nav-link" href="adminView.php">View/Update Customers</a>   
         </nav>
     </div>
 
 
   <div class="container">
-   <h3 align="center">View and Update Customer Information</h3>
+   <h3 align="center" class="title" >View/Update Customer Information</h3>
    <br />
    <div class="panel panel-default">
     <!-- <div class="panel-heading">Customers:</div> -->

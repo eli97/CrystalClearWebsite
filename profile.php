@@ -11,7 +11,11 @@
     $sql = 'SELECT * FROM customer';
     $result = mysqli_query($conn, $sql);
     $customers = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    $customer = $customers[0];
+    $customer = $customers[1];
+    $cid = $customer['cid'];
+
+    // Save cid to session
+    //$_SESSION['cid'] = $customer['cid'];
 
     // free memory & close connection
     mysqli_free_result($result);
@@ -216,7 +220,7 @@
                             <p>Are you sure you want to delete your account?</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-target="#confirm" onclick="confirmed()">Confirm</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-target="#confirm" onclick="checkSubscription()">Confirm</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -260,6 +264,28 @@
             $('#email').text(sessionStorage.getItem('email'));
             $('#image').attr("src", sessionStorage.getItem('image'));
         })
+    </script>
+
+    <!-- Script to determine if user has current subscription active -->
+    <script>
+    function checkSubscription() {
+        if ('<?php echo htmlspecialchars($customer['serviceName']);?>' != 'No Service') {
+            alert('Unable to delete account. Please cancel the current subscription to continue.');
+            console.log('Current subscription active. Failed to delete account.');
+        }
+        else {
+            var cid_var = "<?php echo $cid;?>";
+            $.ajax ({
+                type: "POST",
+                url: "./assets/php/deleteacc.php",
+                data: {'id': cid_var},
+                success: function(data) {
+                    $("body").html(data);
+                    window.location.href = url;
+                }
+            });
+        }
+    }
     </script>
 </body>
 

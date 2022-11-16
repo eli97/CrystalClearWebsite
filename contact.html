@@ -54,19 +54,21 @@
             <div class="info-box"><i class="fa fa-phone-square my-info-icons"></i><span class="text-uppercase text-info">Phone: </span><span>+9161234567</span></div>
         </div>
         <div class="col-12 col-sm-6 col-md-6 site-form">
-            <form action="thankyou.html">
-                <div class="form-group mb-3"><label class="form-label visually-hidden" for="firstname">First Name</label><input class="form-control" type="text" id="firstname" name="firstname" placeholder="First Name" autofocus="" minlength="2" maxlength="32"></div>
-                <div class="form-group mb-3"><label class="form-label visually-hidden" for="lastname">Last Name</label><input class="form-control" type="text" id="lastname" name="lastname" placeholder="Last Name" minlength="2" maxlength="32"></div>
-                <div class="form-group mb-3"><label class="form-label visually-hidden" for="phonenumber">Phone Number</label><input class="form-control" type="tel" id="phonenumber" name="phonenumber" placeholder="* Phone" minlength="10" maxlength="13" required/></div>
-                <div class="form-group mb-3"><label class="form-label visually-hidden" for="email">Email Address</label><input class="form-control" type="email" id="email" name="email" required="" placeholder="* Email"></div>
+            <form class="submit-service-request-form" action="https://formsubmit.co/96a54ae9c5775b810078ba28320370b9" method="POST" >
+                <div class="form-group mb-3"><label class="form-label visually-hidden" for="firstname">First Name</label><input class="form-control" type="text" id="firstname" name="firstname" placeholder="First Name" autofocus="" maxlength="32" required></div>
+                <div class="form-group mb-3"><label class="form-label visually-hidden" for="lastname">Last Name</label><input class="form-control" type="text" id="lastname" name="lastname" placeholder="Last Name" maxlength="32" required></div>
+                <div class="form-group mb-3"><label class="form-label visually-hidden" for="phonenumber">Phone Number</label><input class="form-control" type="tel" id="phonenumber" name="phonenumber" placeholder="* Phone" minlength="10" maxlength="13" required></div>
+                <div class="form-group mb-3"><label class="form-label visually-hidden" for="email">Email Address</label><input class="form-control" type="email" id="email" name="email" required placeholder="* Email"></div>
                 <div class="form-group mb-3"><label class="form-label visually-hidden" for="messages">Message</label><textarea class="form-control" name="message" id="message" placeholder="* Message" rows="8" required></textarea></div>
-                <a class="btn btn-light btn-lg" role="button" id="form-btn" style="background: rgba(0,0,0,0.4);">SEND </a>
+                <input type="submit" id="sendMsg" value="Send" class="btn btn-light btn-lg" class="nav-link" role="button" id="form-btn" style="background: rgba(0,0,0,0.4);">
+                <input type="hidden" name="_subject" value="Request for service">
+                <input type="hidden" name="_next" method="POST" value="http://localhost/test/thankyou.html">
             </form>
         </div>
     </div>
     <footer class="text-center">
         <div class="container text-muted py-4 py-lg-5">
-            <p>Servicing the greater Sacramento area<br>Sacramento, California 95825<br>email: no-reply@email.com<br>phone: (916) 123-4567<br><br></p>
+            <p>Servicing the greater Sacramento area<br>Sacramento, California 95825<br>email: crystalclearpoolservice.916@gmail.com<br>phone: (916) 123-4567<br><br></p>
             <p class="mb-0">Copyright © 2022 Crystal Clear</p>
         </div>
     </footer>
@@ -82,6 +84,7 @@
     <script defer src="../assets/js/Google-Sign-In.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="assets/js/contact.js"></script>
 
     <script type="text/javascript">
