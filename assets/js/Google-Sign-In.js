@@ -9,7 +9,7 @@ function onSignIn(response) {
     localStorage.setItem("image",profile.picture);
     console.log('Email: ' + profile.email);
     localStorage.setItem("email",profile.email);
-    window.location.href='http://localhost:5500/profile.html'; //CHANGE THIS TO APPROPRIATE PAGE WHEN ON DEPLOYED SITE
+    window.location.href = './profile.php'; //CHANGE THIS TO APPROPRIATE PAGE WHEN ON DEPLOYED SITE
 }
 
 //Used to decode the JWT Response from Google API to get user information

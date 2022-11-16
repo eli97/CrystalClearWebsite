@@ -7,25 +7,21 @@
     }
 
     // Test Data
-    $sql = "SELECT * FROM customer";
+    $cid = $_GET['id'];
+    $sql = "SELECT * FROM customer WHERE cid = '$cid'";
     $result = mysqli_query($conn, $sql);
-    $customers = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    $customer = $customer[0];
+    $customer = mysqli_fetch_assoc($result);
+
+    mysqli_free_result($result);
 
     // taking input values from the update form
-    $cid = $customer['cid'];
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
+    $cname = $_POST['fullname'];
     $street = $_POST['street'];
     $city = $_POST['city'];
     $state = $_POST['state'];
     //$zipcode = $_POST['zipcode'];  // Todo: Add field in database
-    $phonenumber = $_POST['phonenumber'];
+    $phone = $_POST['phone'];
     $email = $_POST['email'];
-
-    // clean up inputs to match database fields
-    //$cname = $firstname . ' ' . $lastname;
-    $cname = $firstname;
 
     // insert the values into the database
     $ins = "UPDATE customer SET cname='$cname', street='$street', city='$city', state='$state', phone='$phone', email='$email' WHERE cid='$cid'";
@@ -35,7 +31,7 @@
 
     if ($res) {
         echo '<script>alert("Profile Updated Successfully!")</script>';
-        echo '<script>window.location.href("../../profile.php")</script>';
+        echo '<script>window.location.href = "../../profile.php"</script>';
     }
     else {
         echo '<script>alert("Update unsuccessful, an error has occurred.")</script>';
