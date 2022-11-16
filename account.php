@@ -80,8 +80,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-end">
-                    <div><label class="form-label" style="margin-top: 25px;">First Name:</label></div>
-                    <div><label class="form-label" style="padding-top: 23px;">Last Name:</label></div>
+                    <div><label class="form-label" style="margin-top: 25px;">Full Name:</label></div>
                     <div><label class="form-label" style="padding-top: 23px;">Street:</label></div>
                     <div><label class="form-label" style="padding-top: 23px;">City:</label></div>
                     <div><label class="form-label" style="padding-top: 23px;">State:</label></div>
@@ -90,9 +89,8 @@
                     <div><label class="form-label" style="padding-top: 23px;">E-mail:</label></div>
                 </div>
                 <div class="col-md-6" style="width: 400px;">
-                    <form id="my-form" action="./assets/php/update.php" method="post" style="height: 500px;">
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="firstname">First Name</label><input class="form-control" type="text" id="firstname" name="firstname" maxlength="24" autofocus="" value="<?php echo $name;?>"></div>
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="lastname">Last Name</label><input class="form-control" type="text" id="lastname" name="lastname" maxlength="24" value="<?php echo $name;?>"></div>
+                    <form id="my-form" action="./assets/php/update.php?id=<?php echo $cid;?>" method="post" style="height: 500px;">
+                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="fullname">Full Name</label><input class="form-control" type="text" id="fullname" name="fullname" maxlength="24" autofocus="" value="<?php echo $name;?>"></div>
                         <div class="form-group mb-3"><label class="form-label visually-hidden" for="street">Street</label><input class="form-control" type="text" id="street" name="street" maxlength="32" value="<?php echo $street;?>"></div>
                         <div class="form-group mb-3"><label class="form-label visually-hidden" for="city">City</label><input class="form-control" type="text" id="city" name="city" maxlength="32" value="<?php echo $city;?>"></div>
                         <div class="form-group mb-3"><label class="form-label visually-hidden" for="state">State</label><input class="form-control" type="text" id="state" name="state" maxlength="32" value="<?php echo $state;?>"></div>
