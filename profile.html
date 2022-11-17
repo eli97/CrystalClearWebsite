@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="assets/css/GoogleSignIn.css">
 </head>
 
-<body>
+<body onload="initServicesUser();">
     <nav class="navbar navbar-light navbar-expand-md py-3">
         <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span><a href="index.html"><img
                             src="assets/img/CClogo2.svg" width="248" height="79"></a></span></a><button
@@ -152,7 +152,7 @@
                                 </div>
                                 <div class="col-md-3 text-secondary">
                                     <h5>Full Service</h5>
-                                    <a href="service_manager.html">Manage</a>
+                                    <a href="service_manager.php">Manage</a>
                                 </div>
                                 <div class="col-sm">
                                     <h6> Payment </h6>
@@ -167,23 +167,10 @@
                                     <h5>Payment History</h5>
                                 </div>
                                 <div class="col">
-                                    <table class="table table-striped">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Confirmation Number</th>
-                                            <th scope="col">Filter Washes</th>
-                                            <th scope="col">Service Type</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody id="myTable">
-                                            
-                                        </tbody>
-                                    </table>
-                                    <nav class="nav" aria-label="Secondary navigation" >
-                                        <a class="nav-link"  href="#"  onclick="prev()" >Prev</a>
-                                        <a class="nav-link"  href="#"  onclick="next()" >Next</a>
-                                    </nav>
+                                    
+                                    <div class="ratio " style="--bs-aspect-ratio: 44%;">
+                                        <iframe src="customer-history-next.html" ></iframe>
+                                  </div>
                                 </div>
                             </div>
                         </div>
@@ -241,6 +228,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
     <script src="assets/js/customer-history-payments.js"></script>
+    <script src="assets/js/customerinfo.js" defer></script>
 
     <script>
         function confirmed() {
@@ -250,10 +238,10 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#profileName').text(sessionStorage.getItem('name'));
-            $('#infoName').text(sessionStorage.getItem('name'));
-            $('#email').text(sessionStorage.getItem('email'));
-            $('#image').attr("src", sessionStorage.getItem('image'));
+            $('#profileName').text(localStorage.getItem('name'));
+            $('#infoName').text(localStorage.getItem('name'));
+            $('#email').text(localStorage.getItem('email'));
+            $('#image').attr("src", localStorage.getItem('image'));
         })
     </script>
 </body>

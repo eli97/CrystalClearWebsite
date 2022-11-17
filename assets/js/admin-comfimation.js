@@ -1,3 +1,4 @@
+
 let payments = [
     [1, "Micheal Miyer",  "10/26/2022", 000000000, 10, "Chemical + Basket", "Cash"],
     [2, "Freddy Krueger",  "10/2/2022", 456789321, 20, "Full Server",       "Online"],
@@ -12,22 +13,30 @@ let payments = [
     [3, "Candy  Man",      "6/30/2022", 000000000, 15, "Basic Service", "Check"],
     [3, "Candy  Man",      "6/30/2022", 765419873,  5, "Basic Service", "Online"],
     [2, "Freddy Krueger",  "6/27/2022", 456789321,  5, "Basic Service", "Online"],
+    [1, "Micheal Miyer2",   "6/26/2022", 123456789, 20, "Full Service",  "Online"],
     [1, "Micheal Miyer",   "6/26/2022", 123456789, 20, "Full Service",  "Online"],
+    [1, "Micheal Miyer",   "6/26/2022", 123456789, 20, "Full Service",  "Online"],
+    [1, "Micheal Miyer",   "6/26/2022", 123456789, 20, "Full Service",  "Online"],
+    [8, "Micheal Miyer",   "6/26/2022", 123456789, 20, "Full Service",  "Online"],
+    [1, "Micheal Miyer",   "6/26/2022", 123456789, 20, "Full Service",  "Online"],
+    [6, "Micheal Miyer",   "6/26/2022", 123456789, 20, "Full Service",  "Online"],
+    [3, "Micheal Miyer",   "6/26/2022", 123456789, 20, "Full Service",  "Online"],
+    [1, "Micheal Miyer2",   "6/26/2022", 123456789, 20, "Full Service",  "Online"],
+    [1, "Micheal Miyer1",   "6/26/2022", 123456789, 20, "Full Service",  "Online"],
     ];
-  
-    var currentindex = 0;
-    var originTable = myTable.innerHTML
+    let currentindex = 0;
     show()
-
     function show(){
         var table = document.getElementById("myTable")
         var row = '';
+        
+        // Padding 0's to Column 3 (Confirmation Number) to display correctly
         for(var i = currentindex; i < (currentindex+10) && i < payments.length; i++){
             row += `<tr>
-                    <th scope="row">${payments[i][0]}</th>
+                    <th scope="row">${(payments[i][0])}</th>
                     <th>${payments[i][1]}</th>
                     <th>${payments[i][2]}</th>
-                    <th>${payments[i][3]}</th>
+                    <th>${("000000000" + payments[i][3]).slice(-9)}</th>
                     <th>${payments[i][4]}</th>
                     <th>${payments[i][5]}</th>
                     <th>${payments[i][6]}</th>
@@ -36,17 +45,13 @@ let payments = [
         }
         
         table.innerHTML += row;
-    }
-       
-    function next(){
-        currentindex += 10;
-        myTable.innerHTML = originTable
-        show();         
-    }
-    function prev(){
-        currentindex -= 10;
-        myTable.innerHTML = originTable
-        show(); 
         
     }
-   
+    
+    function next(){
+        
+           window.location.href="comfirm-prev-next.html"
+        
+    }
+
+    

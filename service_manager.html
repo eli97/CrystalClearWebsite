@@ -48,42 +48,43 @@
     </nav>
     <h2 class="text-center">Manage Services</h2>
     <div style="background: url(&quot;assets/img/water1.png&quot;) top / cover no-repeat;">
-        <div class="container">
+        <div class="container justify-content-center">
             <div class="row">
-                <div class="col-md-8 mt-1">
-                    <div class="card mb-3 content" style="max-width:95%">
-                        <h1 class="m-3 pt-3">My Services</h1>
+                <div class="col d-flex justify-content-center">
+                    <div class="card p-5 content justify-content-center" style="width:750px">
+                        <!--<h1 class="col d-flex justify-content-center">My Services</h1>-->
                             <!--current services-->
-                            <div class="card mb-3 content" style="max-width:95%">
+                            <div class="card text-center">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-4 text-center">
                                             <h5>Next Appointment</h5>
                                         </div>
-                                        <div class="col-md-9 text-secondary">
+                                        <div class="col-md-6 text-secondary">
                                             <h5>12/31/2022</h5>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <h5>Current Subscription</h5>
                                         </div>
-                                        <div class="col-md-9 text-secondary">
+                                        <div class="col-md-6 text-secondary">
                                             <h5>Full Service</h5>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-md-3 d-inline-flex">
+                                        <div class="col-md-4 d-inline-flex">
                                             <h5>Payment History</h5>
                                         </div>
-                                        <div class="col-md-3">
-                                            <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
+                                        <div class="col-md-6">
+                                            <a class="btn btn-primary" float="right" role="button" href="https://www.paypal.com">Paypal</a>
                                         </div>
                                     </div>
                                 </div>
                                 <hr>
+                                <!--
                                 <form>
                                     <div class="col-md-3" style="margin-left: 20px">
                                         <input type="radio" onchange="service_change(basic)" name="basic_service" id=basicService value="BasicService">
@@ -98,12 +99,13 @@
                                         <input type="radio" onchange="service_change(basic)" name="basic_service" id=basicService value="BasicService">
                                         <label for="basicService">Full Service</label>
                                     </div>
-                                </form>
-                                <div class="row" style="margin-left: 20px">
-                                    <div class="col-sm-3"  style="margin-top: 20px">
-                                        <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#popup">Change Service</button>
+                                </form>-->
+                                <div class="row">
+                                    <div class="col-sm-5 mb-5"  style="margin-top: 20px">
+                                        <button type="button" class="btn btn-outline-danger btn-sm" onclick="firstPayPal()">Change Service</button>
+                                        <div id="warn" class="text-danger"></div>
                                     </div>
-                                    <div class="col-sm-3" style="margin-top: 20px">
+                                    <div class="col-sm-5 mb-5" style="margin-top: 20px">
                                         <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#popup">Cancel Service</button>
                                     </div>
                                 </div>
@@ -153,10 +155,14 @@
     <script src="assets/js/Application-Form.js"></script>
     <script src="assets/js/Card-Carousel.js"></script>
     <script src="assets/js/dropdown-search-bs4.js"></script>
+    <script src="assets/js/customerinfo.js" defer></script>
 
     <script>
         function confirmed() {
             location.href = "login.html";
+        }
+        function firstPaypal() {
+            document.getElementById("warn").innerHTML = "Please cancel your paypal subscription first.";
         }
     </script>
 </body>

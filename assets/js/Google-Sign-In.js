@@ -1,15 +1,15 @@
 function onSignIn(response) {
     const profile = decodeJwtResponse(response.credential);
-    sessionStorage.setItem("status", "loggedin");
+    localStorage.setItem("status", "loggedin");
     console.log('ID: ' + profile.sub); 
-    sessionStorage.setItem("id",profile.sub);
+    localStorage.setItem("id",profile.sub);
     console.log('Name: ' + profile.name);
-    sessionStorage.setItem("name",profile.name);
+    localStorage.setItem("name",profile.name);
     console.log('Image URL: ' + profile.picture);
-    sessionStorage.setItem("image",profile.picture);
+    localStorage.setItem("image",profile.picture);
     console.log('Email: ' + profile.email);
-    sessionStorage.setItem("email",profile.email);
-    window.location.href='http://localhost:5500/profile.html'; //CHANGE THIS TO APPROPRIATE PAGE WHEN ON DEPLOYED SITE
+    localStorage.setItem("email",profile.email);
+    window.location.href = './profile.php'; //CHANGE THIS TO APPROPRIATE PAGE WHEN ON DEPLOYED SITE
 }
 
 //Used to decode the JWT Response from Google API to get user information
@@ -30,7 +30,7 @@ function signOut() {
     (
         function()
         {
-            sessionStorage.clear();
+            localStorage.clear();
         }
     );
 }
