@@ -34,6 +34,20 @@
         textarea {
             background-color: white;
         }
+
+        input:invalid + span::after {
+            position: absolute;
+            content: "✖";
+            padding-left: 5px;
+            color: #8b0000;
+        }
+
+        input:valid + span::after {
+            position: absolute;
+            content: "✓";
+            padding-left: 5px;
+            color: #009000;
+        }
     </style>
 </head>
 
@@ -62,53 +76,55 @@
                         <option name="basic" value="13">Basic Service</option>
                         <option name="full" value="14">Full Service</option>
                 </select></div>
+
+                
                 <div class="form-group mb-3">
                     <div class="row">
                         <div class="col">
-                            <label style="margin-bottom: 4px;"><strong>Full Name</strong>&nbsp;<span class="text-danger">*</span></label><input class="form-control" id="fullName" type="text" required="" name="fullname">
+                            <label style="margin-bottom: 4px;"><strong>Full Name</strong>&nbsp;<span class="text-danger">*</span></label><input class="form-control" id="fullName" type="text" required="" name="fullname" maxlength="24">
                         </div>
                         <div class="col">
-                            <label style="margin-bottom: 4px;"><strong>Date</strong>&nbsp;<span class="text-danger">*</span></label><input class="form-control" id="date" type="text" required="" name="date">
+                            <label style="margin-bottom: 4px;"><strong>Date</strong>&nbsp;<span class="text-danger">*</span></label><input class="form-control" id="date" type="text" required="" name="date" maxlength="20">
                         </div>
                     </div>
                 </div>
                 <div class="form-group mb-3">
-                    <label style="margin-bottom: 4px;"><strong>Email&nbsp;</strong><span class="text-danger">*</span></label><input class="form-control" id="email" type="email" required="" name="email">
+                    <label style="margin-bottom: 4px;"><strong>Email&nbsp;</strong><span class="text-danger">*</span></label><input class="form-control" id="email" type="email" required="" name="email" maxlength="79">
                 </div>
                 <div class="form-group mb-3">
-                    <label style="margin-bottom: 4px;"><strong>Phone Number&nbsp;</strong><span class="text-danger">*</span></label><input class="form-control" type="number" name="number" placeholder="(111)123-4567">
+                    <label style="margin-bottom: 4px;"><strong>Phone Number&nbsp;</strong><span class="text-danger">*</span></label><input class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" type="tel" id="phone" name="number" placeholder="111-123-4567" maxlength="12">
                 </div>
                 <div class="form-group mb-3">
-                    <label style="margin-bottom: 4px;"><strong>Address&nbsp;</strong><span class="text-danger">*</span></label><input class="form-control" id="address" type="text" required="" name="address" placeholder="Ex.   1234 VScode Dr.">
+                    <label style="margin-bottom: 4px;"><strong>Address&nbsp;</strong><span class="text-danger">*</span></label><input class="form-control" id="address" type="text" required="" name="address" placeholder="Ex.   1234 VScode Dr." maxlength="32">
                     <!--<label class="radio-inline"><strong>Different Billing Address?&nbsp;</strong><input type="radio" id="yes" name="optradio" value="1" onchange="yesbilling(this)">Yes&nbsp;<input type="radio" id="no" name="optradio" value="0">No</label>-->
                 </div>
                 <div class="form-group mb-3">
                     <div class="row">
-                        <div class="col"><input class="form-control" type="text" required="" name="city" placeholder="Ex.   Sacramento">
-                            <label>City</label><input class="form-control" type="text" required="" name="zip" placeholder="Ex. 90001">
+                        <div class="col"><input class="form-control" type="text" required="" name="city" placeholder="Ex.   Sacramento" maxlength="32">
+                            <label>City</label><input class="form-control" type="text" required="" name="zip" placeholder="Ex. 90001" maxlength="5" onkeypress="allowOnlyNumbers(event)">
                             <label>Zip Code</label>
                         </div>
-                        <div class="col"><input class="form-control" type="text" required="" name="state" placeholder="Ex.   CA">
+                        <div class="col"><input class="form-control" type="text" required="" name="state" placeholder="Ex.   CA" maxlength="32">
                             <label>State</label>
                         </div>
                     </div>
                 </div>
-
+                
                 
                 <label class="radio-inline mb-3"><strong>Different Billing Address?&nbsp;</strong><input type="radio" id="yes" name="optradio" value=1 onchange="yesbilling(this)">Yes&nbsp;<input type="radio" id="no" name="optradio" value=0>No</label>
                 
 
                 <div id="billing">
                     <div class="form-group mb-3">
-                        <label style="margin-bottom: 4px;"><strong>Billing Address&nbsp;</strong><span class="text-danger">*</span></label><input class="form-control" id="address" type="text" required="" name="billaddress" value="N/A">
+                        <label style="margin-bottom: 4px;"><strong>Billing Address&nbsp;</strong><span class="text-danger">*</span></label><input class="form-control" id="billaddress" type="text" required="" name="billaddress" value="N/A" maxlength="32">
                     </div>
                     <div class="form-group mb-3">
                         <div class="row">
-                            <div class="col"><input class="form-control" type="text" required="" name="billcity" placeholder="Ex.   Sacramento" value="N/A">
-                                <label>City</label><input class="form-control" type="text" required="" name="billzip" placeholder="Ex. 90001" value="N/A">
+                            <div class="col"><input class="form-control" type="text" required="" name="billcity" placeholder="Ex.   Sacramento" value="N/A" maxlength="32">
+                                <label>City</label><input class="form-control" type="text" required="" name="billzip" placeholder="Ex. 90001" value="N/A" maxlength="32" onkeypress="allowOnlyNumbers(event)">
                                 <label>Zip Code</label>
                             </div>
-                            <div class="col"><input class="form-control" type="text" required="" name="billstate" placeholder="Ex.   CA" value="N/A">
+                            <div class="col"><input class="form-control" type="text" required="" name="billstate" placeholder="Ex.   CA" value="N/A" maxlength="32">
                                 <label>State</label>
                             </div>
                         </div>
