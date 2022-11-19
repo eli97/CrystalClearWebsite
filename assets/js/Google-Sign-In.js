@@ -3,14 +3,14 @@ const e = require("express");
 function onSignIn(response) {
     var check = {};
     const profile = decodeJwtResponse(response.credential);
-    localStorage.setItem("status", "loggedin");
+    sessionStorage.setItem("status", "loggedin");
     console.log('ID: ' + profile.sub); 
     localStorage.setItem("id",profile.sub);
     check.id = JSON.stringify(localStorage.getItem('id'));
     console.log('Name: ' + profile.name);
-    localStorage.setItem("name",profile.name);
+    sessionStorage.setItem("name",profile.name);
     console.log('Image URL: ' + profile.picture);
-    localStorage.setItem("image",profile.picture);
+    sessionStorage.setItem("image",profile.picture);
     console.log('Email: ' + profile.email);
     localStorage.setItem("email",profile.email);
     getid(check);

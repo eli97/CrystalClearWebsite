@@ -8,11 +8,14 @@
      */
     window.addEventListener("load", init);
   
+    /**
+     * TODO: Write a function comment using JSDoc.
+     */
     function init() {
       // Note: In this function, we usually want to set up our event handlers
       // for UI elements on the page.
       console.log("Window Loaded!");
-      document.getElementById("sendMsg").addEventListener("click", sendMail);
+      document.getElementById("form-btn").addEventListener("click", validate);
     }
   
     // Add any other functions in this area (you should not implement your
@@ -21,56 +24,13 @@
     
     
   })();
-//var url = "assets/php/contact.php";
-function sendMail(){
-  console.log("Attempting to send mail");
-  
-  /*jQuery.ajax({
-    type: "POST",
-    file: "assets/php/contact.php",
-    dataType: 'json',
-    data: {functionname: 'sendMail'},
 
-    success: function (obj, textstatus) {
-      if(!('error' in obj)) {
-        window.alert("The information was sent successfully");
-        setTimeout(5000);
-        window.location.assign("thankyou.html");
-      }
-      else {
-        console.log(obj.error);
-        window.alert("Error sending data, please try again after a few minutes.");
-        setTimeout(5000);
-      }
-      //window.location.reload;
-    }
-  })*/
+function sendMail() {
+    let email = document.getElementById('email').value;
+    let pNumber = document.getElementById('phonenumber').value;
+    let message = document.getElementById('message').value;
+    let fName = document.getElementById('firstname').value;
+    let lName = document.getElementById('lastname').value;
 
-  fetch("assets/php/contact.php", {
-    method: 'POST',
-    body: {
-      action: 'send'
-    }
-  })
-  .then(res => {console.log(data);
-  });
-}
-
-function test(){
-  console.log('test');
-}
-
-function isSent(data)
-{
-    console.log(data);
-    
-    if(data == "OK"){
-        window.alert("The information was sent successfully");
-        location.href = 'thankyou.html';
-    }
-    else if(data == "DOK"){
-      window.alert("Error sending data, please try again after a few minutes.");
-  }
-
-    window.location.reload();
+    window.location="mailto:"
 }

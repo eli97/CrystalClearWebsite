@@ -80,7 +80,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-end">
-                    <div><label class="form-label" style="margin-top: 25px;">Full Name:</label></div>
+                    <div><label class="form-label" style="margin-top: 25px;">First Name:</label></div>
+                    <div><label class="form-label" style="padding-top: 23px;">Last Name:</label></div>
                     <div><label class="form-label" style="padding-top: 23px;">Street:</label></div>
                     <div><label class="form-label" style="padding-top: 23px;">City:</label></div>
                     <div><label class="form-label" style="padding-top: 23px;">State:</label></div>
@@ -98,7 +99,7 @@
                         <div class="form-group mb-3"><label class="form-label visually-hidden" for="phonenumber">Phone Number</label><input class="form-control" type="tel" id="phonenumber" name="phonenumber" maxlength="10" value="<?php echo $phone;?>"></div>
                         <div class="form-group mb-3"><label class="form-label visually-hidden" for="email">E-mail</label><input class="form-control" type="email" id="email" name="email" maxlength="32" value="<?php echo $email;?>"></div>
                         <button class="btn btn-light btn-lg border rounded-0" id="form-btn-1" type="submit" style="background: rgba(0,0,0,0.4);padding-top: 0px;padding-bottom: 0px;padding-right: 10px;padding-left: 10px;font-size: 16px;">Update</button>
-                        <button class="btn btn-light btn-lg border rounded-0" id="form-btn-2" type="reset" style="background: rgba(0,0,0,0.4);padding-top: 0px;padding-bottom: 0px;padding-right: 10px;padding-left: 10px;font-size: 16px;margin-left: 10px;" onclick="window.location.href='./profile.php'">CANCEL</button>
+                        <button class="btn btn-light btn-lg border rounded-0" id="form-btn-2" type="reset" style="background: rgba(0,0,0,0.4);padding-top: 0px;padding-bottom: 0px;padding-right: 10px;padding-left: 10px;font-size: 16px;margin-left: 10px;">CANCEL</button>
                     </form>
                 </div>
             </div>
@@ -119,7 +120,7 @@
     <script src="assets/js/dropdown-search-bs4.js"></script>
     <script src="https://apis.google.com/js/platform.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script defer src="./assets/js/Google-Sign-In.js"></script>
+    <script defer src="../assets/js/Google-Sign-In.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
 

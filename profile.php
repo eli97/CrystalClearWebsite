@@ -61,8 +61,10 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md py-3">
-        <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span><a href="index.html"><img src="assets/img/CClogo2.svg" width="248" height="79"></a></span></a>
-        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span><a href="index.html"><img
+                            src="assets/img/CClogo2.svg" width="248" height="79"></a></span></a><button
+                data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span
+                    class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-2">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
@@ -205,11 +207,8 @@
                                 <div class="col-md-3 d-inline-flex">
                                     <h5>Payment History</h5>
                                 </div>
-                                <div class="col">
-                                    
-                                    <div class="ratio " style="--bs-aspect-ratio: 44%;">
-                                        <iframe src="customer-history-next.html" ></iframe>
-                                  </div>
+                                <div class="col-md-3">
+                                    <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
                                 </div>
                             </div>
                         </div>
@@ -237,7 +236,7 @@
                             <p>Are you sure you want to delete your account?</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-target="#confirm" onclick="checkSubscription()">Confirm</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-target="#confirm" onclick="confirmed()">Confirm</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -263,10 +262,9 @@
     <script src="assets/js/dropdown-search-bs4.js"></script>
     <script src="https://apis.google.com/js/platform.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script defer src="./assets/js/Google-Sign-In.js"></script>
+    <script defer src="../assets/js/Google-Sign-In.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
-    <script src="assets/js/customer-history-payments.js"></script>
 
     <script>
         function confirmed() {
@@ -311,28 +309,6 @@
           }
         }
     );
-    </script>
-
-    <!-- Script to determine if user has current subscription active -->
-    <script>
-    function checkSubscription() {
-        if ('<?php echo htmlspecialchars($customer['serviceName']);?>' != 'No Service') {
-            alert('Unable to delete account. Please cancel the current subscription to continue.');
-            console.log('Current subscription active. Failed to delete account.');
-        }
-        else {
-            var cid_var = "<?php echo $cid;?>";
-            $.ajax ({
-                type: "POST",
-                url: "./assets/php/deleteacc.php",
-                data: {'id': cid_var},
-                success: function(data) {
-                    $("body").html(data);
-                    window.location.href = url;
-                }
-            });
-        }
-    }
     </script>
 </body>
 

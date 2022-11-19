@@ -35,40 +35,6 @@
             $result += array('servicePrice' => $service['price']);
             $result += array('serviceDescription' => $service['description']);
             $result += array('SERVICE_ID' => $service['SERVICE_ID']);
-            $result += array('serviceIsHidden' => $service['is_hidden']);
-
-            $data['Service' . $dataCtr] = $result;
-            $dataCtr++;
-        }
-        $data['length'] = $dataCtr;
-
-        echo json_encode(['results' => $data]);
-    }
-
-    function getAllServicesUser()
-    {
-        // CONNECT TO DATABASE
-        try {
-          $pdo = new PDO(
-            "mysql:host=" . DB_HOST . ";charset=" . DB_CHARSET . ";dbname=" . DB_NAME,
-            DB_USER, DB_PASSWORD
-          );
-        } catch (Exception $ex) { exit($ex->getMessage()); }
-        
-        $data = [];
-        $dataCtr = 0;
-
-        $stmt = $pdo->prepare("SELECT * FROM `SERVICE` WHERE `is_hidden` = '0'");
-        $stmt->execute();
-        $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($services as $service) {
-
-            $result = array();
-
-            $result += array('serviceName' => $service['serviceName']);
-            $result += array('servicePrice' => $service['price']);
-            $result += array('serviceDescription' => $service['description']);
-            $result += array('SERVICE_ID' => $service['SERVICE_ID']);
 
             $data['Service' . $dataCtr] = $result;
             $dataCtr++;
@@ -91,32 +57,10 @@
         } catch (Exception $ex) { exit($ex->getMessage()); }
         
         $stmt = $pdo->prepare("UPDATE `SERVICE` SET `price`=:new_price, `description`=:new_description, `serviceName`=:new_name WHERE `SERVICE_ID` =:ID");
-        $stmt->bindParam(':new_price', sanitize($_POST['var2']), PDO::PARAM_STR);
-        $stmt->bindParam(':new_description', sanitize($_POST['var3']));
-        $stmt->bindParam(':new_name', sanitize($_POST['var4']));
-        $stmt->bindParam(':ID', sanitize($_POST['var5']), PDO::PARAM_STR);
-        
-        if ($stmt->execute()) {
-            echo "OK";
-        }
-        else
-            echo "NG";
-    }
-
-
-    function toggleHideServiceByID()
-    {
-        // CONNECT TO DATABASE
-        try {
-          $pdo = new PDO(
-            "mysql:host=" . DB_HOST . ";charset=" . DB_CHARSET . ";dbname=" . DB_NAME,
-            DB_USER, DB_PASSWORD
-          );
-        } catch (Exception $ex) { exit($ex->getMessage()); }
-        
-        $stmt = $pdo->prepare("UPDATE `SERVICE` SET `is_hidden`=:hide_status WHERE `SERVICE_ID`=:ID");
-        $stmt->bindParam(':ID', sanitize($_POST['var2']), PDO::PARAM_STR);
-        $stmt->bindParam(':hide_status', sanitize($_POST['var3']), PDO::PARAM_STR);
+        $stmt->bindParam(':new_price', $_POST['var2'], PDO::PARAM_STR);
+        $stmt->bindParam(':new_description', $_POST['var3']);
+        $stmt->bindParam(':new_name', $_POST['var4']);
+        $stmt->bindParam(':ID', $_POST['var5'], PDO::PARAM_STR);
         
         if ($stmt->execute()) {
             echo "OK";
@@ -143,55 +87,12 @@
           echo "NG";
     }
 
-    // Input sanitization function
-    //
-    function sanitize($input) 
-    {
-      if(is_array($input)):
-        foreach($input as $key=>$value):
-          $result[$key] = sanitize($value);
-        endforeach;
-      else:
-        $result = htmlentities($input, ENT_QUOTES, 'UTF-8');
-      endif;
-
-      return $result;
-    }
-
-    // DELETE FUNCTIONS
-    //
-    function deleteServiceByID()
-    {
-        // CONNECT TO DATABASE
-        try {
-          $pdo = new PDO(
-            "mysql:host=" . DB_HOST . ";charset=" . DB_CHARSET . ";dbname=" . DB_NAME,
-            DB_USER, DB_PASSWORD
-          );
-        } catch (Exception $ex) { exit($ex->getMessage()); }
-        
-        $stmt = $pdo->prepare("DELETE FROM `SERVICE` WHERE `SERVICE_ID` =:ID");
-        $stmt->bindParam(':ID', sanitize($_POST['var2']), PDO::PARAM_STR);
-        
-        if ($stmt->execute()) {
-            echo "DOK";
-        }
-        else
-            echo "NG";
-    }
-
-    // Use a case switch to determine what to do with the provided input
-    //
-    $queryCase = sanitize($_POST['var1']);
+    $queryCase = $_POST['var1'];
 
     switch ($queryCase) {
 
         case "getAllServices":
           getAllServices();
-          break;
-
-        case "getAllServicesUser":
-          getAllServicesUser();
           break;
 
         case "setServiceByID":
@@ -200,23 +101,20 @@
 
         case "addNewService":
           addNewService();
-          break;
-
-        case "toggleHideServiceByID":
-          toggleHideServiceByID();
-          break;
-
-        case "deleteServiceByID":
-          deleteServiceByID();
-          break;
-
+          break;  
+        
         default:
             echo "None selected.";
     }
     
     
-    // CLOSE DATABASE CONNECTION
+    // (C) CLOSE DATABASE CONNECTION
     $pdo = null;
     $stmt = null;
+
+//DEFAULTS
+//BASIC: 100 At $100, your pool will have all of the chemicals it needs. We check for chlorine levels, PH, salinity (for salt pools), total alkalinity, and calcium hardness. Additionally, we clean out your skimmer basket, pump basket, and pool sweep bags if you have them. Add a filter wash at any time for $40.
+//CHEM: 115 At $115, the basic service includes everything from chemical + baskets and adds some additional cleaning services. We will brush the walls and steps of your pool and spa, and throw in a free filter wash as well.
+//FULL: 135 Starting at $135, this service includes everything from the Basic Service as well as Chemical + Baskets Service, 3 free filter washes, vacuuming, and debris removal. Please contact me for an estimate regarding full service.
 
 ?>
