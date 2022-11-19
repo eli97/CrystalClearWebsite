@@ -40,10 +40,8 @@
                     <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
                     <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
-                    <li class="nav-item" id="profile"><a class="nav-link" href="profile.php">Profile</a></li>
                 </ul>
-                <!--<a id="loginbtn" class="btn btn-primary border-0 border-dark ms-md-2" role="button" href="login.php" style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Login</a>-->
-                <a id="loginbtn" class="btn btn-primary border-0 border-dark ms-md-2" role="button" onclick="logout()" style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Login</a>
+                <a id="logbtn" class="btn btn-primary border-0 border-dark ms-md-2" role="button" href="login.html" style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Login</a>
             </div>
         </div>
     </nav>
@@ -90,31 +88,8 @@
     <script src="assets/js/contact.js"></script>
 
     <script type="text/javascript">
-        if(localStorage.getItem('status') == null) {
-            document.getElementById("loginbtn").innerHTML = "Login";
-            //document.getElementById('loginbtn').style.display = 'visible';
-            //document.getElementById('logoutbtn').style.display = 'none';
-            document.getElementById('profile').style.display = 'none';
-        }
-        if(localStorage.getItem('status') != null) {
-            //document.getElementById("loginbtn").innerHTML = "Logout";
-            //document.getElementById("loginbtn").style.display = 'none';
-            //document.getElementById('logoutbtn').style.display = 'visible';
-            document.getElementById('profile').style.display = 'visible';
-            document.getElementById('loginbtn').innerHTML = "Logout";
-        }
-        
-
-        function logout() {
-            var logbtn = document.getElementById('loginbtn');
-            if(logbtn.innerHTML == "Login") {
-                location.href = "login.php";
-            }
-            if(logbtn.innerHTML == "Logout") {
-                document.getElementById('loginbtn').innerHTML = "Login";
-                localStorage.clear();
-                location.reload();
-            }
+        if(sessionStorage.getItem('status') != null) {
+            document.getElementById("logbtn").innerHTML = "Logout";
         }
     </script>
 </body>
