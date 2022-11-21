@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Customer Info</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="google-signin-client_id" content="550864736847-f9st76mo0i4h0bb5f8remug9pg01pjdg.apps.googleusercontent.com.apps.googleusercontent.com">
+    <link rel="icon" type="image/x-icon" href="images\favicon.ico" >
+    <title>Customer Information</title>
+    <link rel="stylesheet" href="assets/css/Data-table.css">
+    <script defer src="../scripts/Data-table.js"></script>
+    
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/material-icons.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Application-Form.css">
+    <link rel="stylesheet" href="assets/css/Articles-Cards-images.css">
+    <link rel="stylesheet" href="assets/css/Card-Carousel-slider.css">
+    <link rel="stylesheet" href="assets/css/Card-Carousel.css">
+    <link rel="stylesheet" href="assets/css/Carousel_Image_Slider-mycarousel.css">
+    <link rel="stylesheet" href="assets/css/Carousel_Image_Slider.css">
+    <link rel="stylesheet" href="assets/css/Customizable-Carousel-swipe-enabled.css">
+    <link rel="stylesheet" href="assets/css/dropdown-search-bs4.css">
+    <link rel="stylesheet" href="assets/css/ensign-form-form.css">
+    <link rel="stylesheet" href="assets/css/ensign-form.css">
+    <link rel="stylesheet" href="assets/css/figloo-carousal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/Navbar-Right-Links-icons.css">
+    <link rel="stylesheet" href="assets/css/NMDIG-Jumbotron-Advanced-Responsive-Tint-jumbotron-bg-responsive-tint.css">
+    <link rel="stylesheet" href="assets/css/NMDIG-Jumbotron-Advanced-Responsive-Tint.css">
+    <link rel="stylesheet" href="assets/css/Signup-page-with-overlay.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md py-3">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span><a href="index.html"><img src="assets/img/CClogo2.svg" width="248" height="79"></a></span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-2">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="estimate.html">Estimates</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul><a class="btn btn-primary border-0 border-dark ms-md-2" role="button" href="login.html" style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Log out</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <nav class="nav" aria-label="Secondary navigation" >
+            <a class="nav-link"  href="#" >Home</a>
+            <a class="nav-link"  href="admin.html">Update</a>
+            <a class="nav-link" href="comfimation.html">History</a>
+            <a class="nav-link" href="customer_info">List</a>
+            
+        </nav>
+    </div>
+
+    <div style="padding: 50px;background: url(&quot;assets/img/water1.png&quot;) top / cover no-repeat;padding-top: 100px;padding-bottom: 100px;">
+      <div> 
+          <section class="mt-4">
+              <div class="container-fluid">
+                  <div class="row">
+                      <div class="col">
+                          <div class="card shadow">
+                              <div class="card-header py-2">
+                                  <p class="lead text-info m-0" style="text-align: center;border-color: rgb(0,0,0);"><span style="color: rgb(0, 0, 0);">Customer Information</span></p>
+                              </div>
+                              
+<!-- ----------------------------------------------------------------------------------------------------                       -->
+
+                            <div>
+                            <!-- Search DataTable here-->
+                            <div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <form action="" method="GET">
+                                                <div class="input-group mb-3">
+                                                    <input type="text" name="search" required value="" class="form-control" placeholder="Search">
+                                                    <button type="submit" class="btn btn-primary">Search</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            </div>
+
+
+                            <!-- -----CONNECT PHP THEN UNCOMMENT----- -->
+                            <div class="col-md-12">
+                            <div class="card mt-4">
+                                <div class="card-body">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Address</th>
+                                                <th>Email</th>
+                                                <th>Phone #</th>
+                                                <th>Last Payment</th>
+                                                <th>Next Service date</th>
+                                                <th>Service</th>
+                                            </tr>
+                                        </thead>
+                              <!--          <tbody>
+                                            <?php 
+                                                $con = mysqli_connect("(localhost)","(username 'root'?)","(password null)","(database name)");  <-----EDIT HERE CONNECTION
+
+                                                if(isset($_GET['search']))
+                                                {
+                                                    $filtervalues = $_GET['search'];    <-------searched values stroed here in ;filtervalues'
+                                                    $query = "SELECT * FROM users WHERE CONCAT(firstname,lastname,email,ID) LIKE '%$filtervalues%' "; <------------make sure column names match!
+                                                    $query_run = mysqli_query($con, $query);
+
+                                                    if(mysqli_num_rows($query_run) > 0)
+                                                    {
+                                                        foreach($query_run as $items)
+                                                        {
+                                                            ?>
+                                                            <tr>
+                                    -------------------------make sure column names match here also---------add email?------------
+                                                                <td><?= $items['id']; ?></td>
+                                                                <td><?= $items['firstname']; ?></td>
+                                                                <td><?= $items['lastname']; ?></td>
+                                                                <td><?= $items['email']; ?></td>
+                                                                <td><?= $items['phoneNumber']; ?></td>
+                                                                <td><?= $items['lastPayment']; ?></td>
+                                                                <td><?= $items['snextService']; ?></td>
+                                                                <td><?= $items['service']; ?></td>
+                                                            </tr>
+                                                            <?php
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        ?>
+                                                            <tr>
+                                                                <td colspan="4">No Record Found. Please Search again</td>
+                                                            </tr>
+                                                        <?php
+                                                    }
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </section>
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> -->
+
+                            <!-- ---------END----------- -->
+
+
+
+<!-- ----------------------------------------------------------------------------------------------------                       -->
+                              <div class="card-body">
+                                  <div class="table-responsive table mb-0 pt-3 pe-2" style="border-radius: 0px;border-width: 0px;">
+                                      <table class="table table-striped table-sm table-borderless my-0 mydatatable">
+                                          <thead>
+                                              <tr>
+                                                  <th>ID</th>
+                                                  <th>Name</th>
+                                                  <th>Address</th>
+                                                  <th>Email</th>
+                                                  <th>Phone #</th>
+                                                  <th>Last Payment</th>
+                                                  <th>Next Service</th>
+                                                  <th>Service</th>
+                                                  <th></th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                              <tr>
+                                                  <td>1</td>
+                                                  <td>Airi Satou</td>
+                                                  <td>100 Ivy St ....</td>
+                                                  <td>airis@gmail.com</td>
+                                                  <td>916-544-2889</td>
+                                                  <td>2008/11/28</td>
+                                                  <td>11/15/2022</td>
+                                                  <td>Basic</td>
+                                                  <td>
+                                                      <div><a class="btn btn-primary btn-lg" role="button" data-bss-hover-animate="pulse" href="#myModal" data-bs-toggle="modal" style="font-size: 11px;background: var(--bs-black);color: #000000;border-radius: 3px;border-color: #000000;width: 100px;height: 40px;">MORE INFO</a>
+                                                          <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                                              <div class="modal-dialog" role="document">
+                                                                  <div class="modal-content">
+                                                                      <div class="modal-header">
+                                                                          <h4>More Info&nbsp;</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                      </div>
+                                                                      <div class="modal-body">
+                                                                          <p class="text-center text-muted">Clients name&nbsp;</p>
+                                                                          <div class="row">
+                                                                              <div class="col"><label class="col-form-label">Info here</label></div>
+                                                                              <div class="col" style="text-align: center;"><label class="col-form-label" style="text-align: left;">Notes:<textarea style="padding-right: 0px;padding-bottom: 0px;width: 200px;height: 80px;text-align: center;"></textarea></label></div>
+                                                                          </div>
+                                                                      </div>
+                                                                      <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td>2</td>
+                                                  <td>Angelica Ramos</td>
+                                                  <td>200 Pebble Way...</td>
+                                                  <td>aromaos@gmail.com</td>
+                                                  <td>530-434-7812</td>
+                                                  <td>2009/10/09<br></td>
+                                                  <td>11/18/2022</td>
+                                                  <td>Basic</td>
+                                                  <td>
+                                                      <div><a class="btn btn-primary btn-lg" role="button" data-bss-hover-animate="pulse" href="#myModal" data-bs-toggle="modal" style="font-size: 11px;background: var(--bs-black);color: #000000;border-radius: 3px;border-color: #000000;width: 100px;height: 40px;">MORE INFO</a>
+                                                          <div class="modal fade" role="dialog" tabindex="-1" id="myModal-1">
+                                                              <div class="modal-dialog" role="document">
+                                                                  <div class="modal-content">
+                                                                      <div class="modal-header">
+                                                                          <h4>Modal Title</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                      </div>
+                                                                      <div class="modal-body">
+                                                                          <p class="text-center text-muted">Description </p>
+                                                                      </div>
+                                                                      <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td>3</td>
+                                                  <td>Ashton Cox</td>
+                                                  <td>300 Rock Ct...</td>
+                                                  <td>ashtonc@yahoo.com</td>
+                                                  <td>916-312-9020</td>
+                                                  <td>2009/01/12<br></td>
+                                                  <td>11/29/2022</td>
+                                                  <td>Full</td>
+                                                  <td>
+                                                      <div><a class="btn btn-primary btn-lg" role="button" data-bss-hover-animate="pulse" href="#myModal" data-bs-toggle="modal" style="font-size: 11px;background: var(--bs-black);color: #000000;border-radius: 3px;border-color: #000000;width: 100px;height: 40px;">MORE INFO</a>
+                                                          <div class="modal fade" role="dialog" tabindex="-1" id="myModal-3">
+                                                              <div class="modal-dialog" role="document">
+                                                                  <div class="modal-content">
+                                                                      <div class="modal-header">
+                                                                          <h4>Modal Title</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                      </div>
+                                                                      <div class="modal-body">
+                                                                          <p class="text-center text-muted">Description </p>
+                                                                      </div>
+                                                                      <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </td>
+                                              </tr>
+                                          </tbody>
+                                      </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+      </div> 
+      <div></div>
+    </div> 
+
+      <footer class="text-center">
+        <div class="container text-muted py-4 py-lg-5">
+            <p>Servicing the greater Sacramento area<br>Sacramento, California 95825<br>email: no-reply@email.com<br>phone: (916) 123-4567<br><br></p>
+            <p class="mb-0">Copyright © 2022 Crystal Clear</p>
+        </div>
+      </footer>
+
+      <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+      <script src="assets/js/bs-init.js"></script>
+      <script src="assets/js/Customizable-Carousel-swipe-enabled.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+      <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+      <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.flash.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+      <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+      <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+      <script src="assets/js/DataTable---Fully-BSS-Editable.js"></script>
+      <script src="assets/js/Application-Form-1.js"></script>
+      <script src="assets/js/Application-Form.js"></script>
+      <script src="assets/js/Card-Carousel.js"></script>
+      <script src="assets/js/dropdown-search-bs4.js"></script>
+      <script src="assets/js/Modal-commerce-popup-button.js"></script>
+  </body>
+  
+  </html>

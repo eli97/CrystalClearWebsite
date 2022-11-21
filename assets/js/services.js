@@ -179,7 +179,7 @@ function addServiceCardUser(ID, name, description, price)
             <div class="card-body p-4">
                 <h4 class="card-title">`+ name +`</h4>
                 <p class="card-text">`+ description +`<br></p>
-                <div class="d-flex"><a class="btn btn-primary" role="button" href="fill_application.html">Subscribe Now</a></div>
+                <div class="d-flex"><a class="btn btn-primary" role="button" href="service_proposal.html">Subscribe Now</a></div>
             </div>
         </div>
     </div>

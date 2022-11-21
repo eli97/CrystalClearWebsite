@@ -41,7 +41,33 @@
         </div>
     </footer>
     <script src="assets/js/review-cards.js" defer></script>
+    <script>
+        if(localStorage.getItem('status') == null) {
+            //document.getElementById('loginbtn').style.display = 'visible';
+            //document.getElementById('logoutbtn').style.display = 'none';
+            document.getElementById('profile').style.display = 'none';
+        }
+        if(localStorage.getItem('status') != null) {
+            //document.getElementById("logbtn").innerHTML = "Logout";
+            //document.getElementById("loginbtn").style.display = 'none';
+            //document.getElementById('logoutbtn').style.display = 'visible';
+            document.getElementById('profile').style.display = 'visible';
+            document.getElementById('loginbtn').innerHTML = "Logout";
+        }
+        
 
+        function logout() {
+            var logbtn = document.getElementById('loginbtn');
+            if(logbtn.innerHTML == "Login") {
+                location.href = "login.php";
+            }
+            if(logbtn.innerHTML == "Logout") {
+                document.getElementById('loginbtn').innerHTML = "Login";
+                localStorage.clear();
+                location.reload();
+            }
+        }
+    </script>
 </body>
 
 </html>
