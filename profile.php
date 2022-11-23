@@ -1,9 +1,29 @@
-<?php 
-    include_once('connect.php');
-    mysql_select_db("TABLE");
-    $query = "SELECT * FROM TABLE";
-    $result = mysql_query($query);
-?>
+<?php
+/*
+// connect to database - host, username, pw, databasename
+    //$conn = new mysqli('localhost', 'dev', '1234', 'crystalcleartestdb');
+    $conn = new mysqli('localhost', 'rystaly5_cbearquiver', 'SvenThePlant!', 'rystaly5_CrystClearMainDB');
+
+    // check connection
+    if (!$conn) {
+        echo 'Connection error: ' . mysqli_connect_error();
+    }
+
+    // Test Data
+    $sql = 'SELECT * FROM CUSTOMER';
+    $result = mysqli_query($conn, $sql);
+    $customers = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $customer = $customers[1];
+    $cid = $customer['cid'];
+
+    // Save cid to session
+    //$_SESSION['cid'] = $customer['cid'];
+
+    // free memory & close connection
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    */
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +72,9 @@
                     <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                </ul><a id="logoutbtn" class="btn btn-primary border-0 border-dark ms-md-2" role="button" href="login.html"
+                    <li class="nav-item" id="profile"><a class="nav-link active" href="profile.php">Profile</a></li>
+                </ul>
+                <a id="logoutbtn" class="btn btn-primary border-0 border-dark ms-md-2" role="button" onclick="logout()"
                     style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Logout</a>
             </div>
         </div>
@@ -68,7 +90,7 @@
                             <img id="image" class="rounded-circle" width="200">
                             <div class="data mt-3">
                                 <h3 id="profileName"></h3>
-                                <a href="">Update</a>
+                                <a href="account.php">Update</a>
                             </div>
                         </div>
                     </div>
@@ -82,7 +104,8 @@
                                     <h5>Name</h5>
                                 </div>
                                 <div class="col-md-9 text-secondary">
-                                    <p name="cname"><?php echo $result['cname']; ?></p>
+                                    <!--<p name="name"><?php #echo htmlspecialchars($customer['cname']);?></p>-->
+                                    <p id="name"></p>
                                 </div>
                             </div>
                             <!--<hr> -->
@@ -91,8 +114,8 @@
                                     <h5>E-mail</h5>
                                 </div>
                                 <div class="col-md-9 text-secondary">
+                                    <!--<p name="email"><?php #echo htmlspecialchars($customer['email']);?></p>-->
                                     <p id="email"></p>
-                                    <p name="email"><?php echo $result['email']; ?></p>
                                 </div>
                             </div>
                             <!--<hr> -->
@@ -101,7 +124,8 @@
                                     <h5>Phone</h5>
                                 </div>
                                 <div class="col-md-9 text-secondary">
-                                    <p name="phone"><?php echo $result['phone']; ?></p>
+                                    <!--<p name="phone"><?php #echo htmlspecialchars($customer['phone']);?></p>-->
+                                    <p id="phone"></p>
                                 </div>
                             </div>
                             <!--<hr> -->
@@ -110,12 +134,18 @@
                                     <h5>Address</h5>
                                 </div>
                                 <div class="col-md-9 text-secondary">
-                                    <p><?php echo $result['address']; ?></p>
+                                    <!--<p name="address">
+                                     <?php #echo htmlspecialchars($customer['street']);?>
+                                     <?php #echo "<br>";?>
+                                     <?php #echo htmlspecialchars($customer['city'] . ", " . $customer['state'] . " ". $customer['zip']);?>
+                                    </p>-->
+                                    <text id="street"></text> <br>
+                                    <text id="city"></text>, <text id="state"></text> <text id="zip"></text>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
-                                <a class="col-sm-auto" href="account.html">Edit</a>
+                                <a class="col-sm-auto" href="account.php?id=<?php #echo $customer['cid'];?>">Edit</a>
                             </div>
                         </div>
                     </div>
@@ -127,7 +157,32 @@
                                     <h5>Next Appointment</h5>
                                 </div>
                                 <div class="col-md-9 text-secondary">
-                                    <h5><?php echo $result['subscriptionDate']; ?></h5>
+                                    <!--<h5>12/31/2022</h5>-->
+                                    <h5 id="date"></h5>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Total of Filter Wash: </h5>
+                                </div>
+                                <div class="col-md-3 text-secondary">
+                                    <!--<h5 name="numfilters"><?php #echo htmlspecialchars($customer['filterWashes']);?></h5>-->
+                                    <h5 id="filter"></h5>
+                                </div>
+                                <div class="col">
+                                    <h6> Add more </h6>
+                                    <select class="form-select">
+                                        <option selected>How many?</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                      </select>
+                                </div>
+                                <div class="col">
+                                    <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
                                 </div>
                             </div>
                             <hr>
@@ -135,8 +190,16 @@
                                 <div class="col-md-3">
                                     <h5>Current Subscription</h5>
                                 </div>
-                                <div class="col-md-9 text-secondary">
-                                    <h5><?php echo $result['serviceName']; ?></h5>
+                                <div class="col-md-3 text-secondary">
+                                    <!--<h5 name="servicename"><?php #echo htmlspecialchars($customer['serviceName']);?></h5>-->
+                                    <h5 id="service"></h5>
+                                    <a href="service_manager.php">Manage</a>
+                                </div>
+                                <div class="col-sm">
+                                    <h6> Payment </h6>
+                                </div>
+                                <div class="col">
+                                    <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
                                 </div>
                             </div>
                             <hr>
@@ -205,17 +268,47 @@
 
     <script>
         function confirmed() {
-            location.href = "login.html";
+            location.href = "login.php";
+        }
+
+        function logout() {
+            localStorage.clear();
+            location.href = "login.php";
         }
     </script>
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#profileName').text(sessionStorage.getItem('name'));
-            $('#infoName').text(sessionStorage.getItem('name'));
-            $('#email').text(sessionStorage.getItem('email'));
-            $('#image').attr("src", sessionStorage.getItem('image'));
+            $('#profileName').text(localStorage.getItem('name'));
+            $('#name').text(localStorage.getItem('name'));
+            $('#email').text(localStorage.getItem('email'));
+            $('#image').attr("src", localStorage.getItem('image'));
         })
+        var check = {};
+        check.id = JSON.stringify(localStorage.getItem('id'));
+        $.ajax({
+        url:"https://crystalclearwestsac.com/assets/php/checkprofile.php",
+        method: "post",
+        data: check,
+        datatype: "json",
+        success: function(res) {
+            //document.getElementById('name').innerHTML = res.cname;
+            //document.getElementById('email').innerHTML = res.email;
+            document.getElementById('phone').innerHTML = res.phone;
+            document.getElementById('street').innerHTML = res.street;
+            document.getElementById('city').innerHTML = res.city;
+            document.getElementById('state').innerHTML = res.state;
+            document.getElementById('zip').innerHTML = res.zip;
+            document.getElementById('filter').innerHTML = res.filterWashes;
+            document.getElementById('date').innerHTML = res.subscriptionDate;
+            document.getElementById('service').innerHTML = res.serviceName;
+
+        },
+          error: function(res) {
+              alert("Error!");
+          }
+        }
+    );
     </script>
 </body>
 

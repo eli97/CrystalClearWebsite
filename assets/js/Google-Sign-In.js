@@ -1,15 +1,20 @@
+const e = require("express");
+
 function onSignIn(response) {
+    var check = {};
     const profile = decodeJwtResponse(response.credential);
     sessionStorage.setItem("status", "loggedin");
     console.log('ID: ' + profile.sub); 
-    sessionStorage.setItem("id",profile.sub);
+    localStorage.setItem("id",profile.sub);
+    check.id = JSON.stringify(localStorage.getItem('id'));
     console.log('Name: ' + profile.name);
     sessionStorage.setItem("name",profile.name);
     console.log('Image URL: ' + profile.picture);
     sessionStorage.setItem("image",profile.picture);
     console.log('Email: ' + profile.email);
-    sessionStorage.setItem("email",profile.email);
-    window.location.href='http://localhost:5500/profile.html'; //CHANGE THIS TO APPROPRIATE PAGE WHEN ON DEPLOYED SITE
+    localStorage.setItem("email",profile.email);
+    getid(check);
+    //window.location.href='http://localhost:5500/profile.html'; //CHANGE THIS TO APPROPRIATE PAGE WHEN ON DEPLOYED SITE
 }
 
 //Used to decode the JWT Response from Google API to get user information
@@ -30,7 +35,27 @@ function signOut() {
     (
         function()
         {
-            sessionStorage.clear();
+            localStorage.clear();
+            location.href="login.html";
+        }
+    );
+}
+
+function getid(check) {
+    $.ajax({
+        url:"https://crystalclearwestsac.com/assets/php/checkcustomer.php",
+        method: "post",
+        data: check,
+        success: function(res) {
+            console.log(res);
+            //location.href="profile.php";
+            if(res.location){
+                window.location.href = res.location;
+              }
+          },
+          error: function(res) {
+              alert("Error!");
+          }
         }
     );
 }
