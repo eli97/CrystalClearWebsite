@@ -2,11 +2,11 @@ const cleaning = document.getElementById("cleaning");
 const repairs = document.getElementById("repairs");
 const inpect = document.getElementById("inpect");
 const sendMgs = document.getElementById("sendMsg");
-var estimateNotice = "none";
+let estimateNotice = "none";
     localStorage.setItem("myEstimate", estimateNotice);
 cleaning.addEventListener('click', function(){
     console.log("Cleaning is pressed");
-    var estimateNotice = "Cleaning";
+    let estimateNotice = "Cleaning";
     localStorage.setItem("myEstimate", estimateNotice);
     window.location.href="contact.html"
     
@@ -14,7 +14,7 @@ cleaning.addEventListener('click', function(){
 })
 repairs.addEventListener('click', function(){
     console.log("Repairs is pressed");
-    var estimateNotice = "Repairs";
+    let estimateNotice = "Repairs";
     localStorage.setItem("myEstimate", estimateNotice);
     window.location.href="contact.html"
     //estimateNotice += '<input type="hidden" class="form-control" name="estimate" value="Request for repairs">';
@@ -24,7 +24,7 @@ repairs.addEventListener('click', function(){
 })
 inpect.addEventListener('click', function(){
     console.log("Inpect is pressed");
-    var estimateNotice = "Inpection";
+    let estimateNotice = "Inpection";
     localStorage.setItem("myEstimate", estimateNotice);
     window.location.href="contact.html"
     //estimateNotice +='<input type="hidden" class="form-control" name="estimate" value="Request for inpect">';

@@ -16,7 +16,7 @@
     //write review
     
     if(isset($_POST['writtenReview'])){
-        if(isset($_POST['rating']) && isset($_POST['message']) != null){
+        if(isset($_POST['rating']) && isset($_POST['message']) != null && isset($_POST['clientReview'])){
             $value = $_POST['rating'];
             
             $review = $_POST['message'];
@@ -32,17 +32,40 @@
             echo "review:";
             echo $review; 
             echo "<br>";
+            
+            $person = $_POST['clientReview'];
+            $name = substr($person,0 , strpos($person, ":"));
+            $cid = substr($person, strpos($person, ":") + 1);
+            echo "name:";
+            echo $name; 
+            echo "<br>";
+
+            echo "cid:";
+            echo $cid; 
+            echo "<br>";
             $sql = "INSERT INTO review (cid, cname, postDate, stars, message, approval)
                     VALUES (?,?,?,?,?,?)";
             $stmt = $conn->prepare($sql);
-            $stmt->execute([14, 'GG', $date, $value, $review, 0]);
-            header('Location: /CrystalClearWebsite/customer-review.html'); 
+            $stmt->execute([$cid, $name, $date, $value, $review, 0]);
+            header('Location: /CrystalClearWebsite/review.html');
         
         }
-
-
     }
-
+    //Delete Review
+    if(isset($_GET['delete'])){
+        $value = $_GET['delete'];
+        $cid = substr($value,0 , strpos($value, ":"));
+        $date = substr($value, strpos($value, ":") + 1);
+        echo $cid;
+        echo "<br>";
+        echo $date;
+        echo "<br>";
+        
+        $sql = "DELETE FROM review WHERE cid=$cid AND approval=0 AND postDate='".$date."'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        header('Location: /CrystalClearWebsite/reviewPost.html'); 
+    }
     //update the changes 
     if(isset($_POST['approvalChanges'])){
         if(isset($_POST['update'])){
@@ -62,13 +85,12 @@
                 $sql = "UPDATE review SET approval=1 WHERE cid=$cid AND postDate='".$date."'";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
+                
             }
     
         header('Location: /CrystalClearWebsite/reviewPost.html'); 
         }
-        $sql = "DELETE FROM review WHERE approval =0 AND postDate < NOW() - INTERVAL 30 DAY;";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        
     }
     $sql = "SELECT * FROM review ORDER BY postDate";
     $stmt = $conn->prepare($sql);
@@ -88,7 +110,7 @@
         array_push($json_review,$encode);
 
     }
-   
+
     echo (json_encode($json_review, JSON_PRETTY_PRINT));
     $conn = null;
 ?>
