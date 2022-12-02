@@ -132,7 +132,7 @@
             </div>
         </div>
     </nav>
-    <h2 class="text-center">Account Setup</h2>
+    <h2 class="text-center">Update Account Info</h2>
     <div style="background: url(&quot;assets/img/water1.png&quot;) top / cover no-repeat;">
         <div class="container">
             <div class="row">
@@ -150,8 +150,9 @@
                     <div><label class="form-label" style="padding-top: 23px;">E-mail:</label></div>
                     -->
                 </div>
-                <div id="entry" class="col-md-6" style="width: 400px;">
-                    <form id="my-form" action="./assets/php/infoentry.php" method="post" style="height: 500px;">
+                
+                <div id="update" class="col-md-6" style="width: 400px;">
+                    <form id="my-form" action="./assets/php/infoupdate.php" method="post" style="height: 500px;">
                         <!--
                         <div class="form-group mb-3"><label class="form-label visually-hidden" for="firstname">First Name</label><input class="form-control" type="text" id="firstname" name="firstname" maxlength="24" autofocus="" value="<?php echo $name;?>"></div>
                         <div class="form-group mb-3"><label class="form-label visually-hidden" for="lastname">Last Name</label><input class="form-control" type="text" id="lastname" name="lastname" maxlength="24" value="<?php echo $name;?>"></div>
@@ -171,31 +172,6 @@
                     </form>
                 </div>
                 
-                <!--
-                <div id="update" class="col-md-6" style="width: 400px; display:none;">
-                    <form id="my-form" action="./assets/php/infoupdate.php" method="post" style="height: 500px;">
-                    -->
-                        <!--
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="firstname">First Name</label><input class="form-control" type="text" id="firstname" name="firstname" maxlength="24" autofocus="" value="<?php echo $name;?>"></div>
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="lastname">Last Name</label><input class="form-control" type="text" id="lastname" name="lastname" maxlength="24" value="<?php echo $name;?>"></div>
-                        -->
-                        <!--
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="street">Street</label><input class="form-control" type="text" id="street" name="street" maxlength="32" value=""></div>
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="city">City</label><input class="form-control" type="text" id="city" name="city" maxlength="32" value=""></div>
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="state">State</label><input class="form-control" type="text" id="state" name="state" maxlength="32" value=""></div>
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="zipcode">Zip Code</label><input class="form-control" type="number" id="zipcode" name="zipcode" maxlength="5" value=""></div>
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="phonenumber">Phone Number</label><input class="form-control" type="tel" id="phonenumber" name="phonenumber" maxlength="10" value=""></div>
-                        <input id="check1" name="check1" value="0" style="display:none;">
-                        <input id="check2" name="check2" value="0" style="display:none;">
-
-                        <div class="form-group mb-3"><label class="form-label visually-hidden" for="email">E-mail</label><input class="form-control" type="email" id="email" name="email" maxlength="32" value="<?php echo $email;?>"></div>
-                        -->
-                        <!--
-                        <button class="btn btn-light btn-lg border rounded-0" id="form-btn-1" type="submit" name="submit" value="0" style="background: rgba(0,0,0,0.4);padding-top: 0px;padding-bottom: 0px;padding-right: 10px;padding-left: 10px;font-size: 16px;">Update</button>
-                        <button class="btn btn-light btn-lg border rounded-0" id="form-btn-2" type="reset" style="background: rgba(0,0,0,0.4);padding-top: 0px;padding-bottom: 0px;padding-right: 10px;padding-left: 10px;font-size: 16px;margin-left: 10px;" onclick="window.location.href='./profile.php'">Cancel</button>
-                    </form>
-                </div>
-                -->
             </div>
         </div>
     </div>

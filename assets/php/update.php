@@ -1,4 +1,4 @@
-<?php 
+<?php
     include_once('connect.php');
 <?php
     //header('location: ../../profile.php');
@@ -17,14 +17,14 @@
     mysqli_free_result($result);
 
     // taking input values from the update form
-    sanitize($firstname) = $_REQUEST['firstname'];
-    sanitize($lastname) = $_REQUEST['lastname'];
+    //sanitize($firstname) = $_REQUEST['firstname'];
+    //sanitize($lastname) = $_REQUEST['lastname'];
     sanitize($street) = $_REQUEST['street'];
     sanitize($city) = $_REQUEST['city'];
     sanitize($state) = $_REQUEST['state'];
     sanitize($zipcode) = $_REQUEST['zipcode'];  // missing field in database
     sanitize($phonenumber) = $_REQUEST['phonenumber'];
-    sanitize($email) = $_REQUEST['email'];
+    //sanitize($email) = $_REQUEST['email'];
 
     // clean up inputs to match database fields
     $cname = $firstname . ' ' . $lastname;
@@ -74,4 +74,5 @@
 
       return $result;
     }
+    
 ?>

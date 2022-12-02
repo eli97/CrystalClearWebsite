@@ -29,6 +29,8 @@
     //print_r($customers);
 
     $checkid = json_decode($_POST['id']);
+
+    
     foreach($customers as $customer) {
         if($customer['gid'] == $checkid) {
             //print_r("returning user");
@@ -47,6 +49,7 @@
             //header('Location:https://crystalclearwestsac.com/account.php');
         }*/
     }
+    
     header('Content-Type: application/json');
     echo json_encode(['location' => 'https://crystalclearwestsac.com/account.php']);
     exit;
