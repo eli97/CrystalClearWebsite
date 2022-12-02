@@ -66,7 +66,7 @@
         <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span><a href="index.html"><img src="assets/img/CClogo2.svg" width="248" height="79"></a></span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-2">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="estimate.html">Estimates</a></li>
                     <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
@@ -80,14 +80,14 @@
         <div class="row" style="background: url(&quot;assets/img/water1.png&quot;);">
             <div class="col-12 col-sm-6 col-md-6 col-xxl-4 site-form" style="margin: auto;width: 400px;">
                 <form class="pulse animated" id="my-form" style="text-align: center;">
-                    <div class="form-group mb-3">
+                   <!-- <div class="form-group mb-3">
                         <label class="form-label visually-hidden" for="email">Email Address</label>
                         <input class="form-control" type="text" id="email" name="email" required="" placeholder="Email"></div>
                     <div class="form-group mb-3">
                         <label class="form-label visually-hidden" for="phonenumber">Phone Number</label>
                         <input class="form-control" type="password" id="phonenumber" name="password" required="" placeholder="Password">
                     </div>
-
+					-->
                     
  
                    
@@ -117,14 +117,15 @@
                          data-theme="outline"
                          data-text="sign_in_with"
                          data-shape="rectangular"
-                         data-logo_alignment="center">
+						 data-logo_alignment="center"
+						align="center">
                     </div>
 
                     <div></div>
-                    <div class="form-group mb-3"><label class="form-label visually-hidden" for="messages">Last Name</label></div><a class="btn btn-light btn-lg" role="button" id="form-btn-1" href="profile.html" style="background: #92c9ff;font-size: 15px;">Log in</a>
+                    <!-- <div class="form-group mb-3"><label class="form-label visually-hidden" for="messages">Last Name</label></div><a class="btn btn-light btn-lg" role="button" id="form-btn-1" href="profile.html" style="background: #92c9ff;font-size: 15px;">Log in</a> -->
                     <div style="margin-top: 30px;">
-                        <p style="margin-top: 16px;margin-bottom: -2px;">No account? Sign up!</p>
-                        <a class="btn btn-light btn-lg" role="button" id="form-btn-2" href="signup.html" style="background: #92c9ff;font-size: 15px;">Sign-Up</a>
+                        <p style="margin-top: 16px;margin-bottom: -2px;">No account? Sign up with Google!</p>
+                       <!-- <a class="btn btn-light btn-lg" role="button" id="form-btn-2" href="signup.html" style="background: #92c9ff;font-size: 15px;">Sign-Up</a> -->
                     </div>
                 </form>
             </div>
