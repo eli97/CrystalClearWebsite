@@ -114,7 +114,7 @@
     <link rel="stylesheet" href="assets/css/NMDIG-Jumbotron-Advanced-Responsive-Tint-jumbotron-bg-responsive-tint.css">
     <link rel="stylesheet" href="assets/css/NMDIG-Jumbotron-Advanced-Responsive-Tint.css">
     <link rel="stylesheet" href="assets/css/Signup-page-with-overlay.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+  
 </head>
 
 <body>
