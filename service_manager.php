@@ -94,7 +94,6 @@
     <link rel="stylesheet" href="assets/css/NMDIG-Jumbotron-Advanced-Responsive-Tint-jumbotron-bg-responsive-tint.css">
     <link rel="stylesheet" href="assets/css/NMDIG-Jumbotron-Advanced-Responsive-Tint.css">
     <link rel="stylesheet" href="assets/css/Signup-page-with-overlay.css">
-    
 
 </head>
 
@@ -127,6 +126,7 @@
                             <div class="card text-center">
 
                                 <div class="card-body">
+                                    <!--
                                     <div class="row">
                                         <div class="col-md-4 text-center">
                                             <h5>Next Appointment</h5>
@@ -136,6 +136,7 @@
                                         </div>
                                     </div>
                                     <hr>
+                                    -->
                                     <div class="row">
                                         <div class="col-md-4">
                                             <h5>Current Subscription</h5>

@@ -19,6 +19,44 @@
     mysqli_free_result($result);
     mysqli_close($conn);
     */
+    
+    //function to call db if needed. -----NEEDS PARAMETER TO TAKE IN GOOGLE ID TO CHECK WITH DB FOR APPROPRIATE CUSTOMER TO CHANGE-----
+    function editdb() {
+        $dbname = "rystaly5_CrystClearMainDB";
+        $dbuser = "rystaly5_cbearquiver";
+        $dbpass = "SvenThePlant!";
+        $dbhost = "localhost";
+        $id = $_POST['cancel'];
+        //$id = "<script>document.write(localStorage.getItem('id'));</script>";
+        //echo $id;
+        
+        try{
+            $pdo = new PDO("mysql:host=" . $dbhost . ";dbname=" . $dbname, $dbuser, $dbpass);
+        }
+        catch (PDOException $err){
+            echo "Database connection problem: " . $err->getMessage();
+            exit();  
+        }
+    
+        $stmt = $pdo->prepare("DELETE FROM CUSTOMER WHERE gid=:id"); 
+        $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+        //echo $id;
+        //$id = "<script>document.write(localStorage.getItem('id'));</script>";
+        $stmt->execute();
+        $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $pdo = null;
+        $stmt = null;
+        header("Location: https://crystalclearwestsac.com/login.php");
+        //echo '<script type="text/javascript">confirmed()</script>';
+        exit();
+
+    }
+
+    //Set to 'No Service' when cancel service is pressed and conditions are met.
+    if(isset($_POST['cancel'])){
+        editdb(); 
+    }
+    
 ?> 
 
 <!DOCTYPE html>
@@ -51,6 +89,7 @@
     <link rel="stylesheet" href="assets/css/NMDIG-Jumbotron-Advanced-Responsive-Tint-jumbotron-bg-responsive-tint.css">
     <link rel="stylesheet" href="assets/css/NMDIG-Jumbotron-Advanced-Responsive-Tint.css">
     <link rel="stylesheet" href="assets/css/Signup-page-with-overlay.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/GoogleSignIn.css">
 </head>
 
@@ -83,7 +122,7 @@
                             <img id="image" class="rounded-circle" width="200">
                             <div class="data mt-3">
                                 <h3 id="profileName"></h3>
-                                <a href="account.php">Update</a>
+                                <!--<a href="account.php">Update</a>-->
                             </div>
                         </div>
                     </div>
@@ -146,15 +185,17 @@
                     <div class="card mb-3 content" style="max-width:95%">
                         <h1 class="m-3">Account Information</h1>
                         <div class="card-body">
+                            <!--
                             <div class="row">
                                 <div class="col-md-3">
                                     <h5>Next Appointment</h5>
                                 </div>
                                 <div class="col-md-9 text-secondary">
-                                    <!--<h5>12/31/2022</h5>-->
+                                    <h5>12/31/2022</h5>
                                     <h5 id="date"></h5>
                                 </div>
                             </div>
+                            -->
                             <hr>
                             <div class="row">
                                 <div class="col-md-3">
@@ -164,6 +205,7 @@
                                     <!--<h5 name="numfilters"><?php #echo htmlspecialchars($customer['filterWashes']);?></h5>-->
                                     <h5 id="filter"></h5>
                                 </div>
+                                <!--
                                 <div class="col">
                                     <h6> Add more </h6>
                                     <select class="form-select">
@@ -175,8 +217,14 @@
                                         <option value="5">5</option>
                                       </select>
                                 </div>
+                                -->
                                 <div class="col">
-                                    <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
+                                    <!--<a class="btn btn-primary" float="right" role="button" href="">Paypal</a>-->
+                                    <div id="smart-button-container">
+                                        <div style="text-align: center;">
+                                          <div id="paypal-button-container"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <hr>
@@ -189,24 +237,31 @@
                                     <h5 id="service"></h5>
                                     <a href="service_manager.php">Manage</a>
                                 </div>
+                                <!--
                                 <div class="col-sm">
                                     <h6> Payment </h6>
                                 </div>
                                 <div class="col">
                                     <a class="btn btn-primary" float="right" role="button" href="">Paypal</a>
                                 </div>
+                                -->
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-md-3 d-inline-flex">
                                     <h5>Payment History</h5>
                                 </div>
-                                <div class="col">
-                                    
+                                
+                                <div class="col-md-5 text-right">
+                                    <p>Any and all payment history and payment invoices can be found via Paypal</p>
+                                    <a type="button" href="https://www.paypal.com/us/signin" class="btn btn-primary">Paypal</a>
+                                    <!--
                                     <div class="ratio " style="--bs-aspect-ratio: 44%;">
                                         <iframe src="customer-history-next.html" ></iframe>
-                                  </div>
+                                    </div>
+                                    -->
                                 </div>
+                                
                             </div>
                         </div>
                         <hr>
@@ -214,10 +269,12 @@
                             <div class="col-sm-3">
                                 <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#popup">Delete Account</button>
                             </div>
+                            <p id="warning" style="display:none; color:red;">Please first cancel paypal subscription before deleting.</p>
                         </div>
                     </div>
                 </div>
             </div>
+
 
 
             <!--Account Deletion Popup Window-->
@@ -232,14 +289,24 @@
                         <div class="modal-body">
                             <p>Are you sure you want to delete your account?</p>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-target="#confirm" onclick="confirmed()">Confirm</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
+                        
+                        <form method="post" id="postsection">
+                            <div id="cancelsection" class="modal-footer" style="display:none;">
+                                <button type="submit" id="button1" name="cancel" class="btn btn-primary" data-bs-dismiss="modal" data-bs-target="#confirm" value="0" onclick="confirmed()">Confirm</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                        
+                            <div id="warningsection" class="modal-footer" style="display:none;">
+                                <button type="button" id="button2" class="btn btn-primary" data-bs-dismiss="modal" onclick="notice()">Confirm</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        
                     </div>
                 </div>
             </div>
             
+
 
         </div>
     </div>
@@ -250,6 +317,7 @@
             <p class="mb-0">Copyright © 2022 Crystal Clear</p>
         </div>
     </footer>
+    <script src="https://www.paypal.com/sdk/js?client-id=AS9OF1qrA62ErCfktIrTM5P2pLO6lqdgqKPvdyhiuIW0VbVX7utCiohS10dJeFAYNAmubd9Wp4nfdFnl&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/Customizable-Carousel-swipe-enabled.js"></script>
@@ -266,13 +334,59 @@
 
     <script>
         function confirmed() {
-            location.href = "login.php";
+            localStorage.clear();
+            //location.href = "login.php";
+        }
+
+        function notice() {
+            document.getElementById('warning').style.display = "inline";
         }
 
         function logout() {
             localStorage.clear();
             location.href = "login.php";
         }
+        
+        document.getElementById('button1').value = localStorage.getItem('id');
+        
+        function initPayPalButton() {
+            paypal.Buttons({
+              style: {
+                shape: 'pill',
+                color: 'blue',
+                layout: 'horizontal',
+                label: 'buynow',
+                tagline: true
+              },
+
+        createOrder: function(data, actions) {
+            return actions.order.create({
+              purchase_units: [{"description":"TEST ITEM","amount":{"currency_code":"USD","value":1}}]
+            });
+        },
+
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(orderData) {
+              
+              // Full available details
+              console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+    
+              // Show a success message within this page, e.g.
+              const element = document.getElementById('paypal-button-container');
+              element.innerHTML = '';
+              element.innerHTML = '<h3>Thank you for your payment!</h3>';
+    
+              // Or go to another URL:  actions.redirect('thank_you.html');
+              
+            });
+        },
+
+        onError: function(err) {
+            console.log(err);
+        }
+        }).render('#paypal-button-container');
+        }
+        initPayPalButton();
         
     </script>
 
@@ -302,7 +416,7 @@
             document.getElementById('state').innerHTML = res.state;
             document.getElementById('zip').innerHTML = res.zip;
             document.getElementById('filter').innerHTML = res.filterWashes;
-            document.getElementById('date').innerHTML = res.subscriptionDate;
+            //document.getElementById('date').innerHTML = res.subscriptionDate;
             document.getElementById('service').innerHTML = res.serviceName;
             document.getElementById('service').value = res.serviceName;
             
@@ -316,11 +430,25 @@
             
             if(num == 1) {
                 document.getElementById('anchor1').style.display = "none";
+                //document.getElementById('cancelsection').style.display = "none";
                 document.getElementById('anchor2').style.display = "inline";
+                //document.getElementById('warningsection').style.display = "inline";
             }
             else{
                 document.getElementById('anchor1').style.display = "inline";
+                //document.getElementById('cancelsection').style.display = "";
                 document.getElementById('anchor2').style.display = "none";
+                //document.getElementById('warningsection').style.display = "";
+            }
+            
+            if(document.getElementById('service').value != "No Service" && document.getElementById('service').value != "undefined") {
+                document.getElementById('cancelsection').style.display = "none";
+                document.getElementById('warningsection').style.display = "inline";
+            }
+            
+            if(document.getElementById('service').value == "No Service") {
+                document.getElementById('cancelsection').style.display = "inline";
+                document.getElementById('warningsection').style.display = "none";
             }
 
         },
