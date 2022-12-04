@@ -221,7 +221,7 @@ function addServiceCard(ID, name, description, price, isHidden)
     let servicesCard = `
         <div class="col">
             <div class="card">
-                <form action="` +url+  `" enctype="multipart/form-data" method="post">
+                <form action="` +url+  `" enctype="multipart/form-data" method="post" onsubmit="return validateForm(`+ ID +`)" name="Image Upload Form `+ ID +`">
                     <div style="display: inline-flex;">
                         <div style=width: calc(75% - 2em); margin-right: auto;"><input type="file" class="form-control" name="pic" id="`+ ID  + "_file_field" +`"/></div>
                         <div style=width: calc(25% - 2em); margin-left: auto;"><input type="submit" name="submit" value="Upload" class="btn btn-primary"></div>
@@ -297,6 +297,14 @@ function uploadImage(ID)
     setServiceImage(ID);
 }
 
+function validateForm(ID) {
+    var x = document.forms["Image Upload Form " + ID]["pic"].value;
+    if (x == "") 
+    {
+      alert("Must upload an image file.");
+      return false;
+    }
+  } 
 
 function addServiceCardUser(ID, name, description, price)
 {   
