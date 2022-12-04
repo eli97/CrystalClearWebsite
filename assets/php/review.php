@@ -19,7 +19,7 @@
         if(isset($_POST['rating']) && isset($_POST['message']) != null){
             $value = $_POST['rating'];
             
-            $review = $_POST['message'];
+            $review = sanitize($_POST['message']);
             $date = date("Y-m-d");
             echo "Today is";
             echo $date; 
@@ -91,4 +91,17 @@
    
     echo (json_encode($json_review, JSON_PRETTY_PRINT));
     $conn = null;
+
+    function sanitize($input) 
+    {
+      if(is_array($input)):
+        foreach($input as $key=>$value):
+          $result[$key] = sanitize($value);
+        endforeach;
+      else:
+        $result = htmlentities($input, ENT_QUOTES, 'UTF-8');
+      endif;
+
+      return $result;
+    }
 ?>

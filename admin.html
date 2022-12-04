@@ -100,7 +100,7 @@
             document.getElementById('profile').style.display = 'inline';
             document.getElementById('loginbtn').innerHTML = "Logout";
         }
-        
+
 
         function logout() {
             var logbtn = document.getElementById('loginbtn');
@@ -121,29 +121,28 @@
         
         var num = 0;
         
-        $.ajax({
-        url:"https://crystalclearwestsac.com/assets/php/checkprofile.php",
-        method: "post",
-        data: check,
-        datatype: "json",
-        success: function(res) {
+        $.ajax(
+        {
+            url:"https://crystalclearwestsac.com/assets/php/checkprofile.php",
+            method: "post",
+            data: check,
+            datatype: "json",
+            success: function(res) {
 
-            document.getElementById('boss').value = res.isAdmin;
-            if(document.getElementById('boss').value == 1) {
-                document.getElementById('boss').style.display = "inline";
+                document.getElementById('boss').value = res.isAdmin;
+                if(document.getElementById('boss').value == 1) {
+                    document.getElementById('boss').style.display = "inline";
+                }
+                else {
+                    document.getElementById('boss').style.display = "none";
+                }
+
+
+            },
+            error: function(res) {
+                alert("Error!");
             }
-            else {
-                document.getElementById('boss').style.display = "none";
-            }
-
-
-        },
-          error: function(res) {
-              alert("Error!");
-          }
-        }
-    );
-    
+        });
     </script>
     
 </body>
