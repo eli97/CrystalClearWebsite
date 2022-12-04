@@ -19,7 +19,8 @@
         if(isset($_POST['rating']) && isset($_POST['message']) != null && isset($_POST['clientReview'])){
             $value = $_POST['rating'];
             
-            $review = $_POST['message'];
+            $review = htmlentities($_POST['message'], ENT_QUOTES, 'UTF-8');
+            
             $date = date("Y-m-d");
             echo "Today is";
             echo $date; 
@@ -55,13 +56,13 @@
     if(isset($_GET['delete'])){
         $value = $_GET['delete'];
         $cid = substr($value,0 , strpos($value, ":"));
-        $date = substr($value, strpos($value, ":") + 1);
+        $post = substr($value, strpos($value, ":") + 1);
         echo $cid;
         echo "<br>";
-        echo $date;
+        echo $post;
         echo "<br>";
         
-        $sql = "DELETE FROM review WHERE cid=$cid AND approval=0 AND postDate='".$date."'";
+        $sql = "DELETE FROM review WHERE cid=$cid AND approval=0 AND postID=$post";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         header('Location: /CrystalClearWebsite/reviewPost.html'); 
@@ -100,6 +101,7 @@
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         $data = array( );
         $data['cid']     = $row['cid'];
+        $data['postID']  = $row['postID'];
         $data['cname']   = $row['cname'];
         $data['postDate']= $row['postDate'];
         $data['stars']   = $row['stars'];

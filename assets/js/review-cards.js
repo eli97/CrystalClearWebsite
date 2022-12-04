@@ -32,7 +32,8 @@ function printData(res){
         let stars = card.stars;
         let mgs = card.message;
         let approval = card.approval;
-        addAdminReviewCard(id, name, pDate, stars, mgs, approval)
+        let postid = card.postID
+        addAdminReviewCard(id, name, pDate, stars, mgs, approval, postid)
     }
     
 }
@@ -55,7 +56,7 @@ function printReviewData(res){
     }
     
 }
-function addAdminReviewCard(ID, name, datePost, stars, mgs, approval)
+function addAdminReviewCard(ID, name, datePost, stars, mgs, approval, postid)
 {   
     let newDate = datePost.split("-");
     let reviewCard = `<div class="col-6">
@@ -85,11 +86,11 @@ function addAdminReviewCard(ID, name, datePost, stars, mgs, approval)
         reviewCard += `<div class="col-md-auto"> 
         <div class="row">
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" value="`+ ID +`:`+ datePost +`" name="update[]">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" value="`+ ID +`:`+ postid +`" name="update[]">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Approve</label>
             </div>
          </div>
-            <a type="button" href="assets/php/review.php?delete=`+ ID +`:`+ datePost +`" class="btn btn-danger"  onClick="show_alert()">Delete</a>
+            <a type="button" href="assets/php/review.php?delete=`+ ID +`:`+ postid +`" class="btn btn-danger"  onClick="show_alert()">Delete</a>
             </div></form>
         </div></div>`;
     }
@@ -97,11 +98,11 @@ function addAdminReviewCard(ID, name, datePost, stars, mgs, approval)
         reviewCard += `<div class="col-md-autos"> 
         <div class="row">
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" value="`+ ID +`:`+ datePost +`" name="update[]" checked>
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" value="`+ ID +`:`+ postid +`" name="update[]" checked>
                 <label class="form-check-label" for="flexSwitchCheckChecked">Approve</label>
             </div>
         </div>
-            <a type="button" href="assets/php/review.php?delete=`+ ID +`:`+ datePost +`" class="btn btn-danger"  onClick="show_alert()">Delete</a>
+            <a type="button" href="assets/php/review.php?delete=`+ ID +`:`+ postid +`" class="btn btn-danger"  onClick="show_alert()">Delete</a>
     </div></div>`;
     }
         
@@ -139,6 +140,6 @@ function show_alert(){
     confirm("Are you sure want to submit these changes? The Review will deleted if it's set to \"Approval is UNCHECK\", otherwise nothing will happen.");
 }
 let clientName = localStorage.getItem("name");
-let clientID = 19;
+let clientID = localStorage.getItem("ID");;
 
 document.getElementById("clientReview").value = clientName+":"+clientID;

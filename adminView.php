@@ -35,6 +35,7 @@
             <a class="nav-link" href="admin.html">Update Services</a>
             <a class="nav-link" href="comfimation.html">Payment History</a>
             <a class="nav-link" href="adminView.php">View/Update Customers</a>   
+            <a class="nav-link" href="reviewPost.html">Reviews</a> 
         </nav>
     </div>
 
