@@ -41,7 +41,8 @@
                     <li class="nav-item"><a class="nav-link active" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item" id="profile"><a class="nav-link" href="profile.php">Profile</a></li>
+                    <li class="nav-item" id="profile" style="display:none"><a class="nav-link" href="profile.php">Profile</a></li>
+                    <li class="nav-item" id="boss" style="display:none"><a class="nav-link" href="admin.html">Admin</a></li>
                 </ul>
                 <!--<a id="loginbtn" class="btn btn-primary border-0 border-dark ms-md-2" role="button" href="login.php" style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Login</a>-->
                 <a id="loginbtn" class="btn btn-primary border-0 border-dark ms-md-2" role="button" onclick="logout()" style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Login</a>
@@ -54,26 +55,31 @@
                 <h2>Services</h2>
             </div>
         </div>
-    </div>
+        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" id="ServicesCards">
 
-    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" id="ServicesCards">
-        <div class="container">
-            <div class="card mx-auto w-75 h-75">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                            <img src="images/filter.jpg" class="img-fluid rounded-start" >
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body text-center">
-                          <h5 class="card-title">Get Filter Wash Now</h5>
-                          <p class="card-text">Keep your pool looking clean and fresh
-                                <br> Keep your pool healthy and safe
-                          </p>
-                          <a class="btn btn-primary" href="login.html" role="button">Buy Now</a>
-                        </div>
-                    </div>
+        </div>
+
+
+
+    </div>
+    <div class="container">
+        <div class="card mx-auto w-75 h-75">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="images/filter.jpg" class="img-fluid rounded-start" >
+                </div>
+                <div class="col-md-8">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Get Filter Wash Now</h5>
+                  <p class="card-text">Keep your pool looking clean and fresh
+                        <br> Keep your pool healthy and safe
+                  </p>
+                  <a class="btn btn-primary" href="login.html" role="button">Buy Now</a>
+
+                </div>
                 </div>
             </div>
+          </div>
         </div>
     </div>
 
@@ -107,7 +113,7 @@
             //document.getElementById("logbtn").innerHTML = "Logout";
             //document.getElementById("loginbtn").style.display = 'none';
             //document.getElementById('logoutbtn').style.display = 'visible';
-            document.getElementById('profile').style.display = 'visible';
+            document.getElementById('profile').style.display = 'inline';
             document.getElementById('loginbtn').innerHTML = "Logout";
         }
         
@@ -124,6 +130,38 @@
             }
         }
     </script>
+    
+    <script type="text/javascript">
+        var check = {};
+        check.id = JSON.stringify(localStorage.getItem('id'));
+        
+        var num = 0;
+        
+        $.ajax({
+        url:"https://crystalclearwestsac.com/assets/php/checkprofile.php",
+        method: "post",
+        data: check,
+        datatype: "json",
+        success: function(res) {
+
+            document.getElementById('boss').value = res.isAdmin;
+            if(document.getElementById('boss').value == 1) {
+                document.getElementById('boss').style.display = "inline";
+            }
+            else {
+                document.getElementById('boss').style.display = "none";
+            }
+
+
+        },
+          error: function(res) {
+              alert("Error!");
+          }
+        }
+    );
+    
+    </script>
+    
 </body>
 
 </html>

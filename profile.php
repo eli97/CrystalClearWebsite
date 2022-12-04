@@ -105,6 +105,7 @@
                     <li class="nav-item"><a class="nav-link" href="review.html">Review</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                     <li class="nav-item" id="profile"><a class="nav-link active" href="profile.php">Profile</a></li>
+                    <li class="nav-item" id="boss" style="display:none"><a class="nav-link" href="admin.html">Admin</a></li>
                 </ul>
                 <a id="logoutbtn" class="btn btn-primary border-0 border-dark ms-md-2" role="button" onclick="logout()"
                     style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Logout</a>
@@ -419,6 +420,7 @@
             //document.getElementById('date').innerHTML = res.subscriptionDate;
             document.getElementById('service').innerHTML = res.serviceName;
             document.getElementById('service').value = res.serviceName;
+            document.getElementById('boss').value = res.isAdmin;
             
             //alert(document.getElementById('service').value);
             if(typeof document.getElementById('service').value != "undefined") {
@@ -451,6 +453,12 @@
                 document.getElementById('warningsection').style.display = "none";
             }
 
+            if(document.getElementById('boss').value == 1) {
+                document.getElementById('boss').style.display = "inline";
+            }
+            else {
+                document.getElementById('boss').style.display = "none";
+            }
         },
           error: function(res) {
               alert("Error!");

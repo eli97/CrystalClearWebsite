@@ -92,7 +92,7 @@
     <script src="assets/js/review-cards.js" defer></script>
 
     <script type="text/javascript">
-        if(sessionStorage.getItem('status') != null) {
+        if(localStorage.getItem('status') != null) {
             document.getElementById("logbtn").innerHTML = "Logout";
         }
     </script>

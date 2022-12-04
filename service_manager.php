@@ -110,6 +110,7 @@
                     <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                     <li class="nav-item" id="profile"><a class="nav-link" href="profile.php">Profile</a></li>
+                    <li class="nav-item" id="boss" style="display:none"><a class="nav-link" href="admin.html">Admin</a></li>
                 </ul><a class="btn btn-primary border-0 border-dark ms-md-2" role="button" onclick="logout()"
                     style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Logout</a>
             </div>
@@ -336,6 +337,7 @@
                 success: function(res) {
                     //document.getElementById('date').innerHTML = res.subscriptionDate;
                     document.getElementById('service').innerHTML = res.serviceName;
+                    document.getElementById('boss').value = res.isAdmin;
                     active = res.isActive;
                     
                     //alert("active in ajax is " + active);
@@ -353,6 +355,13 @@
                         document.getElementById('cancelsection').style.display = "none";
                         document.getElementById('button1').style.display = "inline";
                         document.getElementById('postsection').style.display = "inline";
+                    }
+                    
+                    if(document.getElementById('boss').value == 1) {
+                        document.getElementById('boss').style.display = "inline";
+                    }
+                    else {
+                        document.getElementById('boss').style.display = "none";
                     }
                     
                 },
