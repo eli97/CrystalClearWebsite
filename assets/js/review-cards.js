@@ -20,9 +20,9 @@ function viewer(){
     .then(res => printReviewData(res))
 }
 function printData(res){
-    console.log(res);
-    newr = JSON.parse(res[0])
-    console.log(newr.cid);
+    //console.log(res);
+   // newr = JSON.parse(res[0])
+   // console.log(newr.cid);
 
     for(i=0; i<res.length; i++){
         card = JSON.parse(res[i])
@@ -32,12 +32,13 @@ function printData(res){
         let stars = card.stars;
         let mgs = card.message;
         let approval = card.approval;
-        addAdminReviewCard(id, name, pDate, stars, mgs, approval)
+        let postid = card.postID
+        addAdminReviewCard(id, name, pDate, stars, mgs, approval, postid)
     }
     
 }
 function printReviewData(res){
-    console.log(res);
+    //console.log(res);
 
     for(i=0; i<res.length; i++){
         card = JSON.parse(res[i])
@@ -55,10 +56,11 @@ function printReviewData(res){
     }
     
 }
-function addAdminReviewCard(ID, name, datePost, stars, mgs, approval)
+function addAdminReviewCard(ID, name, datePost, stars, mgs, approval, postid)
 {   
     let newDate = datePost.split("-");
-    let reviewCard = `<div class="card  shadow p-3 mb-5 bg-white rounded  h-75">
+    let reviewCard = `<div class="col-6">
+    <div class="card  shadow p-3 mb-5 bg-white rounded  h-85">
     <div class="card-body">
         <h5 class="card-title">Customer Name: `+ name +`</h5>
         <h5 class="card-title" >Customer ID: `+ ID +`</h5>
@@ -81,19 +83,27 @@ function addAdminReviewCard(ID, name, datePost, stars, mgs, approval)
             <p class="card-text">`+mgs+`</p>
         </ul>`;
     if(approval == 0 ){
-        reviewCard += `<div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" value="`+ ID +`:`+ datePost +`" name="update[]">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Approve</label>
-        </div>
-
-    </div>`;
+        reviewCard += `<div class="col-md-auto"> 
+        <div class="row">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" value="`+ ID +`:`+ postid +`" name="update[]">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Approve</label>
+            </div>
+         </div>
+            <a type="button" class="btn btn-danger"  onClick="show_alert(`+ ID +`,`+ postid +`)">Delete</a>
+            </div></form>
+        </div></div>`;
     }
     else{
-        reviewCard += `<div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" value="`+ ID +`:`+ datePost +`" name="update[]" checked>
-            <label class="form-check-label" for="flexSwitchCheckChecked">Approve</label>
+        reviewCard += `<div class="col-md-autos"> 
+        <div class="row">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" value="`+ ID +`:`+ postid +`" name="update[]" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Approve</label>
+            </div>
         </div>
-    </div>`;
+            <a type="button" class="btn btn-danger"  onClick="show_alert(`+ ID +`,`+ postid +`)">Delete</a>
+    </div></div>`;
     }
         
 
@@ -104,7 +114,8 @@ function addAdminReviewCard(ID, name, datePost, stars, mgs, approval)
 }
 function addReviewCard(name, stars, mgs, datePost){
     let newDate = datePost.split("-");
-    let reviewCard = `<div class="card  shadow p-3 mb-5 bg-white rounded  h-75">
+    let reviewCard = ` <div class="col-6">
+    <div class="card  shadow p-3 mb-5 bg-white rounded  h-75">
     <div class="card-body">
         <h4 class="card-title">-`+ name +`</h4>
         <p>Date Written: `+ newDate[1] +`/`+ newDate[2] +`/`+ newDate[0] +`</p>
@@ -121,11 +132,24 @@ function addReviewCard(name, stars, mgs, datePost){
         <ul>
             <p class="card-text">`+mgs+`</p>
         </ul>
-    </div>`;
+    </div></div></div>`;
     document.getElementById('reviewCards').innerHTML += reviewCard;
 }
 
-function show_alert(){
-    
-    alert("Are you sure want to submit these changes? Month old reviews that aren't approve will be deleted");
+function show_alert(id, postid){
+    let text = "Are you sure want to submit these changes? The Review will deleted if it's set to \"Approval is UNCHECK\", otherwise nothing will happen."
+   // href="assets/php/review.php?delete=`+ ID +`:`+ postid +`"
+   if (confirm(text) == true) {
+    text = "You pressed OK!";
+    text = `assets/php/review.php?delete=`+ id +`:`+ postid +``;
+    window.location.href = text;
+  } else {
+    //this does nothing
+    //text = "You canceled!";
+  }
+  
 }
+let clientName = localStorage.getItem("name");
+let clientID = localStorage.getItem("ID");;
+
+document.getElementById("clientReview").value = clientName+":"+clientID;

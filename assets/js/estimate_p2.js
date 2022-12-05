@@ -1,4 +1,4 @@
-var estimate =localStorage.getItem("myEstimate");
+let estimate = localStorage.getItem("myEstimate");
 console.log(estimate);
 let estimateNotice = '';
 estimateNotice += '<input type="hidden" class="form-control" name="Request"  value="Request for '+estimate+'">';

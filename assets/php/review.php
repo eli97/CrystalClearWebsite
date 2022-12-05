@@ -1,11 +1,12 @@
 <?php 
-   $servername = 'localhost';
-   $username = 'root';
-   $password = '';
-   $database = 'crystalclear';
+define("DB_HOST", "localhost");
+define("DB_NAME", "rystaly5_CrystClearMainDB");
+define("DB_CHARSET", "utf8");
+define("DB_USER", "rystaly5_cbearquiver");
+define("DB_PASSWORD", "SvenThePlant!");
    session_start();
    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+        $conn = $conn = new PDO("mysql:host=" . DB_HOST . ";charset=" . DB_CHARSET . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         // echo "Connected successfully";
@@ -16,10 +17,11 @@
     //write review
     
     if(isset($_POST['writtenReview'])){
-        if(isset($_POST['rating']) && isset($_POST['message']) != null){
+        if(isset($_POST['rating']) && isset($_POST['message']) != null && isset($_POST['clientReview'])){
             $value = $_POST['rating'];
+            $review = htmlentities($_POST['message'], ENT_QUOTES, 'UTF-8');
             
-            $review = sanitize($_POST['message']);
+
             $date = date("Y-m-d");
             echo "Today is";
             echo $date; 
@@ -32,45 +34,67 @@
             echo "review:";
             echo $review; 
             echo "<br>";
-            $sql = "INSERT INTO review (cid, cname, postDate, stars, message, approval)
+            
+            $person = $_POST['clientReview'];
+            $name = substr($person,0 , strpos($person, ":"));
+            $cid = substr($person, strpos($person, ":") + 1);
+            echo "name:";
+            echo $name; 
+            echo "<br>";
+
+            echo "cid:";
+            echo $cid; 
+            echo "<br>";
+            $sql = "INSERT INTO REVIEW (cid, cname, postDate, stars, message, approval)
                     VALUES (?,?,?,?,?,?)";
             $stmt = $conn->prepare($sql);
-            $stmt->execute([14, 'GG', $date, $value, $review, 0]);
-            header('Location: /CrystalClearWebsite/customer-review.html'); 
+            $stmt->execute([$cid, $name, $date, $value, $review, 0]);
+            header('Location: /CrystalClearWebsite/review.html');
         
         }
-
-
     }
-
+    //Delete Review
+    if(isset($_GET['delete'])){
+        $value = $_GET['delete'];
+        $cid = substr($value,0 , strpos($value, ":"));
+        $post = substr($value, strpos($value, ":") + 1);
+        echo $cid;
+        echo "<br>";
+        echo $post;
+        echo "<br>";
+        
+        $sql = "DELETE FROM review WHERE cid=$cid AND approval=0 AND postID=$post";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        header('Location: /CrystalClearWebsite/reviewPost.html'); 
+    }
     //update the changes 
     if(isset($_POST['approvalChanges'])){
         if(isset($_POST['update'])){
             //set all approval to 0s
-            $sql = "UPDATE review SET approval=0";
+            $sql = "UPDATE REVIEW SET approval=0";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
          
             foreach($_POST['update'] as $value){
                 $cid = substr($value,0 , strpos($value, ":"));
-                $date = substr($value, strpos($value, ":") + 1);
+                $post = substr($value, strpos($value, ":") + 1);
                 echo $cid;
                 echo "<br>";
-                echo $date;
+                echo $post;
                 echo "<br>";
             
-                $sql = "UPDATE review SET approval=1 WHERE cid=$cid AND postDate='".$date."'";
+                $sql = "UPDATE review SET approval=1 WHERE cid=$cid AND postID=$post";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
+                
             }
     
         header('Location: /CrystalClearWebsite/reviewPost.html'); 
         }
-        $sql = "DELETE FROM review WHERE approval =0 AND postDate < NOW() - INTERVAL 30 DAY;";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        
     }
-    $sql = "SELECT * FROM review ORDER BY postDate";
+    $sql = "SELECT * FROM REVIEW ORDER BY postDate";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     //$result = $stmt->fetchAll();
@@ -78,6 +102,7 @@
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         $data = array( );
         $data['cid']     = $row['cid'];
+        $data['postID']  = $row['postID'];
         $data['cname']   = $row['cname'];
         $data['postDate']= $row['postDate'];
         $data['stars']   = $row['stars'];
@@ -88,7 +113,7 @@
         array_push($json_review,$encode);
 
     }
-   
+
     echo (json_encode($json_review, JSON_PRETTY_PRINT));
     $conn = null;
 
