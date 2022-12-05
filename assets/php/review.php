@@ -1,9 +1,9 @@
 <?php 
-   define("DB_HOST", "localhost");
-   define("DB_NAME", "crystalclear");
-   define("DB_CHARSET", "utf8");
-   define("DB_USER", "root");
-   define("DB_PASSWORD", "");
+define("DB_HOST", "localhost");
+define("DB_NAME", "rystaly5_CrystClearMainDB");
+define("DB_CHARSET", "utf8");
+define("DB_USER", "rystaly5_cbearquiver");
+define("DB_PASSWORD", "SvenThePlant!");
    session_start();
    try {
         $conn = $conn = new PDO("mysql:host=" . DB_HOST . ";charset=" . DB_CHARSET . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD);
@@ -45,7 +45,7 @@
             echo "cid:";
             echo $cid; 
             echo "<br>";
-            $sql = "INSERT INTO review (cid, cname, postDate, stars, message, approval)
+            $sql = "INSERT INTO REVIEW (cid, cname, postDate, stars, message, approval)
                     VALUES (?,?,?,?,?,?)";
             $stmt = $conn->prepare($sql);
             $stmt->execute([$cid, $name, $date, $value, $review, 0]);
@@ -72,7 +72,7 @@
     if(isset($_POST['approvalChanges'])){
         if(isset($_POST['update'])){
             //set all approval to 0s
-            $sql = "UPDATE review SET approval=0";
+            $sql = "UPDATE REVIEW SET approval=0";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
          
@@ -94,7 +94,7 @@
         }
         
     }
-    $sql = "SELECT * FROM review ORDER BY postDate";
+    $sql = "SELECT * FROM REVIEW ORDER BY postDate";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     //$result = $stmt->fetchAll();
