@@ -33,6 +33,19 @@ Testing will be expanded upon as development continues:
     * Open a new jira for bug/defect
     * Include steps to recreate
     * Include documentation (test steps, descriptions, screenshots, etc.)
+    
+Testing System Requirements
+   * Windows Operating System (Windows 10)
+   * Google Chrome, Mozilla Firefox, Microsoft Edge
+   * Selenium 4.4.3 or Newer
+   * Python 3.10 or newer
+   * ChromeDriver (Google Chrome version) -- for automation
+   * PHPUnit Ver. 9
+
+To run:
+   * open terminal in vscode
+   * cd ./Tests
+   * python <test_file>.py
 
 ## Deployment:
 
