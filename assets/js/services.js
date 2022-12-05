@@ -33,7 +33,7 @@ function getAllServicesFromDBUser()
 {
     //Send request to PHP backend. Tells db to return all services in a JSON file
     var formDataAllServices = new FormData();
-    formDataAllServices.set('var1', 'getAllServices');
+    formDataAllServices.set('var1', 'getAllServicesUser');
 
     fetch(url, {
         method: 'POST',
@@ -41,28 +41,30 @@ function getAllServicesFromDBUser()
     })
     .then(res => res.json())
     .then(res => getAllServicesUser(res))
-    .catch(e => console.error('Error, getAllServicesUser(), ' + e))
+    .catch(e => console.error('Error, getAllServicesFromDBUser(), ' + e))
 }
 
-//  Get function
+//  Get functions
 function getAllServices(response) {
     console.log(response);
 
-    for(i=0; i<response.results.length; i++)
+    for(let i=0; i<response.results.length; i++)
     {
         let ID = '' + Object.values(response.results)[i].SERVICE_ID;
         let name = '' + Object.values(response.results)[i].serviceName;
         let description = '' + Object.values(response.results)[i].serviceDescription;
         let price = '' + Object.values(response.results)[i].servicePrice;
+        let isHidden = '' + Object.values(response.results)[i].serviceIsHidden;
 
-        addServiceCard(ID, name, description, price);
+        addServiceCard(ID, name, description, price, isHidden);
     }
 }
 
+//  Get functions
 function getAllServicesUser(response) {
     console.log(response);
 
-    for(i=0; i<response.results.length; i++)
+    for(let i=0; i<response.results.length; i++)
     {
         let ID = '' + Object.values(response.results)[i].SERVICE_ID;
         let name = '' + Object.values(response.results)[i].serviceName;
@@ -77,6 +79,12 @@ function getAllServicesUser(response) {
 //
 function setService(ID) {
     
+    let price = document.getElementById(ID + '_price').value;
+    if(!isNumber(price))
+    {
+        window.alert("Error: Only numbers allowed in the price field. Data not updated.");
+        return;
+    }
     // Loads the textarea fields from the HTML page into a form that is submitted to the PHP backend
     // Updates DB entries with HTML fields
     //
@@ -87,6 +95,7 @@ function setService(ID) {
     formDataFull.set('var4',  document.getElementById(ID + '_name').value);
     formDataFull.set('var5',  ID + '');
     
+    
     fetch(url, {
         method: 'POST',
         body: formDataFull
@@ -96,6 +105,44 @@ function setService(ID) {
     .catch(e => console.error('Error, setService(ID), ' + e));
 }
 
+function setServiceImage(ID) {
+
+    let photoFile = document.getElementById(ID + '_file_field').files;
+    let photoName = ID + '_image.jpg';
+
+    var formData = new FormData();
+
+    formData.append('var1', 'setServiceImageByID');
+    formData.append('var2', photoFile);
+    formData.append('var3', photoName);
+    formData.append('var4', ID + '');
+    
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+        contentType: "multipart/form-data"
+    })
+    .then(res => res.text())
+    .then(res => isUpdated(res))
+    .catch(e => console.error('Error, setServiceImage(ID), ' + e));
+}
+
+function toggleHideServiceByID(ID, hideStatus) {
+    
+    var formDataFull = new FormData();
+    formDataFull.set('var1', 'toggleHideServiceByID');
+    formDataFull.set('var2', ID + '');
+    formDataFull.set('var3', hideStatus + '');
+    
+    fetch(url, {
+        method: 'POST',
+        body: formDataFull
+    })
+    .then(res => res.text())
+    .then(res => isUpdated(res))
+    .catch(e => console.error('Error, setShowService(ID), ' + e));
+}
+
 function isUpdated(data)
 {
     console.log(data);
@@ -103,8 +150,14 @@ function isUpdated(data)
     if(data == "OK"){
         window.alert("The information was updated successfully");
     }
-    else
+    else if(data == "DOK"){
+        window.alert("The service was deleted successfully");
+    }
+    else{
         window.alert("There was an error updating the data. Please try again later.");
+    }
+
+    window.location.reload();
 }
 
 function addNewService()
@@ -123,28 +176,84 @@ function addNewService()
     .catch(e => console.error('Error, addNewService(), ' + e));
 }
 
-function addServiceCard(ID, name, description, price)
+function deleteConfirmation(ID) {
+    let choice = confirm("Are you sure you want to delete this service?");
+
+    if (choice==true)
+    {
+        deleteService(ID);
+    }
+    else    
+    {
+        window.alert("The service was not deleted.");
+    }
+  }
+
+function deleteService(ID) {
+    
+    var formDataFull = new FormData();
+    formDataFull.set('var1', 'deleteServiceByID');
+    formDataFull.set('var2', ID + '');
+    
+    fetch(url, {
+        method: 'POST',
+        body: formDataFull
+    })
+    .then(res => res.text())
+    .then(res => isUpdated(res))
+    .catch(e => console.error('Error, deleteServiceByID(ID), ' + e));
+}
+
+function addServiceCard(ID, name, description, price, isHidden)
 {
+
+    let visibilityButton = '';
+
+    if (isHidden == 0)
+    {
+        visibilityButton = `<button class="btn btn-warning" type="button" onclick="toggleHideServiceByID(` + ID +', 1' + `);" style="">Hide</button>`;
+    }
+    else
+    {
+        visibilityButton = `<button class="btn btn-warning" type="button" onclick="toggleHideServiceByID(` + ID +', 0'+ `);" style="">Publish</button>`;
+    }
+
     let servicesCard = `
         <div class="col">
             <div class="card">
-                <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://crystalclearwestsac.com/assets/img/pool_stock_1.jpg">
+                <form action="` +url+  `" enctype="multipart/form-data" method="post" onsubmit="return validateForm(`+ ID +`)" name="Image Upload Form `+ ID +`">
+                    <div style="display: inline-flex;">
+                        <div style=width: calc(75% - 2em); margin-right: auto;"><input type="file" class="form-control" name="pic" id="`+ ID  + "_file_field" +`"/></div>
+                        <div style=width: calc(25% - 2em); margin-left: auto;"><input type="submit" name="submit" value="Upload" class="btn btn-primary"></div>
+                        <input type="text" name="serviceID" value="` + ID +`" style="display: none;">
+                    </div>
+                </form>
+                <img src="https://crystalclearwestsac.com/assets/img/`+ ID +`_servicePicture.jpeg" class='image_field' id="`+ ID + "_servicePicture" +`">
+                
+
                 <div class="card-body text-center p-4">
-                    <h4 class="text-center card-title"><textarea id="`+ ID  +"_name" +`" rows="1" cols="25" style="resize: none;" >`+ name +`</textarea></h4>
-                    <textarea id="` + ID + "_description" + `" class="form-control-lg" rows="10" cols="25px">`+ description +`</textarea>
-                    <div class="price-input">
+                    <h4 class="card-title text-center">
+                        <div class="mb-3">
+                            <textarea id="`+ ID  +"_name" +`" class="form-control" rows="1" cols="25" style="resize: none;" >`+ name +`</textarea>
+                        </div>
+                    </h4>
+                    <div class="mb-3">
+                        <textarea id="` + ID + "_description" + `" class="form-control" rows="10">`+ description +`</textarea>
+                    </div>
+                    <div class="mb-3" id="price-input">
                         <div style="display: flex;">
                             <div style="flex: 50%;">
-                                <h4 class="text-center card-title" style="float: right">Price:</h4>
+                                <h4 class="card-title text-center" style="float: right">Price:</h4>
                             </div>
                             <div style="flex: 50%;">
-                                <textarea id="`+ ID  +"_price" +`" rows="1" cols="7" style="resize: none; float: left;" >`+ price +`</textarea>
+                                <textarea id="`+ ID  +"_price" +`" class="form-control" rows="1" cols="7" style="resize: none; float: left;" onkeypress="allowOnlyNumbers(event)">`+ price +`</textarea>
                             </div>
                         </div>
-                        <div class="d-flex" style="margin-top: 25px;">
-                            <button class="btn btn-primary" type="button" onclick="setService(` + ID + `);" style="">Update</button>
-                            <button class="btn btn-secondary" type="button" onclick="deleteService(` + ID + `);" style="margin-left: 25px; background-color: red;">Delete</button>
-                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" type="button" onclick="setService(` + ID + `);" style="">Update</button>
+                        <button class="btn btn-danger" type="button" onclick="deleteConfirmation(` + ID + `);" style="">Delete</button>
+                        ` + '' + visibilityButton + `
                     </div>
                 </div>
             </div>
@@ -156,26 +265,53 @@ function addServiceCard(ID, name, description, price)
     document.getElementById('ServicesCards').innerHTML += servicesCard;
 }
 
-//~~~~~DELETE THIS AFTER PHOTO UPLOAD/SELECTION IS IMPLEMENTED~~~~~//
-var stockPhotoCnt = 0;
-var photoArray = [];
+// Function to confirm if there's a number
+//
+function isNumber(n) 
+{
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
 
-photoArray.push("assets/img/AdobeStock_151519721.jpeg");
-photoArray.push("assets/img/AdobeStock_496196117.jpeg");
-photoArray.push("assets/img/AdobeStock_151519928.jpeg");
+var keycodes = 
+{
+    'number0': 48,
+    'number9': 57,
+    'decimal': 46
+};
 
+function allowOnlyNumbers(e)
+{
+    // If e isn't a number or decimal/period then block input
+    //
+    if ((e.charCode < keycodes.number0 || e.charCode > keycodes.number9) &&
+        e.charCode !== keycodes.decimal)
+    {
+        return e.preventDefault ()
+    }
+}
 
-photoArray = {photo1, photo2, photo3};
+// Function to upload image
+function uploadImage(ID)
+{
+    console.log("Entered the image upload function");
+    setServiceImage(ID);
+}
 
-//~~~~~DELETE THIS AFTER PHOTO UPLOAD/SELECTION IS IMPLEMENTED~~~~~//
+function validateForm(ID) {
+    var x = document.forms["Image Upload Form " + ID]["pic"].value;
+    if (x == "") 
+    {
+      alert("Must upload an image file.");
+      return false;
+    }
+  } 
 
 function addServiceCardUser(ID, name, description, price)
 {   
-    console.log(photoArray[stockPhotoCnt]);
-
     let servicesCard = `
     <div class="col">
-        <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="` + photoArray[stockPhotoCnt] +`">
+        <div class="card">
+            <img src="https://crystalclearwestsac.com/assets/img/`+ ID +`_servicePicture.jpeg" class='image_field' id="`+ ID + "_servicePicture" +`">
             <div class="card-body p-4">
                 <h4 class="card-title">`+ name +`</h4>
                 <p class="card-text">`+ description +`<br></p>
@@ -188,8 +324,4 @@ function addServiceCardUser(ID, name, description, price)
     // Add the above card to the HTML
     //
     document.getElementById('ServicesCards').innerHTML += servicesCard;
-
-    //~~~~~DELETE THIS AFTER PHOTO UPLOAD/SELECTION IS IMPLEMENTED~~~~~//
-    stockPhotoCnt = (stockPhotoCnt + 1) % 3;
-    //~~~~~DELETE THIS AFTER PHOTO UPLOAD/SELECTION IS IMPLEMENTED~~~~~//
 }

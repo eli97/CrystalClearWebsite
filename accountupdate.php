@@ -114,7 +114,7 @@
     <link rel="stylesheet" href="assets/css/NMDIG-Jumbotron-Advanced-Responsive-Tint-jumbotron-bg-responsive-tint.css">
     <link rel="stylesheet" href="assets/css/NMDIG-Jumbotron-Advanced-Responsive-Tint.css">
     <link rel="stylesheet" href="assets/css/Signup-page-with-overlay.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    
 </head>
 
 <body>
@@ -127,6 +127,7 @@
                     <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                     <li class="nav-item" id="profile"><a class="nav-link" href="profile.php">Profile</a></li>
+                    <li class="nav-item" id="boss" style="display:none"><a class="nav-link" href="admin.html">Admin</a></li>
                 </ul>
                 <a id="logbtn" class="btn btn-primary border-0 border-dark ms-md-2" role="button" onclick="logout()" style="background: #171e28;--bs-primary: #052065;--bs-primary-rgb: 5,32,101;">Logout</a>
             </div>
@@ -232,6 +233,9 @@
             //document.getElementById('email').innerHTML = res.email;
             //var result = JSON.parse(res);
             //alert(res.phone);
+            
+            document.getElementById('boss').value = res.isAdmin;
+            
             document.getElementById('phonenumber').value = res.phone;
             if(document.getElementById('phonenumber').value == "undefined") {
                 document.getElementById('phonenumber').value = '';
@@ -273,6 +277,14 @@
                 alert('update');
             }
             */
+            
+            if(document.getElementById('boss').value == 1) {
+                document.getElementById('boss').style.display = "inline";
+            }
+            else {
+                document.getElementById('boss').style.display = "none";
+            }
+            
         },
           error: function(res) {
               alert("Error!");
