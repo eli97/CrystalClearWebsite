@@ -1,11 +1,12 @@
 <?php 
-   $servername = 'localhost';
-   $username = 'root';
-   $password = '';
-   $database = 'crystalclear';
+   define("DB_HOST", "localhost");
+   define("DB_NAME", "crystalclear");
+   define("DB_CHARSET", "utf8");
+   define("DB_USER", "root");
+   define("DB_PASSWORD", "");
    session_start();
    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+        $conn = $conn = new PDO("mysql:host=" . DB_HOST . ";charset=" . DB_CHARSET . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         // echo "Connected successfully";
@@ -77,13 +78,13 @@
          
             foreach($_POST['update'] as $value){
                 $cid = substr($value,0 , strpos($value, ":"));
-                $date = substr($value, strpos($value, ":") + 1);
+                $post = substr($value, strpos($value, ":") + 1);
                 echo $cid;
                 echo "<br>";
-                echo $date;
+                echo $post;
                 echo "<br>";
             
-                $sql = "UPDATE review SET approval=1 WHERE cid=$cid AND postDate='".$date."'";
+                $sql = "UPDATE review SET approval=1 WHERE cid=$cid AND postID=$post";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
                 

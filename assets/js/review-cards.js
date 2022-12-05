@@ -90,7 +90,7 @@ function addAdminReviewCard(ID, name, datePost, stars, mgs, approval, postid)
                 <label class="form-check-label" for="flexSwitchCheckDefault">Approve</label>
             </div>
          </div>
-            <a type="button" href="assets/php/review.php?delete=`+ ID +`:`+ postid +`" class="btn btn-danger"  onClick="show_alert()">Delete</a>
+            <a type="button" class="btn btn-danger"  onClick="show_alert(`+ ID +`,`+ postid +`)">Delete</a>
             </div></form>
         </div></div>`;
     }
@@ -102,7 +102,7 @@ function addAdminReviewCard(ID, name, datePost, stars, mgs, approval, postid)
                 <label class="form-check-label" for="flexSwitchCheckChecked">Approve</label>
             </div>
         </div>
-            <a type="button" href="assets/php/review.php?delete=`+ ID +`:`+ postid +`" class="btn btn-danger"  onClick="show_alert()">Delete</a>
+            <a type="button" class="btn btn-danger"  onClick="show_alert(`+ ID +`,`+ postid +`)">Delete</a>
     </div></div>`;
     }
         
@@ -136,8 +136,18 @@ function addReviewCard(name, stars, mgs, datePost){
     document.getElementById('reviewCards').innerHTML += reviewCard;
 }
 
-function show_alert(){
-    confirm("Are you sure want to submit these changes? The Review will deleted if it's set to \"Approval is UNCHECK\", otherwise nothing will happen.");
+function show_alert(id, postid){
+    let text = "Are you sure want to submit these changes? The Review will deleted if it's set to \"Approval is UNCHECK\", otherwise nothing will happen."
+   // href="assets/php/review.php?delete=`+ ID +`:`+ postid +`"
+   if (confirm(text) == true) {
+    text = "You pressed OK!";
+    text = `assets/php/review.php?delete=`+ id +`:`+ postid +``;
+    window.location.href = text;
+  } else {
+    //this does nothing
+    //text = "You canceled!";
+  }
+  
 }
 let clientName = localStorage.getItem("name");
 let clientID = localStorage.getItem("ID");;
