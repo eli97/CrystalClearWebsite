@@ -133,9 +133,13 @@ Ensure records are accessible from client and administrative view
 Deploy website and conduct final testing 
 
 ### Sprint 09
+Polishing up the website to look nice and proper
+to get ready for handing off to the business owner
 
 ### Sprint 10
-
+System Test Report, User Manual and Maintenance Manual documentation focus
+Final function testing and a look over of the final product of the web application
+Handing off to the business owner and signing off on Product Delivery
 
 ## Application Flow:
 ![](/Diagrams/applicationflow.png)
