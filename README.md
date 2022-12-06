@@ -138,7 +138,9 @@ to get ready for handing off to the business owner
 
 ### Sprint 10
 System Test Report, User Manual and Maintenance Manual documentation focus
+
 Final function testing and a look over of the final product of the web application
+
 Handing off to the business owner and signing off on Product Delivery
 
 ## Application Flow:
