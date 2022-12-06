@@ -10,14 +10,14 @@ request an estimate in person and pay through traditional means like check or ca
 
 ## Contributor
 
-Elijah Semeryuk
-Jonathon Kasten
-Colton Bearquiver
-Giselle Fuentes
-Jin Park
-Nue Khang
-Viktoria Penkova
-Kevin Houth
+Elijah Semeryuk<br />
+Jonathon Kasten<br />
+Colton Bearquiver<br />
+Giselle Fuentes<br />
+Jin Park<br />
+Nue Khang<br />
+Viktoria Penkova<br />
+Kevin Houth<br />
 
 ## Testing:
 
