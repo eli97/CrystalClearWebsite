@@ -1,5 +1,5 @@
 # CrystalClearWebsite
-![](/pages/CClogo.PNG)
+![](/assets/img/CClogo2.PNG)
 
 ## Synopsis: 
 
