@@ -73,7 +73,19 @@ features.
 3. Commit your changes: git commit -am 'Added feature'
 4. Push to the branch: git push origin new-feature
 5. Submit a pull request
-    
+
+## User Manual:
+
+How to run/deploy:
+
+The website is hosted on Bluehost web service, so it is a matter of logging into the admin account on bluehost.<br />
+You may view the site here: [CrystalClearPoolService](https://crystalclearwestsac.com/) <br />
+
+In order to deploy follow these steps: <br />
+'Advanced'->'File Manager'->'public_html'->'Upload'
+
+Select 'Overwrite' then carry over project files needed to deploy/update for the website.
+
 ## Prototype:
 ![](/ProtoTypeImages/HomePage.png)
 ![](/ProtoTypeImages/ServicesPage.png)
