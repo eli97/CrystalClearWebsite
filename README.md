@@ -81,10 +81,41 @@ How to run/deploy:
 The website is hosted on Bluehost web service, so it is a matter of logging into the admin account on bluehost.<br />
 You may view the site here: [CrystalClearPoolService](https://crystalclearwestsac.com/) <br />
 
-In order to deploy follow these steps: <br />
+In order to deploy changes <br />
+Follow these steps: <br />
 'Advanced'->'File Manager'->'public_html'->'Upload'
 
 Select 'Overwrite' then carry over project files needed to deploy/update for the website.
+
+In the event of a domain name change, consult with the business owner for decision making and <br />
+payment decisions. The same applies to hosting services.<br />
+● Ensure that php version 8.1.12 or later is installed on your server or your hosting provider’s <br />
+server. Please consult the official PHP documentation on installation details and instructions. <br />
+○ [PHP](https://www.php.net/manual/en/install.php) <br />
+● Ensure that mySQL version 5.7.23 or later is installed on your server or your hosting provider’s <br />
+server. Please consult the official mySQL documentation on installation details and instructions. <br />
+○ [MySQL](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) <br />
+● Ensure that Composer is installed. Please consult the official Composer documentation on <br />
+installation details and instructions. <br />
+○ [Composer](https://getcomposer.org/download/) <br />
+● All of the above were pre-installed on our current hosting service provider, BlueHost. The <br />
+operating system on their server is Linux with kernel version 4.19.150-76.ELK.el7.x86_64. <br />
+● Ensure that the PayPal PHP SDK is installed. With an SSH connection to the server, navigate to <br />
+the root directory of your project (not the server root directory) and execute the following <br />
+command: composer require paypal/rest-api-sdk-php:* <br />
+○ To clarify further, the SDK should be installed in the directory that will hold all of the files <br />
+that will be publicly accessible. <br />
+○ After composer installs the SDK, you should see a ‘vendor’ directory that has the PayPal <br />
+SDK. Do not overwrite or delete this directory. <br />
+● You should now have all of the tools for the website to function. Simply migrate your files to the <br />
+directory that will be publicly accessible to the web, but make sure not to overwrite the ‘vendor’ <br />
+directory. <br />
+○ Please reference the existing webhook configuration to create new webhooks if needed. <br />
+○ common.php and bootstrap.php need to be moved to <br />
+/vendor/paypal/rest-api-sdk-php/lib/ in order for the SDK to function. Examples of each <br />
+can be found in the root directory of the GitHub repository. <br />
+
+
 
 ## Prototype:
 ![](/ProtoTypeImages/HomePage.png)
