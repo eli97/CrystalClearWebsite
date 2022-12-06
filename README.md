@@ -8,6 +8,17 @@ for his clients. His clients will be able to create an account for the website, 
 as provide a convenient way to see payment and service history. New clients who find his business online are not obligated to create an account and can still choose to 
 request an estimate in person and pay through traditional means like check or cash. 
 
+## Contributor
+
+Elijah Semeryuk
+Jonathon Kasten
+Colton Bearquiver
+Giselle Fuentes
+Jin Park
+Nue Khang
+Viktoria Penkova
+Kevin Houth
+
 ## Testing:
 
 1. Testing consists of ensuring that all web pages scale properly when zooming in/out and resizing the browser window. 
