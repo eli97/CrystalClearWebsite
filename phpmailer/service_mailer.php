@@ -32,9 +32,9 @@
     $mail->isHTML(true);
     //email body
     $mail->Body = "<h1>Service Cancellation Notice</h1></br>
-                    <p id='infoName'>Lorem Ipsum</p></br>
-                    <p id='email'>johndoe@gmail.com</p></br>
-                    <p>The customer listed above has canceled their service on the website.</p>
+                    <p id='infoName'></p>Automatic Email from Crystal Clear Pool Service Website</br>
+                    <p id='email'>A customer has cancelled their service via the CrystalClearPoolService Website</p></br>
+                    <p>You may check the Customer Search Admin Page for any changes to the services. Link provided below</p></br>
                     <a href='https://crystalclearwestsac.com'>Crystal Clear Pool Service</a>";
     //Add recipient
     $mail->addAddress("crystalclearpoolservice.916@gmail.com");
