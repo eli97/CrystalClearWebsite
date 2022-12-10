@@ -73,10 +73,10 @@
         <div class="container" style="min-width: 0px;max-width: 800px;">
             <form action="https://formsubmit.co/cdf2199af83ed40a21902f1fd1819e1d" method="post">
                 <div><select class="form-select" style="margin-bottom: 19px;">
-                        <option value="undefined">Select Service:</option>
-                        <option name="chem" value="12">Chemical+Basket</option>
-                        <option name="basic" value="13">Basic Service</option>
-                        <option name="full" value="14">Full Service</option>
+                        <option value="Service Not Selected">Select Service:</option>
+                        <option name="basic" value="Basic Service">Basic Service</option>
+                        <option name="chem" value="Chemical+Basket">Chemical+Basket</option>
+                        <option name="full" value="Full Service">Full Service</option>
                 </select></div>
 
                 
@@ -150,7 +150,7 @@
                     <label style="margin-bottom: 2px;"><strong>Comments or Questions:</strong></label><textarea class="form-control" name="message" rows="8" style="background-color:white;"></textarea>
                 </div>
                 <div class="justify-content-center d-flex form-group mb-3">
-                    <div id="submit-btn"><button class="btn btn-primary" type="submit" style="margin-top: 20px;" name="submit">Submit</button></div>
+                    <div id="submit-btn"><button class="btn btn-primary" type="submit" style="margin-top: 20px;" name="submit" value="" id="service">Submit</button></div>
                 </div>
                 <input type="hidden" name="_template" value="table">
             </form>
@@ -158,7 +158,7 @@
     </div>
     <footer class="text-center">
         <div class="container text-muted py-4 py-lg-5">
-            <p>Servicing the greater Sacramento area<br>Sacramento, California 95825<br>email: dannysemer@gmail.com<br>phone: (916) 514-3585<br><br></p>
+            <p>Servicing the greater Sacramento area<br>Sacramento, California 95825<br>email: no-reply@email.com<br>phone: (916) 123-4567<br><br></p>
             <p class="mb-0">Copyright © 2022 Crystal Clear</p>
         </div>
     </footer>
@@ -204,6 +204,21 @@
                 }
             });
         });
+
+        var select = document.querySelector(".form-select");
+        var selectOption = select.options[select.selectedIndex];
+        var lastSelected = localStorage.getItem('select');
+        
+        if(lastSelected) {
+            select.value = lastSelected; 
+        }
+        
+        select.onchange = function () {
+           lastSelected = select.options[select.selectedIndex].value;
+           console.log(lastSelected);
+           localStorage.setItem('select', lastSelected);
+           document.getElementById('service').value = localStorage.getItem('select');
+        }
 
         if(localStorage.getItem('service') == 12) {
             document.getElementById("chem").innerHTML = "Chemical + Basket"
